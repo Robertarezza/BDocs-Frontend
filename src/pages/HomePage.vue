@@ -1,5 +1,4 @@
 <script>
-import
 
 export default {
     data() {
