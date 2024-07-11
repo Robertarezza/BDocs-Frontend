@@ -16,4 +16,9 @@ export default {
 </template>
 
 <style scoped lang="scss">
+@use "../style/partials/variables" as *;
+div {
+    height: 100vh;
+    background: $gradient-top;
+}
 </style>
