@@ -58,6 +58,7 @@ export default {
   color: #fff;
   font-family: "Poppins", sans-serif;
   transition: all 0.3s ease;
+
 }
 
 .card-client:hover {
