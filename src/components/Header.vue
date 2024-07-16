@@ -14,18 +14,8 @@ export default {
             <div class="box-img">
                 <img src="../assets/img/logo.png" alt="logo B-Doctors">
             </div>
-            <div>
-                <ul>
-                    <li>
-                        route1
-                    </li>
-                    <li>
-                        route2
-                    </li>
-                    <li>
-                        route3
-                    </li>
-                </ul>
+            <div id="title">
+                <h3>B-Doctors</h3>
             </div>
         </nav>
     </header>
@@ -55,7 +45,6 @@ header {
             display: flex;
             justify-content: start;
 
-
             img {
                 height: 60px;
                 display: block;
@@ -65,15 +54,8 @@ header {
             }
         }
 
-        ul {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            li {
-                list-style-type: none;
-                margin-right: 10px;
-            }
+        #title {
+            color: white;
         }
     }
 }
