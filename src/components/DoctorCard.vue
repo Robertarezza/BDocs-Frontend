@@ -13,85 +13,148 @@ export default {
 };
 </script>
 
+
 <template>
-  <div class="card h-100">
-    <img
-      :src="
-        doctor.photo
-          ? `${store.imageUrl}/${doctor.photo}`
-          : `https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg`
-      "
-      class="card-img-top"
-      alt="Doctor Photo"
-      style="object-fit: cover; height: 200px"
-    />
-    <div class="card-body">
-      <h5 class="card-title">{{ doctor.user.name }} {{ doctor.user.surname }}</h5>
-      <p class="card-text">E-mail: {{ doctor.user.email }}</p>
-      <p class="card-text">Indirizzo: {{ doctor.studio_address }}</p>
-      <p class="card-text">Telefono: {{ doctor.phone_number }}</p>
-      <p class="card-text">Prestazioni: {{ doctor.performance }}</p>
-      <p>Specializzazioni:</p>
-      <ul class="card-text">
-        <li v-for="specialization in doctor.specializations" :key="specialization.id">
-          {{ specialization.title }}
-        </li>
-      </ul>
+    <div class="card-client">
+      <div class="user-picture">
+        <img
+          :src="doctor.photo ? `${store.imageUrl}/${doctor.photo}` : `https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg`"
+          class="card-img-top"
+          alt="Doctor Photo"
+        />
+      </div>
+      <div class="card-body">
+        <h5 class="name-client">{{ doctor.user.name }} {{ doctor.user.surname }}</h5>
+        <span>Specializzazioni:</span>
+        <ul>
+          <li v-for="specialization in doctor.specializations" :key="specialization.id">
+            {{ specialization.title }}
+          </li>
+        </ul>
+      </div>
+        <p class="card-text">Indirizzo: {{ doctor.studio_address }}</p>
+        <p class="card-text">Telefono: {{ doctor.phone_number }}</p>
+        <p class="card-text">Prestazioni: {{ doctor.performance }}</p>
+        <p>E-mail: {{ doctor.user.email }}</p>
+        
     </div>
-  </div>
-</template>
+  </template>
+  
 
-<style scoped lang="scss">
+
+  <style scoped lang="scss">
 @use "../style/partials/variables" as *;
-
-.container {
-  min-height: 100vh;
-  background: $gradient-top;
-  padding-top: 50px;
-  padding-bottom: 50px;
-}
-
-.card-img-top {
-  object-fit: cover;
-  height: 200px;
-}
-
-.card-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.card-text ul {
+.card-client {
+  background: #2cb5a0;
+  width: 13rem;
+  padding-top: 25px;
+  padding-bottom: 25px;
   padding-left: 20px;
-  list-style: disc;
+  padding-right: 20px;
+  border: 4px solid #7cdacc;
+  box-shadow: 0 6px 10px rgba(207, 212, 222, 1);
+  border-radius: 10px;
+  text-align: center;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  transition: all 0.3s ease;
 }
 
-.loader {
+.card-client:hover {
+  transform: translateY(-10px);
+}
+
+.user-picture {
+  overflow: hidden;
+  object-fit: cover;
+  width: 5rem;
+  height: 5rem;
+  border: 4px solid #7cdacc;
+  border-radius: 999px;
   display: flex;
-  align-items: center;
   justify-content: center;
-  height: 100vh;
+  align-items: center;
+  margin: auto;
 }
 
-.loader-text {
-  margin-right: 10px;
+.user-picture svg {
+  width: 2.5rem;
+  fill: currentColor;
 }
 
-.load {
-  border: 2px solid $egyptian-blue;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  animation: spin 1s linear infinite;
+.name-client {
+  margin: 0;
+  margin-top: 20px;
+  font-weight: 600;
+  font-size: 18px;
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+.name-client span {
+  display: block;
+  font-weight: 200;
+  font-size: 16px;
+}
+
+.social-media:before {
+  content: " ";
+  display: block;
+  width: 100%;
+  height: 2px;
+  margin: 20px 0;
+  background: #7cdacc;
+}
+
+.social-media a {
+  position: relative;
+  margin-right: 15px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.social-media a:last-child {
+  margin-right: 0;
+}
+
+.social-media a svg {
+  width: 1.1rem;
+  fill: currentColor;
+}
+
+/*-- Tooltip Social Media --*/
+.tooltip-social {
+  background: #262626;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  padding: 0.5rem 0.4rem;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -90%);
+  transition: all 0.2s ease;
+  z-index: 1;
+}
+
+.tooltip-social:after {
+  content: " ";
+  position: absolute;
+  bottom: 1px;
+  left: 50%;
+  border: solid;
+  border-width: 10px 10px 0 10px;
+  border-color: transparent;
+  transform: translate(-50%, 100%);
+}
+
+.social-media a .tooltip-social:after {
+  border-top-color: #262626;
+}
+
+.social-media a:hover .tooltip-social {
+  opacity: 1;
+  transform: translate(-50%, -130%);
 }
 </style>
