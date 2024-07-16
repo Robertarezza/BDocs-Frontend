@@ -62,7 +62,7 @@ export default {
 .welcome-section {
     background: url('path/to/your/background.jpg') no-repeat center center;
     background-size: cover;
-    padding: 100px 0;
+    padding: 150px 0;
     color: white;
     text-align: center;
     animation: slide-down 1s ease-out;
