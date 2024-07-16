@@ -31,9 +31,9 @@ header {
     left: 0;
     width: 100%;
     background-color: $celtic-blue;
+    z-index: 9999;
 
     nav {
-        z-index: 9999;
         width: 100%;
         padding: 20px;
         height: 100%;
