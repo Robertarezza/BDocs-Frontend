@@ -13,52 +13,59 @@ export default {
 };
 </script>
 
-
 <template>
-    <div class="card-client">
-      <div class="user-picture">
-        <img
-          :src="doctor.photo ? `${store.imageUrl}/${doctor.photo}` : `https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg`"
-          class="card-img-top"
-          alt="Doctor Photo"
-        />
-      </div>
-      <div class="card-body">
-        <h5 class="name-client">{{ doctor.user.name }} {{ doctor.user.surname }}</h5>
-        <span>Specializzazioni:</span>
-        <ul>
-          <li v-for="specialization in doctor.specializations" :key="specialization.id">
-            {{ specialization.title }}
-          </li>
-        </ul>
-      </div>
-        <p class="card-text">Indirizzo: {{ doctor.studio_address }}</p>
-        <p class="card-text">Telefono: {{ doctor.phone_number }}</p>
-        <p class="card-text">Prestazioni: {{ doctor.performance }}</p>
-        <p>E-mail: {{ doctor.user.email }}</p>
-        
+  <div class="card-client">
+    <div class="user-picture">
+      <img
+        :src="
+          doctor.photo
+            ? `${store.imageUrl}/${doctor.photo}`
+            : `https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg`
+        "
+        class="card-img-top"
+        alt="Doctor Photo"
+      />
     </div>
-  </template>
-  
 
+    <h5 class="name-client">{{ doctor.user.name }} {{ doctor.user.surname }}</h5>
 
-  <style scoped lang="scss">
+    <span v-for="specialization in doctor.specializations" :key="specialization.id">
+      <strong>{{ specialization.title }},</strong>
+    </span>
+    <p>E-mail: {{ doctor.user.email }}</p>
+
+    <!-- Card Supplemento -->
+    <div class="card-supp ">
+    <a href="" title=""><i class="fa-solid fa-location-dot"> </i></a>
+      
+      <!-- <p class="card-text">Indirizzo:{{ doctor.studio_address }} </p> -->
+    
+      <a href="" title=""><i class="fa-solid fa-phone"></i></a>
+      <a href="" title=""><i class="fa-solid fa-address-card"></i></a>
+      
+      <!-- <p class="card-text">Telefono: {{ doctor.phone_number }}</p> -->
+      <!-- <p class="card-text">Prestazioni: {{ doctor.performance }}</p> -->
+    </div>
+  </div>
+</template>
+
+<style scoped lang="scss">
 @use "../style/partials/variables" as *;
-.card-client {
-  background: #2cb5a0;
-  width: 13rem;
-  padding-top: 25px;
-  padding-bottom: 25px;
-  padding-left: 20px;
-  padding-right: 20px;
-  border: 4px solid #7cdacc;
-  box-shadow: 0 6px 10px rgba(207, 212, 222, 1);
-  border-radius: 10px;
-  text-align: center;
-  color: #fff;
-  font-family: "Poppins", sans-serif;
-  transition: all 0.3s ease;
 
+.card-client {
+ // background: rgba(207, 222, 231, 1);
+  margin-bottom: 40px;
+  width: 22rem;
+  height: 27rem;
+  padding: 25px;
+  border: 4px solid rgba(94, 124, 226, 1);
+  border-bottom: none;
+  box-shadow: 0 6px 10px rgba(207, 222, 231, 1);
+  border-radius: 10px 10px 0 0; /* Arrotonda solo gli angoli superiori */
+  text-align: center;
+  color: black;
+  font-family: "Poppins", sans-serif;
+  position: relative; /* Necessario per posizionamento relativo al genitore */
 }
 
 .card-client:hover {
@@ -68,9 +75,9 @@ export default {
 .user-picture {
   overflow: hidden;
   object-fit: cover;
-  width: 5rem;
-  height: 5rem;
-  border: 4px solid #7cdacc;
+  width: 10rem;
+  height: 10rem;
+  border: 2px solid rgba(94, 124, 226, 1);
   border-radius: 999px;
   display: flex;
   justify-content: center;
@@ -96,66 +103,36 @@ export default {
   font-size: 16px;
 }
 
-.social-media:before {
-  content: " ";
-  display: block;
-  width: 100%;
-  height: 2px;
-  margin: 20px 0;
-  background: #7cdacc;
-}
-
-.social-media a {
-  position: relative;
-  margin-right: 15px;
-  text-decoration: none;
-  color: inherit;
-}
-
-.social-media a:last-child {
-  margin-right: 0;
-}
-
-.social-media a svg {
-  width: 1.1rem;
-  fill: currentColor;
-}
-
-/*-- Tooltip Social Media --*/
-.tooltip-social {
-  background: #262626;
-  display: block;
+.card-supp {
+  background-color: white;
+  padding: 10px;
   position: absolute;
-  bottom: 0;
-  left: 50%;
-  padding: 0.5rem 0.4rem;
-  border-radius: 5px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  opacity: 0;
-  pointer-events: none;
-  transform: translate(-50%, -90%);
-  transition: all 0.2s ease;
-  z-index: 1;
+  bottom: -20px; /* Sovrapponi la parte superiore di .card-client */
+  left: 0;
+  right: 0;
+  margin: auto;
+  height: 7rem;
+  width: calc(100% - 40px); /* Larghezza meno il padding */
+  border: 2px solid rgba(94, 124, 226, 1);
+  border-bottom: none; /* Rimuovi il bordo superiore di .card-supp */
+  border-radius: 10px 10px 0 0; /* Arrotonda solo gli angoli superiori */
+  text-align: left; /* Allinea il testo a sinistra */
+  display: flex;
+  justify-content: space-around;
+    align-items: center;
+
+  .fa-solid {
+    font-size: 2rem;
+  
+  }
 }
 
-.tooltip-social:after {
-  content: " ";
-  position: absolute;
-  bottom: 1px;
-  left: 50%;
-  border: solid;
-  border-width: 10px 10px 0 10px;
-  border-color: transparent;
-  transform: translate(-50%, 100%);
+.card-supp p {
+  margin-bottom: 10px;
 }
 
-.social-media a .tooltip-social:after {
-  border-top-color: #262626;
-}
-
-.social-media a:hover .tooltip-social {
-  opacity: 1;
-  transform: translate(-50%, -130%);
+.card-text ul {
+  padding-left: 20px;
+  list-style: disc;
 }
 </style>

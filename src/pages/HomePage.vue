@@ -36,11 +36,11 @@ export default {
             </div>
         </section>
         <div class="container mt-5 mb-5">
-            <h1 class="text-center mb-3">I nostri Dottori</h1>
-            <p class="text-center mb-5">Il nostro team di medici altamente qualificati è qui per prendersi cura di voi.</p>
+            <h1 class="text-center mb-3 typewriter-doc">I nostri Dottori</h1>
+            <p class="text-center mb-5 typewriter-doc">Il nostro team di medici altamente qualificati è qui per prendersi cura di voi.</p>
             <div v-if="doctors" class="doctors-grid">
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3">
-                    <div class="col" v-for="doctor in doctors" :key="doctor.id" v-bind:class="{ 'fade-in': true }">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+                    <div class="col-12" v-for="doctor in doctors" :key="doctor.id" v-bind:class="{ 'fade-in': true }">
                         <DoctorCard :doctor="doctor" />
                     </div>
                 </div>
@@ -62,13 +62,15 @@ export default {
 .welcome-section {
     background: url('path/to/your/background.jpg') no-repeat center center;
     background-size: cover;
-    padding: 150px 0;
-    color: white;
+    // padding: 150px 0;
+    padding-top: 150px;
+   // padding-bottom: 50px;
+    color:  rgba(10, 54, 157, 1);
     text-align: center;
     animation: slide-down 1s ease-out;
 
     .welcome-text {
-        background: rgba(0, 0, 0, 0.5);
+        //background: rgba(0, 0, 0, 0.5);
         display: inline-block;
         padding: 20px;
         border-radius: 10px;
@@ -90,11 +92,11 @@ export default {
 /* Effetto di scrittura per il testo della sezione di benvenuto */
 .typewriter {
     overflow: hidden;
-    border-right: 5px solid orange; /* Carattere di cursore */
+    border-right: 5px solid rgba(146, 180, 244, 1); /* Carattere di cursore */
     white-space: nowrap;
     margin: 0 auto; 
     letter-spacing: .15em; 
-    animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+    animation: typing 3.5s steps(40, end), blink-caret .75s;
 }
 
 @keyframes typing {
@@ -104,16 +106,36 @@ export default {
 
 @keyframes blink-caret {
     from, to { border-color: transparent }
-    50% { border-color: orange; }
+    50% { border-color: rgba(146, 180, 244, 1); }
 }
 
-
-.container {
-    min-height: 100vh;
-    background: $gradient-top;
-    padding-top: 50px;
-    padding-bottom: 50px;
+/* Effetto di scrittura per il testo della i nostri dottori */
+.typewriter-doc {
+    overflow: hidden;
+    //border-right: 5px solid rgba(146, 180, 244, 1); /* Carattere di cursore */
+    white-space: nowrap;
+    margin: 0 auto; 
+    letter-spacing: .15em; 
+    animation: typing 3.5s steps(40, end), blink-caret .75s;
+    color:  rgba(10, 54, 157, 1);
 }
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: rgba(146, 180, 244, 1); }
+}
+
+// .container {
+//     min-height: 100vh;
+//     background: $gradient-top;
+//     padding-top: 50px;
+//     padding-bottom: 50px;
+// }
 
 
 .card-img-top {
@@ -167,11 +189,11 @@ export default {
 }
 
 /* Stile e animazione per le schede dei dottori */
-.doctors-grid .col {
+.doctors-grid .col-12 {
     opacity: 0; 
-    transform: translateY(20px); 
-    animation: fade-in 0.5s ease-out forwards; 
-    animation-delay: calc(0.1s * var(--i)); 
+    transform: translateY(30px); 
+    animation: fade-in 0.15s ease-out forwards; 
+    animation-delay: calc(0.10s * var(--i)); 
 }
 
 /* Animazione di dissolvenza per le schede dei dottori */
