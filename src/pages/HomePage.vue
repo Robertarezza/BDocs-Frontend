@@ -1,105 +1,189 @@
 <script>
-import axios from "axios";
-import { store } from '../store.js';
-import DoctorCard from "../components/DoctorCard.vue";
+import axios from "axios"; 
+import { store } from '../store.js'; 
+import DoctorCard from "../components/DoctorCard.vue"; 
 
 export default {
-    components : {
-        DoctorCard,
+    components: {
+        DoctorCard, 
     },
 
-  data() {
-    return {
-      doctor: null,
-      store,
-      
-    };
-  },
+    data() {
+        return {
+            doctors: null,
+            store,
+        };
+    },
 
-  created() {
-    axios.get(`${this.store.apiBaseURL}/api/doctors`)
-      .then((resp) => {
-        console.log(resp.data.results);
-        this.doctor = resp.data.results;
-        console.log(this.doctor);
-      })
-      .catch(error => {
-        console.error('Error fetching doctors:', error);
-      });
-  },
+    created() {
+        axios.get(`${this.store.apiBaseURL}/api/doctors`)
+            .then((resp) => {
+                this.doctors = resp.data.results; 
+            })
+            .catch(error => {
+                console.error('Error fetching doctors:', error); 
+            });
+    },
 };
 </script>
 
-
 <template>
-    <div class="container mt-5 mb-5">
-      <h1 class="text-center mb-3">I nostri Dottori</h1>
-      <div v-if="doctor">
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3">
-          <div class="col" v-for="doctor in doctor" :key="doctor.id">
-            <DoctorCard :doctor="doctor" />
-          </div>
+    <div>
+        <section class="welcome-section">
+            <div class="welcome-text">
+                <h1 class="typewriter">Benvenuti nel nostro Studio Medico</h1>
+                <p class="typewriter">Offriamo i migliori professionisti medici per la vostra salute.</p>
+            </div>
+        </section>
+        <div class="container mt-5 mb-5">
+            <h1 class="text-center mb-3">I nostri Dottori</h1>
+            <p class="text-center mb-5">Il nostro team di medici altamente qualificati è qui per prendersi cura di voi.</p>
+            <div v-if="doctors" class="doctors-grid">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3">
+                    <div class="col" v-for="doctor in doctors" :key="doctor.id" v-bind:class="{ 'fade-in': true }">
+                        <DoctorCard :doctor="doctor" />
+                    </div>
+                </div>
+            </div>
+            <div v-else>
+                <div class="loader">
+                    <span class="loader-text">caricamento</span>
+                    <span class="load"></span>
+                </div>
+            </div>
         </div>
-      </div>
-      <div v-else>
-        <div class="loader">
-          <span class="loader-text">loading</span>
-          <span class="load"></span>
-        </div>
-      </div>
     </div>
-  </template>
-  
-  
+</template>
 
-  <style scoped lang="scss">
+<style scoped lang="scss">
 @use "../style/partials/variables" as *;
 
-.container {
-  min-height: 100vh;
-  background: $gradient-top;
-  padding-top: 50px;
-  padding-bottom: 50px;
+/* Sezione di benvenuto */
+.welcome-section {
+    background: url('path/to/your/background.jpg') no-repeat center center;
+    background-size: cover;
+    padding: 100px 0;
+    color: white;
+    text-align: center;
+    animation: slide-down 1s ease-out;
+
+    .welcome-text {
+        background: rgba(0, 0, 0, 0.5);
+        display: inline-block;
+        padding: 20px;
+        border-radius: 10px;
+    }
 }
+
+/* Animazione per la sezione di benvenuto */
+@keyframes slide-down {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1; 
+    }
+}
+
+/* Effetto di scrittura per il testo della sezione di benvenuto */
+.typewriter {
+    overflow: hidden;
+    border-right: 5px solid orange; /* Carattere di cursore */
+    white-space: nowrap;
+    margin: 0 auto; 
+    letter-spacing: .15em; 
+    animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: orange; }
+}
+
+
+.container {
+    min-height: 100vh;
+    background: $gradient-top;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
 
 .card-img-top {
-  object-fit: cover;
-  height: 200px;
+    object-fit: cover;
+    height: 200px;
+    border-radius: 10px;
 }
+
 
 .card-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
 }
+
 
 .card-text ul {
-  padding-left: 20px;
-  list-style: disc;
+    padding-left: 20px;
+    list-style: disc;
 }
+
 
 .loader {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
+
 
 .loader-text {
-  margin-right: 10px;
+    margin-right: 10px;
 }
+
 
 .load {
-  border: 2px solid $egyptian-blue;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  animation: spin 1s linear infinite;
+    border: 2px solid $egyptian-blue;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
 }
+
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Stile e animazione per le schede dei dottori */
+.doctors-grid .col {
+    opacity: 0; 
+    transform: translateY(20px); 
+    animation: fade-in 0.5s ease-out forwards; 
+    animation-delay: calc(0.1s * var(--i)); 
+}
+
+/* Animazione di dissolvenza per le schede dei dottori */
+@keyframes fade-in {
+    to {
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+/* Scorrimento fluido */
+html {
+    scroll-behavior: smooth; /* Abilita lo scorrimento fluido */
 }
 </style>
-
