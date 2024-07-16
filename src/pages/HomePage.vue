@@ -35,7 +35,7 @@ export default {
     <div class="container mt-5 mb-5">
       <h1 class="text-center mb-3">I nostri Dottori</h1>
       <div v-if="doctor">
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3">
+        <div class="row row-cols-1 row-cols-md-3 g-3"> 
           <div class="col" v-for="doctor in doctor" :key="doctor.id">
             <DoctorCard :doctor="doctor" />
           </div>
@@ -62,20 +62,8 @@ export default {
   padding-bottom: 50px;
 }
 
-.card-img-top {
-  object-fit: cover;
-  height: 200px;
-}
-
-.card-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.card-text ul {
-  padding-left: 20px;
-  list-style: disc;
+.card {
+  margin-bottom: 1rem;
 }
 
 .loader {
