@@ -5,7 +5,7 @@ export default {
   props: {
     doctor: Object,
   },
-  setup(props) {
+  data() {
     return {
       store,
     };
