@@ -22,28 +22,7 @@ export default {
 </template>
 
 
-<script>
-export default {
-    data() {
-        return {
 
-        }
-    },
-}
-</script>
-
-<template>
-    <header>
-        <nav>
-            <div class="box-img">
-                <img src="../assets/img/logo.png" alt="logo B-Doctors">
-            </div>
-            <div id="title">
-                <h3>B-Doctors</h3>
-            </div>
-        </nav>
-    </header>
-</template>
 
 <style scoped lang="scss">
 @use "../style/partials/variables" as *;
