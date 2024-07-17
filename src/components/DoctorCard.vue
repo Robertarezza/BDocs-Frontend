@@ -45,8 +45,14 @@ export default {
       <router-link :to="{ name: 'DoctorProfile', params: { id: doctor.id } }">
         <i class="fa-solid fa-location-dot"></i>
       </router-link>
-      <a href="" title=""><i class="fa-solid fa-phone"></i></a>
-      <a href="" title=""><i class="fa-solid fa-address-card"></i></a>
+      <router-link :to="{ name: 'DoctorProfile', params: { id: doctor.id } }">
+        <i class="fa-solid fa-phone"></i>
+      </router-link>
+      <router-link :to="{ name: 'DoctorProfile', params: { id: doctor.id } }">
+        <i class="fa-solid fa-address-card"></i>
+      </router-link>
+      <!-- <a href="" title=""></i></a>
+      <a href="" title=""></a> -->
     </div>
     <!-- /Card Supplemento -->
   </div>
