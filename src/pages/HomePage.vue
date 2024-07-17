@@ -20,7 +20,9 @@ export default {
     created() {
         axios.get(`${this.store.apiBaseURL}/api/doctors`)
             .then((resp) => {
+               
                 this.doctors = resp.data.results; 
+                console.log(this.doctors);
             })
             .catch(error => {
                 console.error('Error fetching doctors:', error); 
@@ -43,6 +45,7 @@ export default {
         <div class="container mt-5 mb-5">
             <h1 class="text-center mb-3 typewriter-doc">I nostri Dottori</h1>
             <p class="text-center mb-5 typewriter-doc">Il nostro team di medici altamente qualificati è qui per prendersi cura di voi.</p>
+           <!-- cord doctor -->
             <div v-if="doctors" class="doctors-grid">
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
                     <div class="col-12" v-for="doctor in doctors" :key="doctor.id" v-bind:class="{ 'fade-in': true }">
@@ -50,6 +53,7 @@ export default {
                     </div>
                 </div>
             </div>
+            <!-- /cord doctor -->
             <div v-else>
                 <div class="loader">
                     <span class="loader-text">caricamento</span>

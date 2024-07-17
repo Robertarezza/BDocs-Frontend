@@ -16,6 +16,7 @@ export default {
             </div>
 
             <div class="contact-us">
+                <img src="../assets/img/logo.png" alt="">
                 <h3>Contattaci</h3>
                 <div class="contacts">
                     <div class="cellphone">
@@ -44,7 +45,7 @@ export default {
         </div>
         <div class="footer-bottom">
             <h4>
-                @B-Doctors since 2024
+                www.b-doctors.it <i class="fa-regular fa-copyright"></i> 2024 - Cerca il professionista addatto per te!
             </h4>
         </div>
     </footer>
@@ -71,8 +72,14 @@ footer {
             display: flex;
             flex-direction: column;
             align-items: center;
+
+            img {
+                height: 40px;
+                margin-bottom: 20px;
+            }
             
             .contacts {
+                margin-top: 20px;
 
                 .cellphone {
                     display: flex;
@@ -114,7 +121,7 @@ footer {
         align-items: center;
         
         h4 {
-            font-size: .8rem;
+            font-size: .9rem;
         }
     }
 }
