@@ -12,24 +12,15 @@ export default {
 
     data() {
         return {
+            specializations: [],
             doctors: null,
             store,
         };
     },
 
     created() {
-        axios.get(`${this.store.apiBaseURL}/api/doctors`)
-            .then((resp) => {
-               
-                this.doctors = resp.data.results; 
-                console.log(this.doctors);
-                this.$nextTick(() => {
-                    this.handleScroll();
-                });
-            })
-            .catch(error => {
-                console.error('Errore fetch dottori:', error); 
-            });
+        this.getDoctors();
+        this.getSpecialization();
     },
 
     mounted() {
@@ -41,6 +32,26 @@ export default {
     },
 
     methods: {
+        getDoctors() {
+            axios.get(`${this.store.apiBaseURL}/api/doctors`)
+            .then((resp) => {
+               
+                this.doctors = resp.data.results; 
+                console.log(this.doctors);
+                this.$nextTick(() => {
+                    this.handleScroll();
+                });
+            })
+            .catch(error => {
+                console.error('Errore fetch dottori:', error); 
+            });
+        },
+        getSpecialization() {
+            axios.get(`${this.store.apiBaseURL}/api/specializations`).then((resp) => {
+                console.log(resp);
+                this.specializations = resp.data.results;
+            }) 
+        },
         handleScroll() {
             const cards = document.querySelectorAll('.fade-in');
             const windowHeight = window.innerHeight;
@@ -67,9 +78,17 @@ export default {
                 <p class="typewriter">Offriamo i migliori professionisti medici per la vostra salute.</p>
             </div>
         </section>
-        <div class="d-flex justify-content-center">
-            <SearchBar />
+
+        <!-- SEARCH BAR -->
+        <div class="d-flex justify-content-center custom-select">
+            <!-- <SearchBar /> -->
+            <select id="" aria-label="seleziona specializzazione">
+                <option value="">Tutte le specializzazioni</option>
+                <option value="specialization.id" v-for="specialization in specializations"> {{ specialization.title }} </option>
+            </select>
         </div>
+        <!-- /SEARCH BAR -->
+
         <div class="container mt-5 mb-5">
             <h1 class="text-center mb-3 typewriter-doc">I nostri Dottori</h1>
             <p class="text-center mb-5 typewriter-doc">Il nostro team di medici altamente qualificati è qui per prendersi cura di voi.</p>
@@ -243,6 +262,14 @@ html {
 }
 
 // Tentativo di fae in delle cards
+
+//Select custom
+select {
+    border-radius: 10px;
+    padding: 10px;
+    border: 2px solid $glaucous;
+    color: $glaucous;
+}
 
 </style>
 
