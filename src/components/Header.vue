@@ -14,7 +14,7 @@ export default {
     <header>
         <nav>
             <div class="box-img">
-                <router-link :to="{name: home}">
+                <router-link :to="{name: 'home'}">
                     <img src="../assets/img/logo.png" alt="logo B-Doctors">
                 </router-link>
             </div>
