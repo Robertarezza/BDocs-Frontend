@@ -1,4 +1,6 @@
 <script>
+import { RouterLink } from 'vue-router';
+
 export default {
     data() {
         return {
@@ -12,7 +14,9 @@ export default {
     <header>
         <nav>
             <div class="box-img">
-                <img src="../assets/img/logo.png" alt="logo B-Doctors">
+                <router-link :to="{name: home}">
+                    <img src="../assets/img/logo.png" alt="logo B-Doctors">
+                </router-link>
             </div>
             <div id="title">
                 <h3>B-Doctors</h3>
