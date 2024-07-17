@@ -3,11 +3,13 @@ import axios from "axios";
 import { store } from '../store.js'; 
 import DoctorCard from "../components/DoctorCard.vue";
 import SearchBar from '../components/SearchBar.vue';
+import HeroSection from "../components/HeroSection.vue";
 
 export default {
     components: {
         DoctorCard, 
         SearchBar,
+        HeroSection
     },
 
     data() {
@@ -78,6 +80,9 @@ export default {
                 <p class="typewriter">Offriamo i migliori professionisti medici per la vostra salute.</p>
             </div>
         </section>
+
+        <!-- HERO SECTION -->
+        <HeroSection />
 
         <!-- SEARCH BAR -->
         <div class="d-flex justify-content-center custom-select">
