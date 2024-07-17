@@ -188,21 +188,8 @@ export default {
     100% { transform: rotate(360deg); }
 }
 
-/* Stile e animazione per le schede dei dottori */
-.doctors-grid .col-12 {
-    opacity: 0; 
-    transform: translateY(30px); 
-    animation: fade-in 0.15s ease-out forwards; 
-    animation-delay: calc(0.10s * var(--i)); 
-}
 
-/* Animazione di dissolvenza per le schede dei dottori */
-@keyframes fade-in {
-    to {
-        opacity: 1; 
-        transform: translateY(0); 
-    }
-}
+
 
 /* Scorrimento fluido */
 html {
