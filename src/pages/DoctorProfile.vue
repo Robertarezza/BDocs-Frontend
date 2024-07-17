@@ -29,7 +29,7 @@ export default {
 <template>
   <div class="container">
     <div class="row align-items-center ms_style">
-      <div class="card mb-3" style="max-width: 1000px">
+      <div class="card mb-3 border border-primary" style="max-width: 1000px">
         <!-- Allargare la card -->
         <div class="row g-0">
           <div class="col-md-4">

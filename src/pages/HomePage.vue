@@ -17,6 +17,7 @@ export default {
             specializations: [],
             doctors: null,
             store,
+            selectSpecialization: "",
         };
     },
 
@@ -35,7 +36,13 @@ export default {
 
     methods: {
         getDoctors() {
-            axios.get(`${this.store.apiBaseURL}/api/doctors`)
+            const params = {};
+            if (this.selectSpecialization !== "") {
+                params.specialization_id = this.selectSpecialization
+            }
+            axios.get(`${this.store.apiBaseURL}/api/doctors`,  {
+                params
+            })
             .then((resp) => {
                
                 this.doctors = resp.data.results; 
@@ -87,9 +94,11 @@ export default {
         <!-- SEARCH BAR -->
         <div class="d-flex justify-content-center custom-select">
             <!-- <SearchBar /> -->
-            <select id="" aria-label="seleziona specializzazione">
+            <select id="" aria-label="seleziona specializzazione"
+            v-model="selectSpecialization"
+            @change="getDoctors">
                 <option value="">Tutte le specializzazioni</option>
-                <option value="specialization.id" v-for="specialization in specializations"> {{ specialization.title }} </option>
+                <option :value="specialization.id" v-for="specialization in specializations"> {{ specialization.title }} </option>
             </select>
         </div>
         <!-- /SEARCH BAR -->

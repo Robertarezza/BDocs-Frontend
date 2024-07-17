@@ -1,5 +1,6 @@
 <script>
 import { store } from "../store.js";
+import { RouterLink } from 'vue-router';
 
 export default {
   props: {
