@@ -19,13 +19,41 @@ export default {
         axios.get(`${this.store.apiBaseURL}/api/doctors`)
             .then((resp) => {
                 this.doctors = resp.data.results; 
+                this.$nextTick(() => {
+                    this.handleScroll();
+                });
             })
             .catch(error => {
-                console.error('Error fetching doctors:', error); 
+                console.error('Errore fetch dottori:', error); 
             });
     },
+
+    mounted() {
+        window.addEventListener('scroll', this.handleScroll);
+    },
+
+    beforeDestroy() {
+        window.removeEventListener('scroll', this.handleScroll);
+    },
+
+    methods: {
+        handleScroll() {
+            const cards = document.querySelectorAll('.fade-in');
+            const windowHeight = window.innerHeight;
+
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                if (rect.top < windowHeight - 100) { 
+                    card.classList.add('visible');
+                } else {
+                    card.classList.remove('visible');
+                }
+            });
+        }
+    }
 };
 </script>
+
 
 <template>
     <div>
@@ -40,7 +68,7 @@ export default {
             <p class="text-center mb-5 typewriter-doc">Il nostro team di medici altamente qualificati è qui per prendersi cura di voi.</p>
             <div v-if="doctors" class="doctors-grid">
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
-                    <div class="col-12" v-for="doctor in doctors" :key="doctor.id" v-bind:class="{ 'fade-in': true }">
+                    <div class="col-12 fade-in" v-for="doctor in doctors" :key="doctor.id">
                         <DoctorCard :doctor="doctor" />
                     </div>
                 </div>
@@ -54,6 +82,7 @@ export default {
         </div>
     </div>
 </template>
+
 
 <style scoped lang="scss">
 @use "../style/partials/variables" as *;
@@ -92,7 +121,7 @@ export default {
 /* Effetto di scrittura per il testo della sezione di benvenuto */
 .typewriter {
     overflow: hidden;
-    border-right: 5px solid rgba(146, 180, 244, 1); /* Carattere di cursore */
+    border-right: 5px solid rgba(146, 180, 244, 1); 
     white-space: nowrap;
     margin: 0 auto; 
     letter-spacing: .15em; 
@@ -112,7 +141,7 @@ export default {
 /* Effetto di scrittura per il testo della i nostri dottori */
 .typewriter-doc {
     overflow: hidden;
-    //border-right: 5px solid rgba(146, 180, 244, 1); /* Carattere di cursore */
+    //border-right: 5px solid rgba(146, 180, 244, 1); 
     white-space: nowrap;
     margin: 0 auto; 
     letter-spacing: .15em; 
@@ -189,10 +218,22 @@ export default {
 }
 
 
-
-
 /* Scorrimento fluido */
 html {
-    scroll-behavior: smooth; /* Abilita lo scorrimento fluido */
+    scroll-behavior: smooth; 
 }
+
+// Tentativo di fae in delle cards
+.fade-in {
+    opacity: 0; 
+    transition: opacity 1s cubic-bezier(0.25, 0.1, 0.25, 1); 
+}
+
+.fade-in.visible {
+    opacity: 1; 
+}
+
+// Tentativo di fae in delle cards
+
 </style>
+
