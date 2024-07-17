@@ -1,11 +1,13 @@
 <script>
 import axios from "axios"; 
 import { store } from '../store.js'; 
-import DoctorCard from "../components/DoctorCard.vue"; 
+import DoctorCard from "../components/DoctorCard.vue";
+import SearchBar from '../components/SearchBar.vue';
 
 export default {
     components: {
         DoctorCard, 
+        SearchBar,
     },
 
     data() {
@@ -35,6 +37,9 @@ export default {
                 <p class="typewriter">Offriamo i migliori professionisti medici per la vostra salute.</p>
             </div>
         </section>
+        <div class="d-flex justify-content-center">
+            <SearchBar />
+        </div>
         <div class="container mt-5 mb-5">
             <h1 class="text-center mb-3 typewriter-doc">I nostri Dottori</h1>
             <p class="text-center mb-5 typewriter-doc">Il nostro team di medici altamente qualificati è qui per prendersi cura di voi.</p>
