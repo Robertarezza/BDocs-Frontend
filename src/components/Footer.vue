@@ -11,8 +11,20 @@ export default {
 <template>
     <footer>
         <div class="footer-top">
-            <div>
+            <div class="form-contact">
+                <h4>Aiutaci a migliorare la tua esperienza</h4>
 
+                <form action="">
+                    <input type="text" id="name" placeholder="Inserisci il tuo nome" aria-label="name">
+
+                    <input type="email" id="email" placeholder="Inserisci una mail valida" aria-label="email">
+
+                    <textarea id="message" aria-label="message" placeholder="Come possiamo migliorare?"></textarea>
+
+                    <div id="submit">
+                        <button type="submit">Invia</button>
+                    </div>
+                </form>
             </div>
 
             <div class="contact-us">
@@ -45,7 +57,7 @@ export default {
         </div>
         <div class="footer-bottom">
             <h4>
-                www.b-doctors.it <i class="fa-regular fa-copyright"></i> 2024 - Cerca il professionista addatto per te!
+                © 2024 B-Doctors. All Rights Reserved.
             </h4>
         </div>
     </footer>
@@ -62,22 +74,85 @@ footer {
         color: white;
         height: 80%;
         background-color: $celtic-blue;
-        padding: 30px;
+        padding: 50px;
         display: flex;
         justify-content: space-between;
         align-items: center;
+
+        .form-contact {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            width: 50%;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+
+            h4 {
+                text-align: left;
+                color: $celtic-blue;
+            }
+
+            input {
+                margin-top: 20px;
+                border: 0;
+                border-bottom: 1px solid $celtic-blue;
+                width: 100%;
+                height: 30px;
+                padding: 5px;
+                background-color: transparent;
+
+                :focus {
+                    border: 0;
+                    background-color: $celtic-blue;
+                }
+            }
+
+            ::placeholder {
+                color: $celtic-blue;
+                font-size: .7rem;
+            }
+
+            textarea {
+                padding: 5px;
+                margin-top: 20px;
+                height: 30px;
+                border: 0;
+                border-bottom: 1px solid $celtic-blue;
+                width: 100%;
+                outline: none;
+                resize: none;
+            }
+
+
+            #submit {
+                width: 100%;
+                text-align: left;
+
+                button {
+                    margin-right: 370px;
+                    margin-top: 10px;
+                    padding: 6px 10px;
+                    color: white;
+                    border: 1px solid $celtic-blue;
+                    border-radius: 10px;
+                    background-color: $celtic-blue;
+                }
+            }
+        }
 
         .contact-us {
             width: 30%;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: start;
 
             img {
                 height: 40px;
                 margin-bottom: 20px;
             }
-            
+
             .contacts {
                 margin-top: 20px;
 
@@ -108,7 +183,6 @@ footer {
                     }
                 }
             }
-
         }
     }
 
@@ -119,7 +193,7 @@ footer {
         display: flex;
         justify-content: center;
         align-items: center;
-        
+
         h4 {
             font-size: .9rem;
         }
