@@ -13,14 +13,16 @@ export default {
 <template>
     <header>
         <nav>
-            <div class="box-img">
-                <router-link :to="{name: 'home'}">
-                    <img src="../assets/img/logo.png" alt="logo B-Doctors">
-                </router-link>
-            </div>
-            <div id="title">
-                <h3>B-Doctors</h3>
-            </div>
+            <ul>
+                <li class="box-img">
+                    <router-link :to="{ name: 'home' }">
+                        <img src="../assets/img/logo.png" alt="logo B-Doctors">
+                    </router-link>
+                </li>
+                <li id="title">
+                    <a href="#footer">Contattaci</a>
+                </li>
+            </ul>
         </nav>
     </header>
 </template>
@@ -41,28 +43,36 @@ header {
     z-index: 9999;
 
     nav {
-       
+
         width: 100%;
         padding: 20px;
         height: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
 
-        .box-img {
+        ul {
             display: flex;
-            justify-content: start;
+            justify-content: space-between;
+            align-items: center;
 
-            img {
-                height: 60px;
-                display: block;
-                max-width: 100%;
-                aspect-ratio: 1;
+            .box-img {
+                display: flex;
+                justify-content: start;
 
+                img {
+                    height: 60px;
+                    display: block;
+                    max-width: 100%;
+                    aspect-ratio: 1;
+                }
             }
-        }
-        #title {
-            color: white;
+
+            #title {
+                list-style-type: none;
+
+                a {
+                    text-decoration: none;
+                    color: white;
+                }
+            }
         }
     }
 }

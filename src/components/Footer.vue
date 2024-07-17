@@ -9,7 +9,7 @@ export default {
 </script>
 
 <template>
-    <footer>
+    <footer id="footer">
         <div class="footer-top">
             <div class="form-contact">
                 <h4>Aiutaci a migliorare la tua esperienza</h4>
@@ -117,7 +117,6 @@ footer {
             textarea {
                 padding: 5px;
                 margin-top: 20px;
-                height: 30px;
                 border: 0;
                 border-bottom: 1px solid $celtic-blue;
                 width: 100%;
