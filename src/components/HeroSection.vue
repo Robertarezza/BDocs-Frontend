@@ -1,44 +1,8 @@
 <script>
-import axios from "axios";
-import { store } from '../store.js';
 export default {
     data() {
         return {
-            specializations: [],
-            doctors: null,
-            store,
-            selectSpecialization: ""
-        }
-    },
-    created() {
-        this.getDoctors();
-        this.getSpecialization();
-    },
-    methods: {
-        getSpecialization() {
-            axios.get(`${this.store.apiBaseURL}/api/specializations`).then((resp) => {
-                console.log(resp);
-                this.specializations = resp.data.results;
-            })
-        },
-        getDoctors() {
-            const params = {};
-            if (this.selectSpecialization !== "") {
-                params.specialization_id = this.selectSpecialization
-            }
-            axios.get(`${this.store.apiBaseURL}/api/doctors`, {
-                params
-            })
-                .then((resp) => {
-                    this.doctors = resp.data.results;
-                    console.log(this.doctors);
-                    this.$nextTick(() => {
-                        this.handleScroll();
-                    });
-                })
-                .catch(error => {
-                    console.error('Errore fetch dottori:', error);
-                });
+            
         }
     }
 }
@@ -54,14 +18,6 @@ export default {
                 <p class="typewriter">Offriamo i migliori professionisti medici per la vostra salute.</p>
             </div>
         </section>
-
-        <div class="custom-select">
-            <select id="" aria-label="seleziona specializzazione" v-model="selectSpecialization" @change="getDoctors">
-                <option value="">Tutte le specializzazioni</option>
-                <option :value="specialization.id" v-for="specialization in specializations"> {{ specialization.title }}
-                </option>
-            </select>
-        </div>
     </div>
 
 </template>
@@ -80,21 +36,6 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: end;
-
-    .custom-select {
-        margin-top: 20px;
-        width: 70%;
-        display: flex;
-        justify-content: center;
-
-        select {
-            border-radius: 10px;
-            padding: 10px;
-            border: 2px solid $glaucous;
-            color: $glaucous;
-            background-color: transparent;
-        }
-    }
 }
 
 /* Sezione di benvenuto */
