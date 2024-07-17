@@ -58,9 +58,9 @@ export default {
     border-radius: 50%;
     transition: 0.5s ease-in-out;
     background-color: $egyptian-blue;
-    box-shadow: 0px 0px 3px #f3f3f3;
+    box-shadow: 0px 0px 3px $egyptian-blue;
     padding-right: 40px;
-    color: #fff;
+    color: $egyptian-blue;
 }
 
 .input::placeholder,

@@ -1,11 +1,13 @@
 <script>
 import axios from "axios"; 
 import { store } from '../store.js'; 
-import DoctorCard from "../components/DoctorCard.vue"; 
+import DoctorCard from "../components/DoctorCard.vue";
+import SearchBar from '../components/SearchBar.vue';
 
 export default {
     components: {
         DoctorCard, 
+        SearchBar,
     },
 
     data() {
@@ -18,7 +20,9 @@ export default {
     created() {
         axios.get(`${this.store.apiBaseURL}/api/doctors`)
             .then((resp) => {
+               
                 this.doctors = resp.data.results; 
+                console.log(this.doctors);
                 this.$nextTick(() => {
                     this.handleScroll();
                 });
@@ -63,9 +67,13 @@ export default {
                 <p class="typewriter">Offriamo i migliori professionisti medici per la vostra salute.</p>
             </div>
         </section>
+        <div class="d-flex justify-content-center">
+            <SearchBar />
+        </div>
         <div class="container mt-5 mb-5">
             <h1 class="text-center mb-3 typewriter-doc">I nostri Dottori</h1>
             <p class="text-center mb-5 typewriter-doc">Il nostro team di medici altamente qualificati è qui per prendersi cura di voi.</p>
+           <!-- cord doctor -->
             <div v-if="doctors" class="doctors-grid">
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
                     <div class="col-12 fade-in" v-for="doctor in doctors" :key="doctor.id">
@@ -73,6 +81,7 @@ export default {
                     </div>
                 </div>
             </div>
+            <!-- /cord doctor -->
             <div v-else>
                 <div class="loader">
                     <span class="loader-text">caricamento</span>

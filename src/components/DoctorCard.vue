@@ -15,6 +15,7 @@ export default {
 
 <template>
   <div class="card-client">
+    <!-- foto card -->
     <div class="user-picture">
       <img
         :src="
@@ -26,26 +27,28 @@ export default {
         alt="Doctor Photo"
       />
     </div>
+    <!-- /foto card -->
 
+    <!-- corpo card -->
     <h5 class="name-client">{{ doctor.user.name }} {{ doctor.user.surname }}</h5>
-
     <span v-for="specialization in doctor.specializations" :key="specialization.id">
       <strong>{{ specialization.title }},</strong>
     </span>
-    <p>E-mail: {{ doctor.user.email }}</p>
+    <br />
+    <a href="" class="text-decoration-none"
+      ><i class="fa-regular fa-envelope"></i
+      ><span class="ms-2">{{ doctor.user.email }}</span></a>
+    <!-- /corpo card -->
 
     <!-- Card Supplemento -->
-    <div class="card-supp ">
-    <a href="" title=""><i class="fa-solid fa-location-dot"> </i></a>
-      
-      <!-- <p class="card-text">Indirizzo:{{ doctor.studio_address }} </p> -->
-    
+    <div class="card-supp">
+      <router-link :to="{ name: 'DoctorProfile', params: { id: doctor.id } }">
+        <i class="fa-solid fa-location-dot"></i>
+      </router-link>
       <a href="" title=""><i class="fa-solid fa-phone"></i></a>
       <a href="" title=""><i class="fa-solid fa-address-card"></i></a>
-      
-      <!-- <p class="card-text">Telefono: {{ doctor.phone_number }}</p> -->
-      <!-- <p class="card-text">Prestazioni: {{ doctor.performance }}</p> -->
     </div>
+    <!-- /Card Supplemento -->
   </div>
 </template>
 
@@ -53,9 +56,9 @@ export default {
 @use "../style/partials/variables" as *;
 
 .card-client {
- // background: rgba(207, 222, 231, 1);
+  // background: rgba(207, 222, 231, 1);
   margin-bottom: 40px;
-  width: 22rem;
+  width: 20rem;
   height: 27rem;
   padding: 25px;
   border: 4px solid rgba(94, 124, 226, 1);
@@ -114,16 +117,15 @@ export default {
   height: 7rem;
   width: calc(100% - 40px); /* Larghezza meno il padding */
   border: 2px solid rgba(94, 124, 226, 1);
-  border-bottom: none; /* Rimuovi il bordo superiore di .card-supp */
+  border-bottom: none; /* Rimuovi il bordo inferiore di .card-supp */
   border-radius: 10px 10px 0 0; /* Arrotonda solo gli angoli superiori */
   text-align: left; /* Allinea il testo a sinistra */
   display: flex;
   justify-content: space-around;
-    align-items: center;
+  align-items: center;
 
   .fa-solid {
     font-size: 2rem;
-  
   }
 }
 
