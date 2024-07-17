@@ -1,5 +1,10 @@
 <script>
+import SearchBar from './SearchBar.vue';
+
 export default {
+    components: {
+        SearchBar,
+    },
     data() {
         return {
 
@@ -14,6 +19,7 @@ export default {
             <div class="box-img">
                 <img src="../assets/img/logo.png" alt="logo B-Doctors">
             </div>
+            <SearchBar />
             <div id="title">
                 <h3>B-Doctors</h3>
             </div>
