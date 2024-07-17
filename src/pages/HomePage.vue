@@ -20,9 +20,7 @@ export default {
     created() {
         axios.get(`${this.store.apiBaseURL}/api/doctors`)
             .then((resp) => {
-               
                 this.doctors = resp.data.results; 
-                console.log(this.doctors);
                 this.$nextTick(() => {
                     this.handleScroll();
                 });
@@ -47,7 +45,7 @@ export default {
 
             cards.forEach(card => {
                 const rect = card.getBoundingClientRect();
-                if (rect.top < windowHeight - 100) { 
+                if (rect.top < windowHeight && rect.bottom > 200) { 
                     card.classList.add('visible');
                 } else {
                     card.classList.remove('visible');
@@ -73,7 +71,6 @@ export default {
         <div class="container mt-5 mb-5">
             <h1 class="text-center mb-3 typewriter-doc">I nostri Dottori</h1>
             <p class="text-center mb-5 typewriter-doc">Il nostro team di medici altamente qualificati è qui per prendersi cura di voi.</p>
-           <!-- cord doctor -->
             <div v-if="doctors" class="doctors-grid">
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
                     <div class="col-12 fade-in" v-for="doctor in doctors" :key="doctor.id">
@@ -81,7 +78,6 @@ export default {
                     </div>
                 </div>
             </div>
-            <!-- /cord doctor -->
             <div v-else>
                 <div class="loader">
                     <span class="loader-text">caricamento</span>
@@ -100,15 +96,12 @@ export default {
 .welcome-section {
     background: url('path/to/your/background.jpg') no-repeat center center;
     background-size: cover;
-    // padding: 150px 0;
     padding-top: 150px;
-   // padding-bottom: 50px;
-    color:  rgba(10, 54, 157, 1);
+    color: rgba(10, 54, 157, 1);
     text-align: center;
     animation: slide-down 1s ease-out;
 
     .welcome-text {
-        //background: rgba(0, 0, 0, 0.5);
         display: inline-block;
         padding: 20px;
         border-radius: 10px;
@@ -150,12 +143,11 @@ export default {
 /* Effetto di scrittura per il testo della i nostri dottori */
 .typewriter-doc {
     overflow: hidden;
-    //border-right: 5px solid rgba(146, 180, 244, 1); 
     white-space: nowrap;
     margin: 0 auto; 
     letter-spacing: .15em; 
     animation: typing 3.5s steps(40, end), blink-caret .75s;
-    color:  rgba(10, 54, 157, 1);
+    color: rgba(10, 54, 157, 1);
 }
 
 @keyframes typing {
@@ -168,20 +160,11 @@ export default {
     50% { border-color: rgba(146, 180, 244, 1); }
 }
 
-// .container {
-//     min-height: 100vh;
-//     background: $gradient-top;
-//     padding-top: 50px;
-//     padding-bottom: 50px;
-// }
-
-
 .card-img-top {
     object-fit: cover;
     height: 200px;
     border-radius: 10px;
 }
-
 
 .card-body {
     display: flex;
@@ -192,12 +175,10 @@ export default {
     overflow: hidden;
 }
 
-
 .card-text ul {
     padding-left: 20px;
     list-style: disc;
 }
-
 
 .loader {
     display: flex;
@@ -206,11 +187,9 @@ export default {
     height: 100vh;
 }
 
-
 .loader-text {
     margin-right: 10px;
 }
-
 
 .load {
     border: 2px solid $egyptian-blue;
@@ -220,19 +199,16 @@ export default {
     animation: spin 1s linear infinite;
 }
 
-
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
 
-
-/* Scorrimento fluido */
 html {
     scroll-behavior: smooth; 
 }
 
-// Tentativo di fae in delle cards
+// Tentativo di fade-in delle cards
 .fade-in {
     opacity: 0; 
     transition: opacity 1s cubic-bezier(0.25, 0.1, 0.25, 1); 
@@ -241,8 +217,5 @@ html {
 .fade-in.visible {
     opacity: 1; 
 }
-
-// Tentativo di fae in delle cards
-
 </style>
 
