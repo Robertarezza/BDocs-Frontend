@@ -4,12 +4,14 @@ import { store } from '../store.js';
 import DoctorCard from "../components/DoctorCard.vue";
 import SearchBar from '../components/SearchBar.vue';
 import HeroSection from "../components/HeroSection.vue";
+import PreFooter from "../components/PreFooter.vue";
 
 export default {
     components: {
         DoctorCard, 
         SearchBar,
-        HeroSection
+        HeroSection,
+        PreFooter
     },
 
     data() {
@@ -111,6 +113,7 @@ export default {
                 </div>
             </div>
         </div>
+        <PreFooter />
     </div>
 </template>
 
