@@ -43,7 +43,7 @@ export default {
             <div class="form-contact">
                 <h4>Aiutaci a migliorare la tua esperienza</h4>
 
-                <form action="">
+                <!-- <form action="">
                     <input type="text" id="name" placeholder="Inserisci il tuo nome" aria-label="name">
 
                     <input type="email" id="email" placeholder="Inserisci una mail valida" aria-label="email">
@@ -53,7 +53,7 @@ export default {
                     <div id="submit">
                         <button type="submit">Invia</button>
                     </div>
-                </form>
+                </form> -->
             </div>
         </div>
         <div class="footer-bottom">
@@ -114,6 +114,7 @@ footer {
                         color: white;
                     }
                 }
+            }
 
                 .social {
                     padding-left: 0;
