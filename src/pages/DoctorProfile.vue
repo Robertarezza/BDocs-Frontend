@@ -1,42 +1,7 @@
-<script>
-import axios from "axios";
-import { store } from "../store.js";
-import CardProfile from "../components/CardProfile.vue";
-import PreFooter from "../components/PreFooter.vue";
-
-export default {
-  components: {
-    CardProfile,
-    PreFooter,
-  },
-
-  data() {
-    return {
-      doctor: null,
-      store,
-    };
-  },
-
-  created() {
-    const id = this.$route.params.id;
-    axios
-      .get(`${store.apiBaseURL}/api/doctors/${id}`)
-      .then((resp) => {
-        console.log(resp);
-        this.doctor = resp.data.results;
-        console.log(this.doctor);
-      })
-      .catch((error) => {
-        console.error("Error fetching doctors:", error);
-      });
-  },
-};
-</script>
-
 <template>
   <div class="container-fluid cont-top">
     <div class="row align-items-center ms_style">
-      <div class="card mb-3" style="max-width: 1000px">
+      <div class="card mb-3 fade-in visible" style="max-width: 1000px">
         <!-- Allargare la card -->
         <div class="row g-0">
           <div class="col-md-4">
@@ -86,25 +51,62 @@ export default {
         </div>
       </div>
     </div>
-    <!-- <template>
-      <pdf :src="
-                doctor.CV
-                  ? `${store.imageUrl}/${doctor.CV}`
-                  : `https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg`
-              "
-              class="card-img-top"
-              alt="Doctor Photo"
-              style="max-width: 100%; height: 75vh"
-              type="file"></pdf>
-      </template> -->
-  </div>
-  <div class="container cont-card">
+    <div class="container cont-card fade-in visible">
       <CardProfile :doctor="doctor" />
     </div>
-     <!-- prefooter -->
-  <PreFooter />
- 
+    <PreFooter />
+  </div>
 </template>
+
+<script>
+import axios from "axios";
+import { store } from "../store.js";
+import CardProfile from "../components/CardProfile.vue";
+import PreFooter from "../components/PreFooter.vue";
+
+export default {
+  components: {
+    CardProfile,
+    PreFooter,
+  },
+
+  data() {
+    return {
+      doctor: null,
+      store,
+    };
+  },
+
+  created() {
+    const id = this.$route.params.id;
+    axios
+      .get(`${store.apiBaseURL}/api/doctors/${id}`)
+      .then((resp) => {
+        console.log(resp);
+        this.doctor = resp.data.results;
+        console.log(this.doctor);
+      })
+      .catch((error) => {
+        console.error("Error fetching doctors:", error);
+      });
+  },
+  
+  mounted() {
+    this.addFadeInClass();
+  },
+  
+  methods: {
+    addFadeInClass() {
+      const cards = document.querySelectorAll('.fade-in');
+      setTimeout(() => {
+        cards.forEach(card => {
+          card.classList.add('visible');
+        });
+      }, 100);
+    }
+  }
+}
+</script>
 
 <style scoped lang="scss">
 .cont-top {
@@ -130,10 +132,7 @@ img {
     padding-top: 50px;
   }
 }
-.user-picture {
-  max-width: 200px; /* Esempio di larghezza massima dell'immagine */
-  margin: 0 auto; /* Centrare l'immagine */
-}
+
 span {
   font-weight: 900;
   font-style: italic;
@@ -142,5 +141,15 @@ span {
 .cont-card {
   margin: 0 auto;
   margin-bottom: 50px;
+}
+
+/* Animazione fade-in */
+.fade-in {
+  opacity: 0;
+  transition: opacity 1s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.fade-in.visible {
+  opacity: 1;
 }
 </style>
