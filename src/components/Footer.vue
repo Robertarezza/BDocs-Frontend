@@ -75,7 +75,7 @@ footer {
         background-color: $celtic-blue;
         padding: 50px;
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
 
         .contact-us {
