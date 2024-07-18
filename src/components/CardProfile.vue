@@ -33,7 +33,7 @@ export default {
 <template>
     <div class="row">
         <div class="col-sm-6 mb-3 mb-sm-0">
-            <div class="card carddx text-center d-flex align-items-center justify-content-center fade-in">
+            <div class=" card carddx text-center d-flex align-items-center justify-content-center fade-in">
                 <div class="card-body">
                     <h3 class="title">Inizia il tuo percorso verso una salute migliore oggi!</h3>
                     <p class="card-text">Prenota una consulenza con il Dott. {{ doctor.user.name }} {{ doctor.user.surname }}</p>
@@ -71,14 +71,14 @@ export default {
     border-radius: 10px;
     color: white;
     background-image: linear-gradient(315deg, #0a369dff, #4472caff, #5e7ce2ff, #92b4f4ff, #cfdee7ff);
-    box-shadow: -3px 9px 34px 0 rgba(0, 0, 0, 0.25);
+    box-shadow: -3px 9px 34px 0 rgba(0, 0, 0, 1);
     width: 95%;
 }
 
 // Solleva la card
 .card:hover {
-  transform: translateY(-10px); 
-    box-shadow: -3px 15px 40px 0 rgba(0, 0, 0, 0.3); 
+    box-shadow: none;
+    transition: 0.7s;
 }
 
 .card-text {
