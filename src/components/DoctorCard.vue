@@ -15,7 +15,7 @@ export default {
 </script>
 
 <template>
-  <div class="card-client">
+  <div class="card-client g-2">
     <!-- foto card -->
     <div class="user-picture">
       <img
@@ -77,6 +77,7 @@ export default {
   color: black;
   font-family: "Poppins", sans-serif;
   position: relative; /* Necessario per posizionamento relativo al genitore */
+ 
 }
 
 .card-client:hover {
@@ -144,5 +145,10 @@ export default {
 .card-text ul {
   padding-left: 20px;
   list-style: disc;
+}
+@media (max-width: 576px) {
+  .card-client {
+    margin: 0 auto;
+  }
 }
 </style>

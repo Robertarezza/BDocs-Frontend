@@ -102,6 +102,8 @@ export default {
     }
 }
 
+// media responsive
+
 @media screen and (max-width: 768px) {
 
     .hero {

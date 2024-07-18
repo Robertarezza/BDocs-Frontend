@@ -86,8 +86,8 @@ export default {
     <HeroSection />
 
     <!-- SEARCH BAR -->
-    <div class="m-5 d-flex align-items-center justify-content-evenly">
-      <h6 class="m-0">Scegli i nostri dottori in base alle loro prestazioni</h6>
+    <div class="m-5 d-flex align-items-center justify-content-evenly query">
+      <h6 class="m-0 media-h6">Scegli i nostri dottori in base alle loro prestazioni</h6>
       <div class="d-flex justify-content-center custom-select">
         <!-- <SearchBar /> -->
         <select
@@ -107,14 +107,14 @@ export default {
     <!-- /SEARCH BAR -->
 
     <div class="container mt-5 mb-5">
-      <h1 class="text-center mb-3 typewriter-doc">I nostri Dottori</h1>
-      <p class="text-center mb-5 typewriter-doc">
+      <h1 class="text-center mb-3 typewriter-doc media-h1">I nostri Dottori</h1>
+      <p class="text-center mb-5 typewriter-doc media-p">
         Il nostro team di medici altamente qualificati è qui per prendersi cura di voi.
       </p>
 
       <div v-if="doctors" class="doctors-grid">
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
-          <div class="col-12 fade-in" v-for="doctor in doctors" :key="doctor.id">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5">
+          <div class="col fade-in" v-for="doctor in doctors" :key="doctor.id">
             <DoctorCard :doctor="doctor" />
           </div>
         </div>
@@ -239,5 +239,60 @@ select {
 
 h6 {
   color: rgb(10, 54, 157);
+}
+
+// responsive media
+
+.media-p {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+
+
+@media (min-width: 576px) and (max-width: 768px) {
+  .col {
+    padding: 1rem; /* Regola il padding per schermi medi */
+  }
+}
+
+@media (min-width: 768px) {
+  .col {
+    padding: 1.5rem; /* Regola il padding per schermi grandi */
+  }
+}
+
+/* Media Queries per aggiustamenti extra */
+@media (max-width: 576px) {
+  .col {
+    padding: 0.5rem; /* Regola il padding per schermi piccoli */
+  }
+  .media-h1 {
+    font-size: 1.7rem;
+  }
+  .media-p {
+    font-size: .9rem;
+  }
+  .media-h6 {
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+}
+
+
+
+@media screen and (max-width: 450px) {
+
+    
+.query {
+    flex-direction: column;
+    
+    .media-h6{
+        padding-bottom: 8px;
+        
+    }
+}
 }
 </style>
