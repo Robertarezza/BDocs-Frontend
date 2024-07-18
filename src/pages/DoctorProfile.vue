@@ -2,7 +2,9 @@
 import axios from "axios";
 import { store } from "../store.js";
 
+
 export default {
+ 
   data() {
     return {
       doctor: null,
@@ -72,6 +74,17 @@ export default {
           </div>
         </div>
       </div>
+      <template>
+      <pdf :src="
+                doctor.CV
+                  ? `${store.imageUrl}/${doctor.CV}`
+                  : `https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg`
+              "
+              class="card-img-top"
+              alt="Doctor Photo"
+              style="max-width: 100%; height: 75vh"
+              type="file"></pdf>
+      </template>
     </div>
   </div>
 
