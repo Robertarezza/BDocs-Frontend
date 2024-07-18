@@ -2,7 +2,7 @@
 export default {
     data() {
         return {
-            
+
         }
     }
 }
@@ -15,7 +15,7 @@ export default {
         <section class="welcome-section">
             <div class="welcome-text">
                 <h1 class="typewriter">Benvenuti nel nostro Studio Medico</h1>
-                <p class="typewriter">Offriamo i migliori professionisti medici per la vostra salute.</p>
+                <p class="typewriter">I migliori professionisti medici per la vostra salute.</p>
             </div>
         </section>
     </div>
@@ -27,10 +27,14 @@ export default {
 @use "../style/partials/variables" as *;
 
 .hero {
+    width: 100%;
+    max-width: 1600px;
     margin-top: 100px;
     height: 600px;
     background-image: url(../assets/img/nursing3.jpg);
     background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     margin-bottom: 20px;
     padding: 20px;
     display: flex;
@@ -50,7 +54,6 @@ export default {
     .welcome-text {
         display: inline-block;
         padding: 20px;
-        border-radius: 10px;
     }
 }
 
@@ -96,6 +99,44 @@ export default {
 
     50% {
         border-color: rgba(146, 180, 244, 1);
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .hero {
+        max-height: 300px;
+    }
+
+    .typewriter {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 570px) {
+
+    .hero {
+        background-attachment: local;
+        .typewriter {
+            font-size: .8rem;
+        }
+    }
+}
+
+@media screen and (max-width: 425px) {
+
+    .hero {
+        padding: 5px;
+        align-items: center;
+        background-attachment: local;
+
+        .welcome-text {
+            padding: 0;
+
+            .typewriter {
+                font-size: .7rem;
+            }
+        }
     }
 }
 </style>
