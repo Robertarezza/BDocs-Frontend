@@ -33,9 +33,9 @@ export default {
 </script>
 
 <template>
-  <div class="container">
+  <div class="container-fluid cont-top">
     <div class="row align-items-center ms_style">
-      <div class="card mb-3 " style="max-width: 1000px">
+      <div class="card mb-3 " style="max-width: 1000px ">
         <!-- Allargare la card -->
         <div class="row g-0">
           <div class="col-md-4">
@@ -78,6 +78,7 @@ export default {
           </div>
         </div>
       </div>
+    </div>
       <template>
       <pdf :src="
                 doctor.CV
@@ -90,19 +91,30 @@ export default {
               type="file"></pdf>
       </template>
     </div>
-  </div>
+  
 <div class="container cont-card">
     <CardProfile :doctor="doctor" />
 </div>
 </template>
 
 <style scoped lang="scss">
+.cont-top {
+    background-image: url(../assets/img/nursing4.jpg);
+    background-size: cover;
+
+}
+
+img {
+    mix-blend-mode: multiply;
+}
 .ms_style {
   justify-content: center;
-  margin-top: 150px;
+  margin-top: 100px;
+  padding-top: 10px;
 
   .card {
     border: none;
+    background-color: transparent;
   }
 }
 .user-picture {

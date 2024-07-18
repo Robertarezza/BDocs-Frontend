@@ -70,7 +70,7 @@ export default {
 .carddx, .cardsx {
     border-radius: 10px;
     color: white;
-    background-image: linear-gradient(45deg, #0a369dff, #4472caff, #5e7ce2ff, #92b4f4ff, #cfdee7ff);
+    background-image: linear-gradient(315deg, #0a369dff, #4472caff, #5e7ce2ff, #92b4f4ff, #cfdee7ff);
     box-shadow: -3px 9px 34px 0 rgba(0, 0, 0, 0.25);
     width: 95%;
 }
