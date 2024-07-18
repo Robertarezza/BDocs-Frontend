@@ -23,8 +23,8 @@ export default {
                     </div>
                     <ul class="social">
                         <li>
-                            <a href="http://127.0.0.1:8000/" class="btn ">
-                               
+                            <a href="https://x.com/?lang=it">
+                                <i class="fa-brands fa-x-twitter"></i>
                             </a>
                         </li>
                         <li>
@@ -43,7 +43,7 @@ export default {
             <div class="form-contact">
                 <h4>Aiutaci a migliorare la tua esperienza</h4>
 
-                <!-- <form action="">
+                <form action="">
                     <input type="text" id="name" placeholder="Inserisci il tuo nome" aria-label="name">
 
                     <input type="email" id="email" placeholder="Inserisci una mail valida" aria-label="email">
@@ -53,7 +53,7 @@ export default {
                     <div id="submit">
                         <button type="submit">Invia</button>
                     </div>
-                </form> -->
+                </form>
             </div>
         </div>
         <div class="footer-bottom">
@@ -69,18 +69,14 @@ export default {
 
 footer {
     width: 100%;
-    height: 600px;
 
     .footer-top {
         color: white;
-        height: 80%;
         background-color: $celtic-blue;
         padding: 50px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-
-
 
         .contact-us {
             width: 30%;
@@ -116,31 +112,79 @@ footer {
                 }
             }
 
-                .social {
-                    padding-left: 0;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    gap: 10px;
+            .social {
+                padding-left: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
 
-                    li {
-                        margin-left: 0;
-                        list-style-type: none;
+                li {
+                    margin-left: 0;
+                    list-style-type: none;
 
-                        a {
-                            text-decoration: none;
-                            color: white;
-                            font-size: 1.6rem;
-                        }
+                    a {
+                        text-decoration: none;
+                        color: white;
+                        font-size: 1.6rem;
                     }
                 }
             }
         }
 
-        
+        .form-contact {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+
+            form {
+                width: 100%;
+                gap: 30px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: flex-start;
+
+                input {
+                    width: 100%;
+                    border: 0;
+                    border-bottom: 1px solid white;
+                    background-color: transparent;
+
+                }
+
+                :focus {
+                    border-color: transparent;
+                }
+
+                ::placeholder {
+                    text-align: start;
+                    color: white;
+                }
+
+                textarea {
+                    outline: none;
+                    resize: none;
+                    width: 100%;
+                    background-color: transparent;
+                    border: 0;
+                    border-bottom: 1px solid white;
+                }
+
+                button {
+                    color: $celtic-blue;
+                    padding: 6px 12px;
+                    border: 0;
+                    border-radius: 12px;
+                }
+            }
+        }
+    }
 
     .footer-bottom {
-        height: 20%;
+        height: 50px;
         background-color: black;
         color: white;
         display: flex;
