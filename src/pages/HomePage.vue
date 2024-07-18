@@ -250,11 +250,7 @@ h6 {
 
 
 
-@media (min-width: 576px) and (max-width: 768px) {
-  .col {
-    padding: 1rem; /* Regola il padding per schermi medi */
-  }
-}
+
 
 @media (min-width: 768px) {
   .col {

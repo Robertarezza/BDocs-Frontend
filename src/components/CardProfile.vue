@@ -38,7 +38,7 @@ export default {
                     <h3 class="title">Inizia il tuo percorso verso una salute migliore oggi!</h3>
                     <p class="card-text">Prenota una consulenza con il Dott. {{ doctor.user.name }} {{ doctor.user.surname }}</p>
                     <div class="input">
-                        <input class="input-submit text-light" type="submit" value="Contattami" />
+                        <input class="input-submit text-light small-font" type="submit" value="Contattami" />
                     </div>
                 </div>
             </div>
@@ -49,7 +49,7 @@ export default {
                     <h3 class="title">La tua opinione conta!</h3>
                     <p class="card-text">Hai avuto un'esperienza con il Dr. {{ doctor.user.name }} {{ doctor.user.surname }}? Lascia una recensione e aiutaci a migliorare!</p>
                     <div class="input">
-                        <input class="input-submit text-light" type="submit" value="Lascia una recensione" />
+                        <input class="input-submit text-light small-font" type="submit" value="Lascia una recensione" />
                     </div>
                 </div>
             </div>
@@ -118,5 +118,59 @@ export default {
 
 .fade-in.visible {
     opacity: 1;
+}
+// media responsive
+@media screen and (max-width: 1024px) {
+
+h3 {
+    font-size: 1.5rem;
+}
+
+p {
+    font-size: 1rem;
+}
+.input {
+    width: 65%;
+}
+.small-font {
+  font-size: 0.8rem; 
+  text-align: center;
+  padding: 0;
+}
+}
+
+@media screen and (max-width: 768px) {
+
+h3 {
+    font-size: 1rem;
+}
+
+p {
+    font-size: 0.7rem;
+}
+.input {
+    width: 65%;
+}
+.small-font {
+  font-size: 0.8rem; 
+  text-align: center;
+  padding: 0;
+}
+}
+
+
+
+
+@media screen and (max-width: 450px) {
+
+     .carddx {
+        margin: 0 auto;
+        margin-top: 50px;
+    }
+    .cardsx {
+        margin: 0 auto;
+        margin-bottom: 40px;
+    }
+
 }
 </style>
