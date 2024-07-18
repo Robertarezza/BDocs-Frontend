@@ -7,7 +7,13 @@ export default {
 </script>
 
 <template>
-  <div id="carouselExample" class="carousel slide">
+  <div id="carousel" class="carousel slide carousel-fade">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active bg-primary" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" class="bg-primary" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" class="bg-primary" aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="#carousel" data-bs-slide-to="3" class="bg-primary" aria-label="Slide 4"></button>
+    </div>
     <div class="carousel-inner">
       <div class="ms_icon-color ms_bg1 text-center carousel-item active">
         <div
@@ -71,7 +77,7 @@ export default {
     <button
       class="carousel-control-prev ms_width-arrows"
       type="button"
-      data-bs-target="#carouselExample"
+      data-bs-target="#carousel"
       data-bs-slide="prev"
     >
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -80,7 +86,7 @@ export default {
     <button
       class="carousel-control-next ms_width-arrows"
       type="button"
-      data-bs-target="#carouselExample"
+      data-bs-target="#carousel"
       data-bs-slide="next"
     >
       <span class="carousel-control-next-icon color" aria-hidden="true"></span>
