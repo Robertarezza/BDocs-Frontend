@@ -69,7 +69,7 @@ export default {
       </div>
     </div>
     <button
-      class="carousel-control-prev"
+      class="carousel-control-prev ms_width-arrows"
       type="button"
       data-bs-target="#carouselExample"
       data-bs-slide="prev"
@@ -78,12 +78,12 @@ export default {
       <span class="visually-hidden">Previous</span>
     </button>
     <button
-      class="carousel-control-next"
+      class="carousel-control-next ms_width-arrows"
       type="button"
       data-bs-target="#carouselExample"
       data-bs-slide="next"
     >
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="carousel-control-next-icon color" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
   </div>
@@ -182,5 +182,14 @@ export default {
 
 .ms_icon-color {
   color: $egyptian-blue;
+}
+
+.ms_width-arrows {
+  width: 5%;
+}
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  filter: invert(29%) sepia(96%) saturate(7482%) hue-rotate(191deg) brightness(95%) contrast(108%);
 }
 </style>
