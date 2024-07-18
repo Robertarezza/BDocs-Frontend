@@ -116,7 +116,10 @@ export default {
 @media screen and (max-width: 570px) {
 
     .hero {
+        padding: 5px;
+        align-items: center;
         background-attachment: local;
+
         .typewriter {
             font-size: .8rem;
         }
@@ -125,17 +128,11 @@ export default {
 
 @media screen and (max-width: 450px) {
 
-    .hero {
-        padding: 5px;
-        align-items: center;
-        background-attachment: local;
+    .welcome-text {
+        padding: 0;
 
-        .welcome-text {
-            padding: 0;
-
-            .typewriter {
-                font-size: .7rem;
-            }
+        .typewriter {
+            font-size: .7rem;
         }
     }
 }
