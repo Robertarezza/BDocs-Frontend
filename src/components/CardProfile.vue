@@ -81,6 +81,7 @@ export default {
     box-shadow: -3px 15px 40px 0 rgba(0, 0, 0, 0.3); 
 }
 
+
 .card-text {
     text-align: center;
     padding-top: 20px;
@@ -88,9 +89,9 @@ export default {
 
 .input {
     border-radius: 20px;
-    background: #70707059;
+    background:  rgba(146, 180, 244, 1);
     padding: 10px 30px;
-    width: 70%;
+    width: 45%;
     margin: 0 auto;
 }
 

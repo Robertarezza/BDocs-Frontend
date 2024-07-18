@@ -61,7 +61,7 @@ export default {
                   v-for="(specialization, index) in doctor.specializations"
                   :key="specialization.id"
                 >
-                  <template v-if="index > 0">e </template>
+                  <template v-if="index > 0"> e </template>
                   <strong>{{ specialization.title }}</strong>
                 </span>
                 <br />

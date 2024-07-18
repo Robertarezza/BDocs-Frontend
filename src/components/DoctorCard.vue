@@ -32,8 +32,9 @@ export default {
 
     <!-- corpo card -->
     <h5 class="name-client">{{ doctor.user.name }} {{ doctor.user.surname }}</h5>
-    <span v-for="specialization in doctor.specializations" :key="specialization.id">
-      <strong>{{ specialization.title }},</strong>
+    <span v-for="(specialization, index) in doctor.specializations" :key="specialization.id">
+      <template v-if="index > 0">, </template>
+      <strong> {{ specialization.title }} </strong>
     </span>
     <br />
     <a href="" class="text-decoration-none"

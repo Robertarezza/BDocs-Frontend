@@ -37,8 +37,8 @@ export default {
                     </div>
                     <ul class="social">
                         <li>
-                            <a href="https://x.com/?lang=it">
-                                <i class="fa-brands fa-x-twitter"></i>
+                            <a href="http://127.0.0.1:8000/" class="btn ">
+                               
                             </a>
                         </li>
                         <li>
