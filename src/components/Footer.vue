@@ -1,4 +1,3 @@
-<script>
 export default {
     data() {
         return {
@@ -12,7 +11,9 @@ export default {
     <footer id="footer">
         <div class="footer-top">
             <div class="contact-us">
-                <img src="../assets/img/logo.png" alt="">
+                <div class="box-img">
+                    <img src="../assets/img/logo.png" alt="">
+                </div>
                 <h3>Contattaci</h3>
                 <div class="contacts">
                     <div class="cellphone">
@@ -21,8 +22,8 @@ export default {
                     </div>
                     <ul class="social">
                         <li>
-                            <a href="http://127.0.0.1:8000/" class="btn ">
-                               
+                            <a href="https://x.com/?lang=it">
+                                <i class="fa-brands fa-x-twitter"></i>
                             </a>
                         </li>
                         <li>
@@ -37,6 +38,21 @@ export default {
                         </li>
                     </ul>
                 </div>
+            </div>
+            <div class="form-contact">
+                <h4>Aiutaci a migliorare la tua esperienza</h4>
+
+                <form action="">
+                    <input type="text" id="name" placeholder="Inserisci il tuo nome" aria-label="name">
+
+                    <input type="email" id="email" placeholder="Inserisci una mail valida" aria-label="email">
+
+                    <textarea id="message" aria-label="message" placeholder="Come possiamo migliorare?"></textarea>
+
+                    <div id="submit">
+                        <button type="submit">Invia</button>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="footer-bottom">
@@ -58,20 +74,25 @@ footer {
         background-color: $celtic-blue;
         padding: 50px;
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: center;
-
-
 
         .contact-us {
             width: 30%;
             display: flex;
             flex-direction: column;
-            align-items: start;
+            align-items: center;
 
-            img {
-                height: 40px;
-                margin-bottom: 20px;
+            .box-img {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                text-align: center;
+
+                img {
+                    height: 40px;
+                    margin-bottom: 20px;
+                }
             }
 
             .contacts {
@@ -88,29 +109,80 @@ footer {
                         color: white;
                     }
                 }
+            }
 
-                .social {
-                    padding-left: 0;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    gap: 10px;
+            .social {
+                padding-left: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
 
-                    li {
-                        margin-left: 0;
-                        list-style-type: none;
+                li {
+                    margin-left: 0;
+                    list-style-type: none;
 
-                        a {
-                            text-decoration: none;
-                            color: white;
-                            font-size: 1.6rem;
-                        }
+                    a {
+                        text-decoration: none;
+                        color: white;
+                        font-size: 1.6rem;
                     }
                 }
             }
         }
 
-        
+        .form-contact {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+
+            form {
+                width: 100%;
+                gap: 30px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: flex-start;
+
+                input {
+                    color: white;
+                    width: 100%;
+                    border: 0;
+                    border-bottom: 1px solid white;
+                    background-color: transparent;
+
+                }
+
+                :focus {
+                    border-color: transparent;
+                }
+
+                ::placeholder {
+                    text-align: start;
+                    color: white;
+                }
+
+                textarea {
+                    color: white;
+                    outline: none;
+                    resize: none;
+                    width: 100%;
+                    background-color: transparent;
+                    border: 0;
+                    border-bottom: 1px solid white;
+                }
+
+                button {
+                    color: $celtic-blue;
+                    padding: 6px 12px;
+                    border: 0;
+                    border-radius: 12px;
+                }
+            }
+        }
+    }
 
     .footer-bottom {
         height: 50px;
@@ -136,9 +208,5 @@ footer {
             }
         }
     }
-
-    @media screen and (max-width: 570px) {}
-
-    @media screen and (max-width: 450px) {}
 }
 </style>
