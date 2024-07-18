@@ -1,9 +1,13 @@
 <script>
 import axios from "axios";
 import { store } from "../store.js";
+import CardProfile from "../components/CardProfile.vue";
 
 
 export default {
+    components : {
+        CardProfile
+    },
  
   data() {
     return {
@@ -31,7 +35,7 @@ export default {
 <template>
   <div class="container">
     <div class="row align-items-center ms_style">
-      <div class="card mb-3 border border-primary" style="max-width: 1000px">
+      <div class="card mb-3 " style="max-width: 1000px">
         <!-- Allargare la card -->
         <div class="row g-0">
           <div class="col-md-4">
@@ -87,7 +91,9 @@ export default {
       </template>
     </div>
   </div>
-
+<div class="container cont-card">
+    <CardProfile :doctor="doctor" />
+</div>
 </template>
 
 <style scoped lang="scss">
@@ -106,5 +112,10 @@ export default {
 span {
   font-weight: 900;
   font-style: italic;
+}
+
+.cont-card {
+    margin: 150px;
+    margin-bottom: 50px;
 }
 </style>
