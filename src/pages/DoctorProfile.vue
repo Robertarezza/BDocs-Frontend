@@ -37,7 +37,6 @@ export default {
   <div class="container-fluid cont-top">
     <div class="row align-items-center ms_style">
       <div class="card mb-3" style="max-width: 1000px">
-        <!-- Allargare la card -->
         <div class="row g-0">
           <div class="col-md-4">
             <img
@@ -86,30 +85,21 @@ export default {
         </div>
       </div>
     </div>
-    <!-- <template>
-      <pdf :src="
-                doctor.CV
-                  ? `${store.imageUrl}/${doctor.CV}`
-                  : `https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg`
-              "
-              class="card-img-top"
-              alt="Doctor Photo"
-              style="max-width: 100%; height: 75vh"
-              type="file"></pdf>
-      </template> -->
   </div>
   <div class="container cont-card">
-      <CardProfile :doctor="doctor" />
-    </div>
-     <!-- prefooter -->
+    <CardProfile :doctor="doctor" />
+  </div>
   <PreFooter />
- 
 </template>
 
 <style scoped lang="scss">
 .cont-top {
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1)), 
-              url(../assets/img/nursing4.jpg);
+  background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 1)
+    ),
+    url(../assets/img/nursing4.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -119,6 +109,7 @@ export default {
 img {
   mix-blend-mode: multiply;
 }
+
 .ms_style {
   justify-content: center;
   margin-top: 100px;
@@ -130,10 +121,12 @@ img {
     padding-top: 50px;
   }
 }
+
 .user-picture {
-  max-width: 200px; /* Esempio di larghezza massima dell'immagine */
-  margin: 0 auto; /* Centrare l'immagine */
+  max-width: 200px;
+  margin: 0 auto;
 }
+
 span {
   font-weight: 900;
   font-style: italic;
@@ -142,5 +135,101 @@ span {
 .cont-card {
   margin: 0 auto;
   margin-bottom: 50px;
+}
+
+/* Breakpoint 1024px */
+@media (max-width: 1024px) {
+  .cont-top {
+    background-attachment: scroll;
+  }
+
+  .ms_style .card {
+    padding-top: 30px;
+  }
+
+  .profile-header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card-body {
+    text-align: center;
+  }
+
+  .card-img-top {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+/* Breakpoint 768px */
+@media (max-width: 768px) {
+  .ms_style .card {
+    padding-top: 20px;
+  }
+
+  .profile-header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card-body {
+    text-align: center;
+  }
+
+  .card-img-top {
+    width: 70%;
+    margin: 0 auto;
+  }
+}
+
+/* Breakpoint 576px */
+@media (max-width: 576px) {
+  .ms_style .card {
+    padding-top: 15px;
+  }
+
+  .profile-header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card-body {
+    text-align: center;
+  }
+
+  .card-img-top {
+    width: 60%;
+    margin: 0 auto;
+  }
+}
+
+/* Breakpoint 450px */
+@media (max-width: 450px) {
+  .cont-top {
+    padding: 5px;
+  }
+
+  .profile-photo {
+    width: 80px;
+    height: 80px;
+  }
+
+  .profile-details {
+    text-align: center;
+  }
+
+  .ms_style .card {
+    padding-top: 10px;
+  }
+
+  .card-body {
+    text-align: center;
+  }
+
+  .card-img-top {
+    width: 50%;
+    margin: 0 auto;
+  }
 }
 </style>
