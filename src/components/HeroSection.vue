@@ -123,7 +123,7 @@ export default {
     }
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 450px) {
 
     .hero {
         padding: 5px;
