@@ -7,15 +7,47 @@ export default {
 </script>
 
 <template>
-  <div id="carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+  <div
+    id="carousel"
+    class="carousel slide carousel-fade"
+    data-bs-ride="carousel"
+  >
     <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active bg-primary" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" class="bg-primary" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" class="bg-primary" aria-label="Slide 3"></button>
-      <button type="button" data-bs-target="#carousel" data-bs-slide-to="3" class="bg-primary" aria-label="Slide 4"></button>
+      <button
+        type="button"
+        data-bs-target="#carousel"
+        data-bs-slide-to="0"
+        class="active bg-primary"
+        aria-current="true"
+        aria-label="Slide 1"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#carousel"
+        data-bs-slide-to="1"
+        class="bg-primary"
+        aria-label="Slide 2"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#carousel"
+        data-bs-slide-to="2"
+        class="bg-primary"
+        aria-label="Slide 3"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#carousel"
+        data-bs-slide-to="3"
+        class="bg-primary"
+        aria-label="Slide 4"
+      ></button>
     </div>
     <div class="carousel-inner">
-      <div class="ms_icon-color ms_bg1 text-center carousel-item active" data-bs-interval="3000">
+      <div
+        class="ms_icon-color ms_bg1 text-center carousel-item py-3 active"
+        data-bs-interval="3000"
+      >
         <div
           class="w-50 ms-5 ms_height d-flex justify-content-center align-items-center flex-column"
         >
@@ -30,12 +62,15 @@ export default {
           </p>
         </div>
       </div>
-      <div class="ms_icon-color ms_bg2 text-center carousel-item" data-bs-interval="3000">
+      <div
+        class="ms_icon-color ms_bg2 text-center carousel-item py-3"
+        data-bs-interval="3000"
+      >
         <div
           class="w-50 m-auto ms_height d-flex justify-content-center align-items-center flex-column"
         >
-        <i class="fs-1 fa-solid fa-user-doctor"></i>
-        <h3 class="fw-bold py-3">Consultazioni Mediche Online</h3>
+          <i class="fs-1 fa-solid fa-user-doctor"></i>
+          <h3 class="fw-bold py-3">Consultazioni Mediche Online</h3>
           <p>
             Gli utenti possono accedere a consultazioni mediche online tramite
             videoconferenza, telefono o chat. Questo servizio offre la comodità
@@ -44,26 +79,34 @@ export default {
           </p>
         </div>
       </div>
-      <div class="ms_icon-color text-center ms_bg3 carousel-item" data-bs-interval="3000">
-        <div class="d-flex justify-content-end ms_height align-items-center me-5">
+      <div
+        class="ms_icon-color text-center ms_bg3 carousel-item py-3"
+        data-bs-interval="3000"
+      >
+        <div
+          class="d-flex justify-content-end ms_height align-items-center me-5"
+        >
           <div class="w-50 d-flex flex-column align-items-center">
             <i class="fs-1 fa-solid fa-comment-medical"></i>
             <h3 class="fw-bold py-3">Accesso a Feedback e Recensioni</h3>
             <p>
               Gli utenti possono visualizzare feedback e recensioni sui medici
-              registrati sulla piattaforma. Questo aiuta gli utenti a fare scelte
-              più informate riguardo ai professionisti a cui rivolgersi, basandosi
-              sulle esperienze di altri pazienti.
+              registrati sulla piattaforma. Questo aiuta gli utenti a fare
+              scelte più informate riguardo ai professionisti a cui rivolgersi,
+              basandosi sulle esperienze di altri pazienti.
             </p>
           </div>
         </div>
       </div>
-      <div class="ms_icon-color text-center ms_bg4 carousel-item" data-bs-interval="3000">
+      <div
+        class="ms_icon-color text-center ms_bg4 carousel-item py-3"
+        data-bs-interval="3000"
+      >
         <div
           class="w-50 ms-5 ms_height d-flex justify-content-center align-items-center flex-column"
         >
-        <i class="fs-1 fa-solid fa-bell"></i>
-        <h3 class="fw-bold py-3">Promemoria e Gestione delle Terapie</h3>
+          <i class="fs-1 fa-solid fa-bell"></i>
+          <h3 class="fw-bold py-3">Promemoria e Gestione delle Terapie</h3>
           <p>
             Gli utenti possono ricevere promemoria per le terapie e i farmaci
             prescritti tramite notifiche via SMS o email. Questo servizio aiuta
@@ -175,8 +218,8 @@ export default {
 
 .ms_bg4 {
   background: linear-gradient(
-      rgba(255, 255, 255, 0.2),
-      rgba(255, 255, 255, 0.2)
+      rgba(255, 255, 255, 0.4),
+      rgba(255, 255, 255, 0.4)
     ),
     url(../assets/img/nursing4.jpg);
   background-size: cover;
@@ -197,5 +240,12 @@ export default {
 .carousel-control-next-icon,
 .carousel-control-prev-icon {
   filter: invert(29%) sepia(96%) saturate(7482%) hue-rotate(191deg) brightness(95%) contrast(108%);
+}
+
+@media screen and (max-width: 500px) {
+  .carousel-item .w-50 {
+    width: 75% !important;
+    padding: 0 10px;
+  }
 }
 </style>
