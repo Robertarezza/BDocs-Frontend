@@ -148,6 +148,7 @@ footer {
                 align-items: flex-start;
 
                 input {
+                    color: white;
                     width: 100%;
                     border: 0;
                     border-bottom: 1px solid white;
@@ -165,6 +166,7 @@ footer {
                 }
 
                 textarea {
+                    color: white;
                     outline: none;
                     resize: none;
                     width: 100%;
@@ -207,9 +209,5 @@ footer {
             }
         }
     }
-
-    @media screen and (max-width: 570px) {}
-
-    @media screen and (max-width: 450px) {}
 }
 </style>
