@@ -11,6 +11,21 @@ export default {
 <template>
     <footer id="footer">
         <div class="footer-top">
+            <div class="form-contact">
+                <h4>Aiutaci a migliorare la tua esperienza</h4>
+
+                <form action="">
+                    <input type="text" id="name" placeholder="Inserisci il tuo nome" aria-label="name">
+
+                    <input type="email" id="email" placeholder="Inserisci una mail valida" aria-label="email">
+
+                    <textarea id="message" aria-label="message" placeholder="Come possiamo migliorare?"></textarea>
+
+                    <div id="submit">
+                        <button type="submit">Invia</button>
+                    </div>
+                </form>
+            </div>
             <div class="contact-us">
                 <div class="box-img">
                     <img src="../assets/img/logo.png" alt="">
@@ -40,21 +55,6 @@ export default {
                     </ul>
                 </div>
             </div>
-            <div class="form-contact">
-                <h4>Aiutaci a migliorare la tua esperienza</h4>
-
-                <form action="">
-                    <input type="text" id="name" placeholder="Inserisci il tuo nome" aria-label="name">
-
-                    <input type="email" id="email" placeholder="Inserisci una mail valida" aria-label="email">
-
-                    <textarea id="message" aria-label="message" placeholder="Come possiamo migliorare?"></textarea>
-
-                    <div id="submit">
-                        <button type="submit">Invia</button>
-                    </div>
-                </form>
-            </div>
         </div>
         <div class="footer-bottom">
             <h4>
@@ -75,7 +75,7 @@ footer {
         background-color: $celtic-blue;
         padding: 50px;
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
 
         .contact-us {
@@ -133,6 +133,7 @@ footer {
         }
 
         .form-contact {
+            margin-top: 40px;
             height: 100%;
             display: flex;
             flex-direction: column;
@@ -140,6 +141,7 @@ footer {
             justify-content: space-evenly;
 
             form {
+                margin-top: 40px;
                 width: 100%;
                 gap: 30px;
                 display: flex;
@@ -153,7 +155,6 @@ footer {
                     border: 0;
                     border-bottom: 1px solid white;
                     background-color: transparent;
-
                 }
 
                 :focus {
@@ -201,12 +202,7 @@ footer {
     @media screen and (max-width: 992px) {
 
         .footer-top {
-            height: 100%;
-            flex-direction: column;
-
-            img {
-                height: 40px;
-            }
+            flex-direction: column-reverse;
         }
     }
 }
