@@ -2,13 +2,14 @@
 import axios from "axios";
 import { store } from "../store.js";
 import CardProfile from "../components/CardProfile.vue";
-
+import PreFooter from "../components/PreFooter.vue";
 
 export default {
-    components : {
-        CardProfile
-    },
- 
+  components: {
+    CardProfile,
+    PreFooter,
+  },
+
   data() {
     return {
       doctor: null,
@@ -35,7 +36,7 @@ export default {
 <template>
   <div class="container-fluid cont-top">
     <div class="row align-items-center ms_style">
-      <div class="card mb-3 " style="max-width: 1000px ">
+      <div class="card mb-3" style="max-width: 1000px">
         <!-- Allargare la card -->
         <div class="row g-0">
           <div class="col-md-4">
@@ -63,23 +64,29 @@ export default {
                   <template v-if="index > 0">e </template>
                   <strong>{{ specialization.title }}</strong>
                 </span>
-                <br>
-                <span > Tipo di prestazione: </span>
-                <span class="text-secondary"><strong>{{ doctor.performance }}</strong></span>
-                
+                <br />
+                <span> Tipo di prestazione: </span>
+                <span class="text-secondary"
+                  ><strong>{{ doctor.performance }}</strong></span
+                >
               </div>
               <div class="mt-2">
                 <p class="m-0">
-                  <i class="fa-solid fa-location-dot"></i> {{ doctor.studio_address }}</p>
-                <p class="m-0"><i class="fa-solid fa-address-card"></i> {{ doctor.user.email }}</p>
-                <p class="m-0"><i class="fa-solid fa-phone"></i> {{ doctor.phone_number }}</p>
+                  <i class="fa-solid fa-location-dot"></i> {{ doctor.studio_address }}
+                </p>
+                <p class="m-0">
+                  <i class="fa-solid fa-address-card"></i> {{ doctor.user.email }}
+                </p>
+                <p class="m-0">
+                  <i class="fa-solid fa-phone"></i> {{ doctor.phone_number }}
+                </p>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-      <template>
+    <!-- <template>
       <pdf :src="
                 doctor.CV
                   ? `${store.imageUrl}/${doctor.CV}`
@@ -89,23 +96,28 @@ export default {
               alt="Doctor Photo"
               style="max-width: 100%; height: 75vh"
               type="file"></pdf>
-      </template>
+      </template> -->
+  </div>
+  <div class="container cont-card">
+      <CardProfile :doctor="doctor" />
     </div>
-  
-<div class="container cont-card">
-    <CardProfile :doctor="doctor" />
-</div>
+     <!-- prefooter -->
+  <PreFooter />
+ 
 </template>
 
 <style scoped lang="scss">
 .cont-top {
-    background-image: url(../assets/img/nursing4.jpg);
-    background-size: cover;
-
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1)), 
+              url(../assets/img/nursing4.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
 }
 
 img {
-    mix-blend-mode: multiply;
+  mix-blend-mode: multiply;
 }
 .ms_style {
   justify-content: center;
@@ -115,6 +127,7 @@ img {
   .card {
     border: none;
     background-color: transparent;
+    padding-top: 50px;
   }
 }
 .user-picture {
@@ -127,7 +140,7 @@ span {
 }
 
 .cont-card {
-    margin: 150px;
-    margin-bottom: 50px;
+  margin: 0 auto;
+  margin-bottom: 50px;
 }
 </style>
