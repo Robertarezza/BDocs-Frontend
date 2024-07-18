@@ -103,6 +103,7 @@ export default {
         </select>
       </div>
     </div>
+    
     <!-- /SEARCH BAR -->
 
     <div class="container mt-5 mb-5">
