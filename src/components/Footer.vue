@@ -37,17 +37,17 @@ export default {
                     </div>
                     <ul class="social">
                         <li>
-                            <a href="">
+                            <a href="https://x.com/?lang=it">
                                 <i class="fa-brands fa-x-twitter"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="https://www.facebook.com/simone.bonvecchio/?locale=it_IT">
                                 <i class="fa-brands fa-facebook"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="https://www.instagram.com/">
                                 <i class="fa-brands fa-instagram"></i>
                             </a>
                         </li>
