@@ -7,7 +7,7 @@ export default {
 </script>
 
 <template>
-  <div id="carousel" class="carousel slide carousel-fade">
+  <div id="carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active bg-primary" aria-current="true" aria-label="Slide 1"></button>
       <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" class="bg-primary" aria-label="Slide 2"></button>
@@ -15,7 +15,7 @@ export default {
       <button type="button" data-bs-target="#carousel" data-bs-slide-to="3" class="bg-primary" aria-label="Slide 4"></button>
     </div>
     <div class="carousel-inner">
-      <div class="ms_icon-color ms_bg1 text-center carousel-item active">
+      <div class="ms_icon-color ms_bg1 text-center carousel-item active" data-bs-interval="3000">
         <div
           class="w-50 ms-5 ms_height d-flex justify-content-center align-items-center flex-column"
         >
@@ -30,7 +30,7 @@ export default {
           </p>
         </div>
       </div>
-      <div class="ms_icon-color ms_bg2 text-center carousel-item">
+      <div class="ms_icon-color ms_bg2 text-center carousel-item" data-bs-interval="3000">
         <div
           class="w-50 m-auto ms_height d-flex justify-content-center align-items-center flex-column"
         >
@@ -44,7 +44,7 @@ export default {
           </p>
         </div>
       </div>
-      <div class="ms_icon-color text-center ms_bg3 carousel-item">
+      <div class="ms_icon-color text-center ms_bg3 carousel-item" data-bs-interval="3000">
         <div class="d-flex justify-content-end ms_height align-items-center me-5">
           <div class="w-50 d-flex flex-column align-items-center">
             <i class="fs-1 fa-solid fa-comment-medical"></i>
@@ -58,7 +58,7 @@ export default {
           </div>
         </div>
       </div>
-      <div class="ms_icon-color text-center ms_bg4 carousel-item">
+      <div class="ms_icon-color text-center ms_bg4 carousel-item" data-bs-interval="3000">
         <div
           class="w-50 ms-5 ms_height d-flex justify-content-center align-items-center flex-column"
         >
