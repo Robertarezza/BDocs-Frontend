@@ -146,9 +146,16 @@ export default {
   padding-left: 20px;
   list-style: disc;
 }
+
+@media (max-width: px) {
+  .card-client {
+    margin: 0 auto;
+  }
+}
 @media (max-width: 576px) {
   .card-client {
     margin: 0 auto;
   }
 }
+
 </style>

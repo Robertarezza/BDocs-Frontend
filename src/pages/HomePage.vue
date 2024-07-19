@@ -112,7 +112,7 @@ export default {
       </p>
 
       <div v-if="doctors" class="doctors-grid">
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 g-5">
           <div class="col fade-in" v-for="doctor in doctors" :key="doctor.id">
             <DoctorCard :doctor="doctor" />
           </div>

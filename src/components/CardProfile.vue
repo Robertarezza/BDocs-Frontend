@@ -137,6 +137,7 @@ p {
   text-align: center;
   padding: 0;
 }
+
 }
 
 @media screen and (max-width: 768px) {
