@@ -26,13 +26,21 @@ export default {
             axios
                 .post(`http://127.0.0.1:8000/api/reviews`, this.formData)
                 .then((resp) => {
-                    console.log(resp);
-                    this.closeModal();
+                    // console.log(resp);
+                    if(resp.data.success) {
+                        this.clearFields();
+                        this.closeModal();
+                    }
                 })
                 .catch((error) => {
                     console.error(error.response.data);
                 });
         },
+        clearFields() {
+            this.formData.guest_name = ""; 
+            this.formData.guest_mail = ""; 
+            this.formData.review = ""; 
+        }
     },
 };
 </script>
@@ -41,7 +49,7 @@ export default {
     <div>
         <!-- Bottone per aprire il Modale -->
         <button type="button" class="btn ms_brown_btn" @click="showModal = true">
-            Contatta il medico
+            Lascia una recensione
         </button>
 
         <!-- Modale -->
@@ -52,7 +60,7 @@ export default {
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="contactHostModalLabel">
-                            Contatta il medico
+                            Lascia una recensione
                         </h5>
                     </div>
 
@@ -64,17 +72,17 @@ export default {
                             <!-- ID del dottore di riferimento -->
                             <input type="hidden" v-model="formData.doctor" />
 
-                            <!-- Nome-Cognome -->
+                            <!-- Nome -->
                             <div class="form-group">
-                                <label class="my-1" for="guest_name">Nome*</label>
+                                <label class="my-1" for="guest_name">Inserisci il tuo nome*</label>
                                 <input type="text" class="form-control" id="guest_name" v-model="formData.guest_name"
                                     required />
                             </div>
-                            <!-- /Nome-Cognome -->
+                            <!-- /Nome -->
 
                             <!-- Email -->
                             <div class="form-group">
-                                <label class="my-1" for="guest_mail">Email *</label>
+                                <label class="my-1" for="guest_mail">Inserisci la tua e-mail *</label>
                                 <input type="email" class="form-control" id="guest_mail" v-model="formData.guest_mail"
                                     required />
                             </div>
@@ -82,7 +90,7 @@ export default {
 
                             <!-- Messaggio -->
                             <div class="form-group">
-                                <label class="my-1" for="review">Recensione *</label>
+                                <label class="my-1" for="review">Lascia la tua recensione *</label>
                                 <textarea class="form-control" id="review" v-model="formData.review" rows="5"
                                     required></textarea>
                             </div>
@@ -112,15 +120,7 @@ export default {
 
 <style lang="scss" scoped>
 .ms_brown_btn {
-    background-color: #705d3f;
-    border: 1px solid #705d3f;
+    background-color: rgba(146, 180, 244, 1);
     color: white;
-
-    &:hover {
-        background-color: #f8f2eb;
-        transition: all 0.7s;
-        color: black;
-        border: 1px solid #f8f2eb;
-    }
 }
 </style>
