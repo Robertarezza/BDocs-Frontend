@@ -17,15 +17,18 @@ export default {
   data() {
     return {
       specializations: [],
+      ratings: [],
       doctors: null,
       store,
       selectSpecialization: "",
+      selectRating: "",
     };
   },
 
   created() {
     this.getDoctors();
     this.getSpecialization();
+    this.getRating();
   },
 
   mounted() {
@@ -41,6 +44,9 @@ export default {
       const params = {};
       if (this.selectSpecialization !== "") {
         params.specialization_id = this.selectSpecialization;
+      }
+      if (this.selectRating !== "") {
+        params.rating_id = this.selectRating;
       }
       axios
         .get(`${this.store.apiBaseURL}/api/doctors`, {
@@ -61,6 +67,12 @@ export default {
       axios.get(`${this.store.apiBaseURL}/api/specializations`).then((resp) => {
         console.log(resp);
         this.specializations = resp.data.results;
+      });
+    },
+    getRating() {
+      axios.get(`${this.store.apiBaseURL}/api/ratings`).then((resp) => {
+        console.log(resp);
+        this.ratings = resp.data.results;
       });
     },
     handleScroll() {
@@ -85,7 +97,7 @@ export default {
     <!-- HERO SECTION -->
     <HeroSection />
 
-    <!-- SEARCH BAR -->
+    <!-- SEARCH BAR SPECIALIZATION -->
     <div class="m-5 d-flex align-items-center justify-content-evenly query">
       <h6 class="m-0 media-h6">Scegli i nostri dottori in base alle loro prestazioni</h6>
       <div class="d-flex justify-content-center custom-select">
@@ -103,7 +115,27 @@ export default {
         </select>
       </div>
     </div>
-    <!-- /SEARCH BAR -->
+    <!-- /SEARCH BAR SPECIALIZATION-->
+
+    <!-- SEARCH BAR RATING-->
+    <div class="m-5 d-flex align-items-center justify-content-evenly query">
+      <h6 class="m-0 media-h6">Scegli i nostri dottori in base ai loro voti</h6>
+      <div class="d-flex justify-content-center custom-select">
+        <!-- <SearchBar /> -->
+        <select
+          id=""
+          aria-label="seleziona specializzazione"
+          v-model="selectRating"
+          @change="getDoctors"
+        >
+          <option value="">Tutti i voti</option>
+          <option :value="rating.id" v-for="rating in ratings">
+            {{ rating.rating }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <!-- /SEARCH BAR RATING-->
 
     <div class="container mt-5 mb-5">
       <h1 class="text-center mb-3 typewriter-doc media-h1">I nostri Dottori</h1>
