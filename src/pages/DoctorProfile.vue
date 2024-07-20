@@ -91,7 +91,7 @@ export default {
     </div>
   </div>
   <transition name="fade">
-      <div class="alert alert-success" v-if="store.successMessage">
+      <div class="alert alert-success ms-alert-success" v-if="store.successMessage">
         Il tuo messaggio è stato inviato con successo
       </div>
     </transition>
@@ -149,29 +149,27 @@ span {
   margin-bottom: 50px;
 }
 
-// Bottone messaggio, animazioni custom in entrata e uscita
-// .alert-success {
-//   padding: 10px 20px;
-//   border-radius: 5px;
-//   max-width: 600px;
-//   margin: 20px auto;
-//   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-//   transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-//   opacity: 1;
-//   transform: translateY(0);
-// }
-// .alert-success.hide {
-//   opacity: 0;
-//   transform: translateY(-20px);
-// }
-// .fade-enter-active, .fade-leave-active {
-//   transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-// }
-// .fade-enter, .fade-leave-to {
-//   opacity: 0;
-//   transform: translateY(-20px);
-// }
-
+// Bottone messaggio, animazioni custom in entrata e ucita
+.ms-alert-success {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  // SE CI SONO PROBLEMI CON IL BACGROUNG DI ALLERT .alert-success, è questa opzione il problema
+  background-color: rgba(212, 237, 218, 0.9); 
+  padding: 15px 30px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000; 
+  transition: opacity 0.5s ease-in-out;
+  opacity: 1;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s ease-in-out;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
 /* Breakpoint 1024px */
 @media (max-width: 1024px) {
   .cont-top {
