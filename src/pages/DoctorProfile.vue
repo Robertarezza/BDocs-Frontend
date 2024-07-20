@@ -3,14 +3,14 @@ import axios from "axios";
 import { store } from "../store.js";
 import CardProfile from "../components/CardProfile.vue";
 import PreFooter from "../components/PreFooter.vue";
-import ReviewPage from "../components/ReviewPage.vue";
+import Review from "../components/Review.vue";
 import Message from "../components/Message.vue";
 
 export default {
   components: {
     CardProfile,
     PreFooter,
-    ReviewPage,
+    Review,
     Message,
   },
 
@@ -98,7 +98,7 @@ export default {
   </div>
 
   <div class="d-none">
-    <ReviewPage :doctor="doctor.user.id" />
+    <Review :doctor="doctor.user.id" />
   </div>
   <div class="d-none">
     <Message :doctor="doctor.user.id" />
