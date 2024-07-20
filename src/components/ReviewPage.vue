@@ -1,5 +1,6 @@
 <script>
 import axios from "axios";
+import { store } from "../store";
 
 export default {
     props: {
@@ -14,6 +15,8 @@ export default {
                 guest_mail: "",
                 review: "",
             },
+            store,
+           
         };
     },
     methods: {
@@ -30,6 +33,11 @@ export default {
                     if(resp.data.success) {
                         this.clearFields();
                         this.closeModal();
+                        this.store.successMessage = true;
+                        setTimeout (() => {
+                            this.store.successMessage = false;
+                        }, 3000);
+                        
                     }
                 })
                 .catch((error) => {
@@ -51,7 +59,7 @@ export default {
         <button type="button" class="btn ms_brown_btn" @click="showModal = true">
             Lascia una recensione
         </button>
-
+       
         <!-- Modale -->
         <div v-if="showModal" class="modal fade show" tabindex="-1" role="dialog"
             aria-labelledby="contactHostModalLabel" style="display: block; background: rgba(0, 0, 0, 0.5)"

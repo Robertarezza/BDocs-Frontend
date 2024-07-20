@@ -88,6 +88,9 @@ export default {
       </div>
     </div>
   </div>
+  <div class="alert alert-success" v-if="store.successMessage">
+    Il tuo messaggio è stato inviato con successo
+  </div>
   <div class="container cont-card">
     <CardProfile :doctor="doctor" />
   </div>
@@ -100,11 +103,7 @@ export default {
 
 <style scoped lang="scss">
 .cont-top {
-  background: linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 1)
-    ),
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1)),
     url(../assets/img/nursing4.jpg);
   background-size: cover;
   background-repeat: no-repeat;
