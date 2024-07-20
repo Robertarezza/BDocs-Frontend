@@ -42,8 +42,11 @@ header {
     background-color: $celtic-blue;
     z-index: 9999;
 
-    nav {
+    .test{
+        list-style-type: none;
+    }
 
+    nav {
         width: 100%;
         padding: 20px;
         height: 100%;
@@ -52,6 +55,7 @@ header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+
 
             .box-img {
                 display: flex;

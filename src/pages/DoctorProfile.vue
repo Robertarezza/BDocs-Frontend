@@ -3,11 +3,13 @@ import axios from "axios";
 import { store } from "../store.js";
 import CardProfile from "../components/CardProfile.vue";
 import PreFooter from "../components/PreFooter.vue";
+import ReviewPage from "../components/ReviewPage.vue";
 
 export default {
   components: {
     CardProfile,
     PreFooter,
+    ReviewPage,
   },
 
   data() {
@@ -88,6 +90,10 @@ export default {
   </div>
   <div class="container cont-card">
     <CardProfile :doctor="doctor" />
+  </div>
+
+  <div>
+    <ReviewPage :doctor="doctor.user.id" />
   </div>
   <PreFooter />
 </template>

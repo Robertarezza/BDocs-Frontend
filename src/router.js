@@ -14,7 +14,7 @@ const router = createRouter({
         path: '/doctors/:id',
         name: 'DoctorProfile',
         component: DoctorProfile,
-      }
+      },
   ],
 });
 
