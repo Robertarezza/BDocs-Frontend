@@ -1,11 +1,13 @@
 <script>
 import Review from './Review.vue';
 import Message from './Message.vue';
+import Votes from './Votes.vue';
 
 export default {
     components : {
         Review,
         Message,
+        Votes,
     },
     props: {
         doctor: Object,
@@ -59,6 +61,19 @@ export default {
                     <div class="input">
 
                         <Review :doctor="doctor.user.id" />
+                        <!-- <input class="input-submit text-light small-font" type="submit" value="Lascia una recensione" /> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card cardsx d-flex align-items-center justify-content-center fade-in">
+                <div class="card-body text-center">
+                    <h3 class="title">Lascia un voto</h3>
+                    <p class="card-text">Cosa ne pensi del Dr. {{ doctor.user.name }} {{ doctor.user.surname }}?</p>
+                    <div class="input">
+
+                        <Votes :doctor="doctor.user.id" />
                         <!-- <input class="input-submit text-light small-font" type="submit" value="Lascia una recensione" /> -->
                     </div>
                 </div>

@@ -5,6 +5,7 @@ import CardProfile from "../components/CardProfile.vue";
 import PreFooter from "../components/PreFooter.vue";
 import Review from "../components/Review.vue";
 import Message from "../components/Message.vue";
+import Votes from "../components/Votes.vue";
 
 export default {
   components: {
@@ -12,6 +13,7 @@ export default {
     PreFooter,
     Review,
     Message,
+    Votes,
   },
 
   data() {
@@ -104,6 +106,9 @@ export default {
   </div>
   <div class="d-none">
     <Message :doctor="doctor.user.id" />
+  </div>
+  <div class="d-none">
+    <Votes :doctor="doctor.user.id" />
   </div>
   <PreFooter />
 </template>
