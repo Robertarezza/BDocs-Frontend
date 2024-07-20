@@ -28,15 +28,11 @@ export default {
 
 .hero {
     width: 100%;
-    max-width: 1600px;
-    margin-top: 100px;
     height: 600px;
     background-image: url(../assets/img/nursing3.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    margin-bottom: 20px;
-    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: end;
