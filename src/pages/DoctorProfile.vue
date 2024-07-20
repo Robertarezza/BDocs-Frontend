@@ -88,9 +88,11 @@ export default {
       </div>
     </div>
   </div>
-  <div class="alert alert-success" v-if="store.successMessage">
-    Il tuo messaggio è stato inviato con successo
-  </div>
+  <transition name="fade">
+      <div class="alert alert-success" v-if="store.successMessage">
+        Il tuo messaggio è stato inviato con successo
+      </div>
+    </transition>
   <div class="container cont-card">
     <CardProfile :doctor="doctor" />
   </div>
@@ -141,6 +143,29 @@ span {
   margin: 0 auto;
   margin-bottom: 50px;
 }
+
+// Bottone messaggio, animazioni custom in entrata e uscita
+// .alert-success {
+//   padding: 10px 20px;
+//   border-radius: 5px;
+//   max-width: 600px;
+//   margin: 20px auto;
+//   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+//   transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+//   opacity: 1;
+//   transform: translateY(0);
+// }
+// .alert-success.hide {
+//   opacity: 0;
+//   transform: translateY(-20px);
+// }
+// .fade-enter-active, .fade-leave-active {
+//   transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+// }
+// .fade-enter, .fade-leave-to {
+//   opacity: 0;
+//   transform: translateY(-20px);
+// }
 
 /* Breakpoint 1024px */
 @media (max-width: 1024px) {
