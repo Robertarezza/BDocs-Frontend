@@ -1,9 +1,11 @@
 <script>
-import ReviewPage from './ReviewPage.vue';
+import Review from './Review.vue';
+import Message from './Message.vue';
 
 export default {
     components : {
-        ReviewPage,
+        Review,
+        Message,
     },
     props: {
         doctor: Object,
@@ -43,7 +45,8 @@ export default {
                     <h3 class="title">Inizia il tuo percorso verso una salute migliore oggi!</h3>
                     <p class="card-text">Prenota una consulenza con il Dott. {{ doctor.user.name }} {{ doctor.user.surname }}</p>
                     <div class="input">
-                        <input class="input-submit text-light small-font" type="submit" value="Contattami" />
+                        <Message :doctor="doctor.user.id" />
+                        <!-- <input class="input-submit text-light small-font" type="submit" value="Contattami" /> -->
                     </div>
                 </div>
             </div>
@@ -55,7 +58,7 @@ export default {
                     <p class="card-text">Hai avuto un'esperienza con il Dr. {{ doctor.user.name }} {{ doctor.user.surname }}? Lascia una recensione e aiutaci a migliorare!</p>
                     <div class="input">
 
-                        <ReviewPage :doctor="doctor.user.id" />
+                        <Review :doctor="doctor.user.id" />
                         <!-- <input class="input-submit text-light small-font" type="submit" value="Lascia una recensione" /> -->
                     </div>
                 </div>
