@@ -1,5 +1,10 @@
 <script>
+import ReviewPage from './ReviewPage.vue';
+
 export default {
+    components : {
+        ReviewPage,
+    },
     props: {
         doctor: Object,
     },
@@ -49,7 +54,9 @@ export default {
                     <h3 class="title">La tua opinione conta!</h3>
                     <p class="card-text">Hai avuto un'esperienza con il Dr. {{ doctor.user.name }} {{ doctor.user.surname }}? Lascia una recensione e aiutaci a migliorare!</p>
                     <div class="input">
-                        <input class="input-submit text-light small-font" type="submit" value="Lascia una recensione" />
+
+                        <ReviewPage :doctor="doctor.user.id" />
+                        <!-- <input class="input-submit text-light small-font" type="submit" value="Lascia una recensione" /> -->
                     </div>
                 </div>
             </div>

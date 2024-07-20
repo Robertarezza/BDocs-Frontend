@@ -92,7 +92,7 @@ export default {
     <CardProfile :doctor="doctor" />
   </div>
 
-  <div>
+  <div class="d-none">
     <ReviewPage :doctor="doctor.user.id" />
   </div>
   <PreFooter />

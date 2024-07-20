@@ -59,7 +59,7 @@ export default {
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="contactHostModalLabel">
+                        <h5 class="modal-title text-secondary" id="contactHostModalLabel">
                             Lascia una recensione
                         </h5>
                     </div>
@@ -73,30 +73,30 @@ export default {
                             <input type="hidden" v-model="formData.doctor" />
 
                             <!-- Nome -->
-                            <div class="form-group">
-                                <label class="my-1" for="guest_name">Inserisci il tuo nome*</label>
+                            <div class="form-group" style="text-align: justify">
+                                <label class="my-1 text-secondary " for="guest_name">Inserisci il tuo nome*</label>
                                 <input type="text" class="form-control" id="guest_name" v-model="formData.guest_name"
                                     required />
                             </div>
                             <!-- /Nome -->
 
                             <!-- Email -->
-                            <div class="form-group">
-                                <label class="my-1" for="guest_mail">Inserisci la tua e-mail *</label>
+                            <div class="form-group " style="text-align: justify">
+                                <label class="my-1 text-secondary" for="guest_mail">Inserisci la tua e-mail *</label>
                                 <input type="email" class="form-control" id="guest_mail" v-model="formData.guest_mail"
                                     required />
                             </div>
                             <!-- /Email -->
 
                             <!-- Messaggio -->
-                            <div class="form-group">
-                                <label class="my-1" for="review">Lascia la tua recensione *</label>
+                            <div class="form-group" style="text-align: justify">
+                                <label class="my-1 text-secondary" for="review">Lascia la tua recensione *</label>
                                 <textarea class="form-control" id="review" v-model="formData.review" rows="5"
                                     required></textarea>
                             </div>
                             <!-- /Messaggio -->
 
-                            <div class="mt-1 text-muted">
+                            <div class="mt-1 text-muted" style="text-align: justify">
                                 <small>* Campi obbligatori</small>
                             </div>
 
