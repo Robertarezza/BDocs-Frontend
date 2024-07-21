@@ -118,4 +118,17 @@ export default {
     background-color: rgba(146, 180, 244, 1);
     color: white;
 }
+
+
+
+@media screen and (max-width: 768px) {
+
+    button {
+        font-size: 12px;
+        margin: 0;
+        padding: 2px 10px;
+    }
+
+}
+
 </style>

@@ -22,7 +22,16 @@ export default {
       store,
     };
   },
-
+  computed: {
+    averageRating() {
+      // Calcola la media dei voti se i voti sono disponibili
+      if (this.doctor.ratings && this.doctor.ratings.length > 0) {
+        const total = this.doctor.ratings.reduce((sum, rating) => sum + rating.rating, 0);
+        return total / this.doctor.ratings.length;
+      }
+      return 0;
+    },
+  },
   created() {
     const id = this.$route.params.id;
     axios
@@ -40,7 +49,7 @@ export default {
 </script>
 
 <template>
-  <div class="container-fluid cont-top">
+  <div class="container-fluid cont-top" v-if="doctor">
     <div class="row align-items-center ms_style">
       <div class="card mb-3" style="max-width: 1000px">
         <div class="row g-0">
@@ -57,6 +66,18 @@ export default {
             />
           </div>
           <div class="col-md-8 align-content-center">
+            <!-- Stelline sopra la foto -->
+            <div class="rating-stars">
+              <span
+                v-for="star in 5"
+                :key="star"
+                class="star"
+                :class="{ filled: star <= averageRating }"
+              >
+                ★
+              </span>
+            </div>
+            <!-- /stelline sopra la foto -->
             <div class="card-body">
               <h1>{{ doctor.user.name }} {{ doctor.user.surname }}</h1>
               <span>Specializzazione </span>
@@ -85,6 +106,13 @@ export default {
                 <p class="m-0">
                   <i class="fa-solid fa-phone"></i> {{ doctor.phone_number }}
                 </p>
+                <a
+                  :href="`${store.apiBaseURL}/storage/${doctor.CV}`"
+                  target="_blank"
+                  class="text-primary"
+                >
+                  Guarda il CV
+                </a>
               </div>
             </div>
           </div>
@@ -92,11 +120,14 @@ export default {
       </div>
     </div>
   </div>
+  <div v-else>
+    <p>Caricamento...</p>
+  </div>
   <transition name="fade">
-      <div class="alert alert-success ms-alert-success" v-if="store.successMessage">
-        Il tuo messaggio è stato inviato con successo
-      </div>
-    </transition>
+    <div class="alert alert-success ms-alert-success" v-if="store.successMessage">
+      Il tuo messaggio è stato inviato con successo
+    </div>
+  </transition>
   <div class="container cont-card">
     <CardProfile :doctor="doctor" />
   </div>
@@ -121,6 +152,25 @@ export default {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
+}
+/* Stelline sopra la foto */
+.rating-stars {
+ // position: absolute;
+  //top: -3px;
+  //left: 106px;
+  display: flex;
+  //z-index: 1;
+  margin-left: 15px;
+}
+
+.star {
+  font-size: 20px;
+  color: grey;
+  margin-right: 2px;
+}
+
+.star.filled {
+  color: gold;
 }
 
 img {
@@ -161,18 +211,20 @@ span {
   left: 50%;
   transform: translateX(-50%);
   // SE CI SONO PROBLEMI CON IL BACGROUNG DI ALLERT .alert-success, è questa opzione il problema
-  background-color: rgba(212, 237, 218, 0.9); 
+  background-color: rgba(212, 237, 218, 0.9);
   padding: 15px 30px;
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  z-index: 1000; 
+  z-index: 1000;
   transition: opacity 0.5s ease-in-out;
   opacity: 1;
 }
-.fade-enter-active, .fade-leave-active {
+.fade-enter-active,
+.fade-leave-active {
   transition: opacity 0.5s ease-in-out;
 }
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
 /* Breakpoint 1024px */

@@ -40,9 +40,10 @@ export default {
 </script>
 
 <template>
-    <div class="row">
-        <div class="col-sm-6 mb-3 mb-sm-0">
-            <div class=" card carddx text-center d-flex align-items-center justify-content-center fade-in">
+   <div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-6 mb-">
+            <div class="card carddx text-center d-flex align-items-center justify-content-center fade-in w-100">
                 <div class="card-body">
                     <h3 class="title">Inizia il tuo percorso verso una salute migliore oggi!</h3>
                     <p class="card-text">Prenota una consulenza con il Dott. {{ doctor.user.name }} {{ doctor.user.surname }}</p>
@@ -53,26 +54,24 @@ export default {
                 </div>
             </div>
         </div>
-        <div class="col-sm-6">
-            <div class="card cardsx d-flex align-items-center justify-content-center fade-in">
-                <div class="card-body text-center">
+        <div class="col-12 col-sm-6 mb-3">
+            <div class="card cardsx text-center d-flex align-items-center justify-content-center fade-in w-100">
+                <div class="card-body">
                     <h3 class="title">La tua opinione conta!</h3>
                     <p class="card-text">Hai avuto un'esperienza con il Dr. {{ doctor.user.name }} {{ doctor.user.surname }}? Lascia una recensione e aiutaci a migliorare!</p>
                     <div class="input">
-
                         <Review :doctor="doctor.user.id" />
                         <!-- <input class="input-submit text-light small-font" type="submit" value="Lascia una recensione" /> -->
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-sm-6">
-            <div class="card cardsx d-flex align-items-center justify-content-center fade-in">
-                <div class="card-body text-center">
+        <div class="col-12 col-sm-8 col-md-6 mb-3">
+            <div class="card cardsx text-center d-flex align-items-center justify-content-center fade-in w-100">
+                <div class="card-body">
                     <h3 class="title">Lascia un voto</h3>
                     <p class="card-text">Cosa ne pensi del Dr. {{ doctor.user.name }} {{ doctor.user.surname }}?</p>
-                    <div class="input">
-
+                    <div class=" input-vote">
                         <Votes :doctor="doctor.user.id" />
                         <!-- <input class="input-submit text-light small-font" type="submit" value="Lascia una recensione" /> -->
                     </div>
@@ -80,6 +79,8 @@ export default {
             </div>
         </div>
     </div>
+</div>
+
 </template>
 
 <style lang="scss" scoped>
@@ -112,10 +113,18 @@ export default {
     padding-top: 20px;
 }
 
+.input-vote {
+    border-radius: 20px;
+    background:  rgba(146, 180, 244, 1);
+    //padding: 10px 30px;
+    width: 75%;
+    margin: 0 auto;
+}
+
 .input {
     border-radius: 20px;
     background:  rgba(146, 180, 244, 1);
-    padding: 10px 30px;
+    //padding: 10px 30px;
     width: 45%;
     margin: 0 auto;
 }
@@ -145,6 +154,16 @@ export default {
     opacity: 1;
 }
 // media responsive
+@media screen and (max-width: 1224px) {
+
+.input-vote {
+    width: 75%;
+}
+  
+}
+
+
+
 @media screen and (max-width: 1024px) {
 
 h3 {
@@ -154,6 +173,7 @@ h3 {
 p {
     font-size: 1rem;
 }
+
 .input {
     width: 65%;
 }
@@ -162,7 +182,10 @@ p {
   text-align: center;
   padding: 0;
 }
-
+.input-vote {
+    width: 75%;
+}
+  
 }
 
 @media screen and (max-width: 768px) {
@@ -182,6 +205,7 @@ p {
   text-align: center;
   padding: 0;
 }
+
 }
 
 
@@ -192,10 +216,11 @@ p {
      .carddx {
         margin: 0 auto;
         margin-top: 50px;
+        margin-bottom: 49px;
     }
     .cardsx {
         margin: 0 auto;
-        margin-bottom: 40px;
+       margin-bottom: 35px;
     }
 
 }

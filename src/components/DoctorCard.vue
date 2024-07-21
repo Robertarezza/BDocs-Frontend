@@ -11,11 +11,34 @@ export default {
       store,
     };
   },
+  computed: {
+    averageRating() {
+      // Calcola la media dei voti se i voti sono disponibili
+      if (this.doctor.ratings && this.doctor.ratings.length > 0) {
+        const total = this.doctor.ratings.reduce((sum, rating) => sum + rating.rating, 0);
+        return total / this.doctor.ratings.length;
+      }
+      return 0;
+    }
+  }
 };
 </script>
 
 <template>
-  <div class="card-client g-2">
+
+    <div class="card-client g-2">
+    <!-- Stelline sopra la foto -->
+    <div class="rating-stars">
+      <span
+        v-for="star in 5"
+        :key="star"
+        class="star"
+        :class="{ filled: star <= averageRating }"
+      >
+        ★
+      </span>
+    </div>
+    <!-- /stelline sopra la foto -->
     <!-- foto card -->
     <div class="user-picture">
       <img
@@ -82,6 +105,24 @@ export default {
 
 .card-client:hover {
   transform: translateY(-10px);
+}
+/* Stelline sopra la foto */
+.rating-stars {
+  position: absolute;
+  top: -3px;
+  left: 106px;
+  display: flex;
+  z-index: 1;
+}
+
+.star {
+  font-size: 20px;
+  color: grey;
+  margin-right: 2px;
+}
+
+.star.filled {
+  color: gold;
 }
 
 .user-picture {
