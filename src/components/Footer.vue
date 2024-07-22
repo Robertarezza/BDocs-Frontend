@@ -40,7 +40,7 @@ export default {
                     </ul>
                 </div>
             </div>
-            <div class="form-contact">
+            <!-- <div class="form-contact">
                 <h4>Aiutaci a migliorare la tua esperienza</h4>
 
                 <form action="">
@@ -54,7 +54,7 @@ export default {
                         <button type="submit">Invia</button>
                     </div>
                 </form>
-            </div>
+            </div> -->
         </div>
         <div class="footer-bottom">
             <h4>
