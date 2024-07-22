@@ -153,24 +153,31 @@ export default {
     <!-- vista recensioni -->
    
 
+    <div>
     <div v-if="showReview">
-        <div class="card" style="width: 75%; margin: 10px auto;" v-for="(review, index) in doctor.reviews"
-        :key="review.id">
+      <!-- Controlla se ci sono recensioni -->
+      <div v-if="doctor.reviews.length > 0">
+        <div class="card" style="width: 75%; margin: 10px auto;" v-for="(review, index) in doctor.reviews" :key="review.id">
           <div class="card-body">
             <h5 class="card-title my_name">  {{ review.guest_name }} il {{ formatDate(review.updated_at) }}</h5>
 
             <!-- modi per rendere la prima lettera Maiuscola -->
             <!-- <h5 class="card-title">  {{ review.guest_name[0].toUpperCase() + review.guest_name.slice(1) }} il {{ formatDate(review.updated_at) }}</h5> -->
-           
             <h6 class="card-subtitle mb-2 text-body-secondary">Mail: {{ review.guest_mail }} </h6>
             <h6>Messaggio</h6>
             <p class="card-text">
               {{ review.review }}
             </p>
-            
           </div>
         </div>
       </div>
+      <!-- Mostra il messaggio se non ci sono recensioni -->
+      <div v-else>
+        <p class="text-center">Nessuna recensione presente</p>
+      </div>
+    </div>
+  </div>
+
     <div class="container cont-card">
       <CardProfile :doctor="doctor" />
     </div>
