@@ -16,7 +16,7 @@ export default {
             <ul>
                 <li class="box-img">
                     <router-link :to="{ name: 'home' }">
-                        <img src="../assets/img/logo.png" alt="logo B-Doctors">
+                        <img src="../assets/img/logo-1.png" alt="logo B-Doctors">
                     </router-link>
                 </li>
                 <li id="title">
@@ -62,10 +62,10 @@ header {
                 justify-content: start;
 
                 img {
-                    height: 60px;
-                    display: block;
-                    max-width: 100%;
-                    aspect-ratio: 1;
+                    //height: 60px;
+                    //display: block;
+                    max-width: 45%;
+                    //aspect-ratio: 1;
                 }
             }
 
