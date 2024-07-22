@@ -20,133 +20,176 @@ export default {
     return {
       doctor: null,
       store,
+      // attivo il loader
+      isLoading: true,
     };
   },
   computed: {
     averageRating() {
       // Calcola la media dei voti se i voti sono disponibili
       if (this.doctor.ratings && this.doctor.ratings.length > 0) {
-        const total = this.doctor.ratings.reduce((sum, rating) => sum + rating.rating, 0);
+        const total = this.doctor.ratings.reduce(
+          (sum, rating) => sum + rating.rating,
+          0
+        );
         return total / this.doctor.ratings.length;
       }
       return 0;
     },
   },
+  // mounted() {
+  //   // al caricamento della pagina chiamiamo la funzione onWindowLoad
+  //   window.addEventListener("load", this.onWindowLoad);
+  // },
+  // beforeDestroy() {
+  //   window.removeEventListener("load", this.onWindowLoad);
+  // },
   created() {
     const id = this.$route.params.id;
     axios
-      .get(`${store.apiBaseURL}/api/doctors/${id}`)
-      .then((resp) => {
-        console.log(resp);
-        this.doctor = resp.data.results;
-        console.log(this.doctor);
-      })
-      .catch((error) => {
-        console.error("Error fetching doctors:", error);
-      });
+    .get(`${store.apiBaseURL}/api/doctors/${id}`)
+    .then((resp) => {
+      console.log(resp);
+      this.doctor = resp.data.results;
+      // tolgo il loader
+      this.isLoading = false; 
+      console.log(this.doctor);
+    })
+    .catch((error) => {
+      console.error("Error fetching doctors:", error);
+    });
   },
+  // methods: {
+  //   // funzione che rimuove d-none dal contenuto della pagina e lo aggiunge al loader
+  //   onWindowLoad() {
+  //     const loader = document.getElementById("loader");
+  //     const content = document.getElementById("content");
+  //     console.log('LOADER' + loader);
+  //     console.log('CONTENT' + content);
+
+  //     // console.log(loader, content);
+  //     if (loader && content) {
+  //       console.log('fatto');
+  //       loader.classList.add("d-none");
+  //       content.classList.remove("d-none");
+  //     } else {
+  //       console.log("Elementi non trovati");
+  //     }
+  //   },
+  // },
 };
 </script>
 
 <template>
-  <div class="container-fluid cont-top" v-if="doctor">
-    <div class="row align-items-center ms_style">
-      <div class="card mb-3" style="max-width: 1000px">
-        <div class="row g-0">
-          <div class="col-md-4">
-            <img
-              :src="
-                doctor.photo
-                  ? `${store.imageUrl}/${doctor.photo}`
-                  : `https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg`
-              "
-              class="card-img-top"
-              alt="Doctor Photo"
-              style="max-width: 100%"
-            />
-          </div>
-          <div class="col-md-8 align-content-center">
-            <!-- Stelline sopra la foto -->
-            <div class="rating-stars">
-              <span
-                v-for="star in 5"
-                :key="star"
-                class="star"
-                :class="{ filled: star <= averageRating }"
-              >
-                ★
-              </span>
+  <div class="d-flex justify-content-center" v-if="isLoading">
+    <div class="loader"></div>
+  </div>
+  <div v-if="!isLoading">
+    <div class="container-fluid cont-top">
+      <div class="row align-items-center ms_style">
+        <div class="card mb-3" style="max-width: 1000px">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img
+                :src="
+                  doctor.photo
+                    ? `${store.imageUrl}/${doctor.photo}`
+                    : `https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg`
+                "
+                class="card-img-top"
+                alt="Doctor Photo"
+                style="max-width: 100%"
+              />
             </div>
-            <!-- /stelline sopra la foto -->
-            <div class="card-body">
-              <h1>{{ doctor.user.name }} {{ doctor.user.surname }}</h1>
-              <span>Specializzazione </span>
-              <div class="d-inline">
+            <div class="col-md-8 align-content-center">
+              <!-- Stelline sopra la foto -->
+              <div class="rating-stars">
                 <span
-                  class="text-secondary"
-                  v-for="(specialization, index) in doctor.specializations"
-                  :key="specialization.id"
+                  v-for="star in 5"
+                  :key="star"
+                  class="star"
+                  :class="{ filled: star <= averageRating }"
                 >
-                  <template v-if="index > 0"> e </template>
-                  <strong>{{ specialization.title }}</strong>
+                  ★
                 </span>
-                <br />
-                <span> Tipo di prestazione: </span>
-                <span class="text-secondary"
-                  ><strong>{{ doctor.performance }}</strong></span
-                >
               </div>
-              <div class="mt-2">
-                <p class="m-0">
-                  <i class="fa-solid fa-location-dot"></i> {{ doctor.studio_address }}
-                </p>
-                <p class="m-0">
-                  <i class="fa-solid fa-address-card"></i> {{ doctor.user.email }}
-                </p>
-                <p class="m-0">
-                  <i class="fa-solid fa-phone"></i> {{ doctor.phone_number }}
-                </p>
-                <a
-                  :href="`${store.apiBaseURL}/storage/${doctor.CV}`"
-                  target="_blank"
-                  class="text-primary"
-                >
-                  Guarda il CV
-                </a>
+              <!-- /stelline sopra la foto -->
+              <div class="card-body">
+                <h1>{{ doctor.user.name }} {{ doctor.user.surname }}</h1>
+                <span>Specializzazione </span>
+                <div class="d-inline">
+                  <span
+                    class="text-secondary"
+                    v-for="(specialization, index) in doctor.specializations"
+                    :key="specialization.id"
+                  >
+                    <template v-if="index > 0"> e </template>
+                    <strong>{{ specialization.title }}</strong>
+                  </span>
+                  <br />
+                  <span> Tipo di prestazione: </span>
+                  <span class="text-secondary"
+                    ><strong>{{ doctor.performance }}</strong></span
+                  >
+                </div>
+                <div class="mt-2">
+                  <p class="m-0">
+                    <i class="fa-solid fa-location-dot"></i>
+                    {{ doctor.studio_address }}
+                  </p>
+                  <p class="m-0">
+                    <i class="fa-solid fa-address-card"></i>
+                    {{ doctor.user.email }}
+                  </p>
+                  <p class="m-0">
+                    <i class="fa-solid fa-phone"></i> {{ doctor.phone_number }}
+                  </p>
+                  <a
+                    :href="`${store.apiBaseURL}/storage/${doctor.CV}`"
+                    target="_blank"
+                    class="text-primary"
+                  >
+                    Guarda il CV
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div v-else>
-    <p>Caricamento...</p>
-  </div>
-  <transition name="fade">
-    <div class="alert alert-success ms-alert-success" v-if="store.successMessage">
-      Il tuo messaggio è stato inviato con successo
+    <transition name="fade">
+      <div
+        class="alert alert-success ms-alert-success"
+        v-if="store.successMessage"
+      >
+        Il tuo messaggio è stato inviato con successo
+      </div>
+    </transition>
+    <div class="container cont-card">
+      <CardProfile :doctor="doctor" />
     </div>
-  </transition>
-  <div class="container cont-card">
-    <CardProfile :doctor="doctor" />
-  </div>
-
-  <div class="d-none">
-    <Review :doctor="doctor.user.id" />
-  </div>
-  <div class="d-none">
-    <Message :doctor="doctor.user.id" />
-  </div>
-  <div class="d-none">
-    <Votes :doctor="doctor.user.id" />
+  
+    <div class="d-none">
+      <Review :doctor="doctor.user.id" />
+    </div>
+    <div class="d-none">
+      <Message :doctor="doctor.user.id" />
+    </div>
+    <div class="d-none">
+      <Votes :doctor="doctor.user.id" />
+    </div>
   </div>
   <PreFooter />
 </template>
 
 <style scoped lang="scss">
 .cont-top {
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1)),
+  background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 1)
+    ),
     url(../assets/img/nursing4.jpg);
   background-size: cover;
   background-repeat: no-repeat;
@@ -155,7 +198,7 @@ export default {
 }
 /* Stelline sopra la foto */
 .rating-stars {
- // position: absolute;
+  // position: absolute;
   //top: -3px;
   //left: 106px;
   display: flex;
@@ -227,6 +270,19 @@ span {
 .fade-leave-to {
   opacity: 0;
 }
+
+// loader
+.loader {
+  width: 150px;
+  margin: 200px 0;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 8px solid lightblue;
+  border-right-color: rgb(8, 0, 255);
+  animation: l2 1s infinite linear;
+}
+@keyframes l2 {to{transform: rotate(1turn)}}
+
 /* Breakpoint 1024px */
 @media (max-width: 1024px) {
   .cont-top {
