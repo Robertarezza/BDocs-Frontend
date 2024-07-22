@@ -17,7 +17,7 @@ export default {
       if (this.doctor.ratings && this.doctor.ratings.length > 0) {
         const total = this.doctor.ratings.reduce((sum, rating) => sum + rating.rating, 0);
         
-        return total / this.doctor.ratings.length;
+        return Math.round(total / this.doctor.ratings.length);
       }
       return 0;
     }
