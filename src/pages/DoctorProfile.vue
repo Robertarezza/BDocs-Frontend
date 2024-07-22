@@ -53,7 +53,7 @@ export default {
   <div class="loader-container d-none">
     <div class="loader"></div>
   </div>
-  
+
   <div class="container-fluid cont-top">
     <div class="row align-items-center ms_style">
       <div class="card mb-3" style="max-width: 1000px">
@@ -124,6 +124,16 @@ export default {
   <div class="d-none">
     <Votes :doctor="doctor.user.id" />
   </div>
+
+  <div class="d-inline">
+    <div class="text-secondary" v-for="(review, index) in doctor.reviews" :key="review.id">
+      <template v-if="index > 0"> e </template>
+      <strong>Nome {{ review.guest_name }}</strong>
+      <strong>Nome {{ review.guest_mail }}</strong>
+      <strong>Nome {{ review.review }}</strong>
+    </div>
+  </div>
+
   <PreFooter />
 </template>
 
