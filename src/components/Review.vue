@@ -16,7 +16,9 @@ export default {
                 review: "",
             },
             store,
-           
+            isLoading: false,
+            errors: {},
+            submitted: false
         };
     },
     methods: {
@@ -26,6 +28,8 @@ export default {
         // Chiamata API
         submitForm() {
             console.log(this.formData);
+            this.isLoading = true;
+            this.submitted = true;
             axios
                 .post(`http://127.0.0.1:8000/api/reviews`, this.formData)
                 .then((resp) => {
@@ -40,8 +44,14 @@ export default {
                         
                     }
                 })
-                .catch((error) => {
-                    console.error(error.response.data);
+                .catch((err) => {
+                    if (err.response.status === 422) {
+                        this.errors = err.response.data.errors;
+                    }
+                    console.log(this.errors);
+                })
+                .finally(() => {
+                    this.isLoading = false;
                 });
         },
         clearFields() {
@@ -83,24 +93,24 @@ export default {
                             <!-- Nome -->
                             <div class="form-group" style="text-align: justify">
                                 <label class="my-1 text-secondary " for="guest_name">Inserisci il tuo nome*</label>
-                                <input type="text" class="form-control" id="guest_name" v-model="formData.guest_name"
-                                    required />
+                                <input type="text" class="form-control" :class="{'is-invalid': submitted && errors.guest_name, 'is-valid': submitted && !errors.guest_name}" id="guest_name" v-model="formData.guest_name" required />
+                                <div class="invalid-feedback" v-if="submitted && errors.guest_name">{{ errors.guest_name[0] }}</div>
                             </div>
                             <!-- /Nome -->
 
                             <!-- Email -->
-                            <div class="form-group " style="text-align: justify">
-                                <label class="my-1 text-secondary" for="guest_mail">Inserisci la tua e-mail *</label>
-                                <input type="email" class="form-control" id="guest_mail" v-model="formData.guest_mail"
-                                    required />
+                            <div class="form-group" style="text-align: justify">
+                                <label class="my-1 text-secondary " for="guest_mail">Inserisci la tua email*</label>
+                                <input type="email" class="form-control" :class="{'is-invalid': submitted && errors.guest_mail, 'is-valid': submitted && !errors.guest_mail}" id="guest_mail" v-model="formData.guest_mail" required />
+                                <div class="invalid-feedback" v-if="submitted && errors.guest_mail">{{ errors.guest_mail[0] }}</div>
                             </div>
                             <!-- /Email -->
 
                             <!-- Messaggio -->
                             <div class="form-group" style="text-align: justify">
-                                <label class="my-1 text-secondary" for="review">Lascia la tua recensione *</label>
-                                <textarea class="form-control" id="review" v-model="formData.review" rows="5"
-                                    required></textarea>
+                                <label class="my-1 text-secondary " for="review">Messaggio*</label>
+                                <textarea class="form-control" :class="{'is-invalid': submitted && errors.review, 'is-valid': submitted && !errors.review}" id="review" v-model="formData.review" required></textarea>
+                                <div class="invalid-feedback" v-if="submitted && errors.review">{{ errors.review[0] }}</div>
                             </div>
                             <!-- /Messaggio -->
 
