@@ -77,19 +77,19 @@ export default {
       });
     },
     handleScroll() {
-      const cards = document.querySelectorAll(".fade-in");
-      const windowHeight = window.innerHeight;
+    const elements = document.querySelectorAll(".fade-in");
+    const windowHeight = window.innerHeight;
 
-      cards.forEach((card) => {
-        const rect = card.getBoundingClientRect();
-        if (rect.top < windowHeight && rect.bottom > 200) {
-          card.classList.add("visible");
-        } else {
-          card.classList.remove("visible");
-        }
-      });
-    },
+    elements.forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < windowHeight && rect.bottom > 200) {
+        el.classList.add("visible");
+      } else {
+        el.classList.remove("visible");
+      }
+    });
   },
+},
 };
 </script>
 
@@ -99,7 +99,7 @@ export default {
     <HeroSection />
 
     <!-- SEARCH BAR SPECIALIZATION -->
-    <div class="m-5 d-flex align-items-center justify-content-evenly query">
+    <div class="m-5 d-flex align-items-center justify-content-evenly query fade-in">
       <h6 class="m-0 media-h6">Scegli i nostri dottori in base alle loro prestazioni</h6>
       <div class="d-flex justify-content-center custom-select">
         <!-- <SearchBar /> -->
@@ -119,7 +119,7 @@ export default {
     <!-- /SEARCH BAR SPECIALIZATION-->
 
     <!-- SEARCH BAR RATING-->
-    <div class="m-5 d-flex align-items-center justify-content-evenly query">
+    <div class="m-5 d-flex align-items-center justify-content-evenly query fade-in">
       <h6 class="m-0 media-h6">Scegli i nostri dottori in base ai loro voti</h6>
       <div class="d-flex justify-content-center custom-select">
         <!-- <SearchBar /> -->

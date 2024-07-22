@@ -75,8 +75,8 @@ export default {
             @click.self="closeModal">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content"> 
-                    <div class="modal-header">
-                        <h5 class="modal-title text-secondary" id="contactHostModalLabel">
+                    <div class="modal-header justify-content-center">
+                        <h5 class="modal-title text-secondary text-center w-100" id="contactHostModalLabel">
                             Lascia un messaggio. <br> Verrai contattato prima possibile
                         </h5>
                     </div>

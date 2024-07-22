@@ -92,7 +92,7 @@ export default {
                         <h5 class="modal-title text-secondary" id="contactHostModalLabel">
                             Lascia un voto
                         </h5>
-                        <button type="button" class="btn-close" @click="closeModal" aria-label="Close"></button>
+
                     </div>
 
                     <div class="modal-body">
