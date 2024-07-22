@@ -92,7 +92,7 @@ export default {
                             <!-- Nome -->
                             <div class="form-group" style="text-align: justify">
                                 <label class="my-1 text-secondary " for="guest_name">Inserisci il tuo nome*</label>
-                                <input type="text" class="form-control" :class="{'is-invalid': submitted && errors.guest_name, 'is-valid': submitted && !errors.guest_name}" id="guest_name" v-model="formData.guest_name" />
+                                <input type="text" class="form-control" :class="{'is-invalid': submitted && errors.guest_name, 'is-valid': submitted && !errors.guest_name}" id="guest_name" v-model="formData.guest_name" required />
                                 <div class="invalid-feedback" v-if="submitted && errors.guest_name">{{ errors.guest_name[0] }}</div>
                             </div>
                             <!-- /Nome -->
@@ -100,7 +100,7 @@ export default {
                              <!-- Cognome -->
                              <div class="form-group" style="text-align: justify">
                                 <label class="my-1 text-secondary " for="guest_surname">Inserisci il tuo cognome*</label>
-                                <input type="text" class="form-control" :class="{'is-invalid': submitted && errors.guest_surname, 'is-valid': submitted && !errors.guest_surname}" id="guest_surname" v-model="formData.guest_surname" />
+                                <input type="text" class="form-control" :class="{'is-invalid': submitted && errors.guest_surname, 'is-valid': submitted && !errors.guest_surname}" id="guest_surname" v-model="formData.guest_surname" required />
                                 <div class="invalid-feedback" v-if="submitted && errors.guest_surname">{{ errors.guest_surname[0] }}</div>
                             </div>
                             <!-- /Cognome -->
@@ -108,7 +108,7 @@ export default {
                             <!-- Email -->
                             <div class="form-group" style="text-align: justify">
                                 <label class="my-1 text-secondary " for="guest_mail">Inserisci la tua email*</label>
-                                <input type="email" class="form-control" :class="{'is-invalid': submitted && errors.guest_mail, 'is-valid': submitted && !errors.guest_mail}" id="guest_mail" v-model="formData.guest_mail" />
+                                <input type="email" class="form-control" :class="{'is-invalid': submitted && errors.guest_mail, 'is-valid': submitted && !errors.guest_mail}" id="guest_mail" v-model="formData.guest_mail" required />
                                 <div class="invalid-feedback" v-if="submitted && errors.guest_mail">{{ errors.guest_mail[0] }}</div>
                             </div>
                             <!-- /Email -->
@@ -116,7 +116,7 @@ export default {
                             <!-- Messaggio -->
                             <div class="form-group" style="text-align: justify">
                                 <label class="my-1 text-secondary " for="message">Messaggio*</label>
-                                <textarea class="form-control" :class="{'is-invalid': submitted && errors.message, 'is-valid': submitted && !errors.message}" id="message" v-model="formData.message"></textarea>
+                                <textarea class="form-control" :class="{'is-invalid': submitted && errors.message, 'is-valid': submitted && !errors.message}" id="message" v-model="formData.message" required></textarea>
                                 <div class="invalid-feedback" v-if="submitted && errors.message">{{ errors.message[0] }}</div>
                             </div>
                             <!-- /Messaggio -->
