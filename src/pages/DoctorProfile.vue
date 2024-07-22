@@ -142,6 +142,9 @@ export default {
     <div class="container cont-card">
       <CardProfile :doctor="doctor" />
     </div>
+    <div class="container">
+    <ReviewButton /> 
+  </div>
   
     <div class="d-none">
       <Review :doctor="doctor.user.id" />
