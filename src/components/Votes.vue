@@ -56,8 +56,8 @@ export default {
             Lascia un voto
         </button>
 
-        <!-- Modale -->
-        <div v-if="showModal" class="modal fade show" tabindex="-1" role="dialog"
+<!-- Modale -->
+<div v-if="showModal" class="modal fade show" tabindex="-1" role="dialog"
             aria-labelledby="contactHostModalLabel" style="display: block; background: rgba(0, 0, 0, 0.5)"
             @click.self="closeModal">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -66,32 +66,30 @@ export default {
                         <h5 class="modal-title text-secondary" id="contactHostModalLabel">
                             Lascia un voto
                         </h5>
+                        <button type="button" class="btn-close" @click="closeModal" aria-label="Close"></button>
                     </div>
 
                     <!-- Form del Modale -->
-
                     <div class="modal-body">
                         <form @submit.prevent="submitForm">
 
                             <!-- ID del dottore di riferimento -->
-                            <input type="hidden" v-model="formData.doctor" />
+                            <input type="hidden" v-model="formData.doctor_id" />
 
                             <!-- Nome -->
-                            <div class="form-group" style="text-align: justify">
-                                <label class="my-1 text-secondary " for="rating_id">Inserisci il tuo voto*</label>
-                                <select id="rating_id" aria-label="seleziona specializzazione" v-model="formData.rating_id"> 
+                            <div class="mb-3">
+                                <label class="form-label text-secondary" for="rating_id">Inserisci il tuo voto*</label>
+                                <select id="rating_id" class="form-select" v-model="formData.rating_id">
                                     <option value="">Tutti i voti</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
                                     <option value="5">5</option>
-
                                 </select>
                             </div>
-                            <!-- /Nome -->
 
-                            <div class="mt-1 text-muted" style="text-align: justify">
+                            <div class="mt-1 text-muted">
                                 <small>* Campi obbligatori</small>
                             </div>
 
@@ -102,15 +100,13 @@ export default {
                                     Annulla
                                 </button>
                             </div>
-                            <!-- /Submit -->
                         </form>
                     </div>
                     <!-- /Form del Modale -->
                 </div>
             </div>
         </div>
-        <!-- /Modale -->
-    </div>
+        <!-- /Modale -->    </div>
 </template>
 
 <style lang="scss" scoped>
