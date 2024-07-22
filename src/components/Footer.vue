@@ -13,7 +13,7 @@ export default {
         <div class="footer-top">
             <div class="contact-us">
                 <div class="box-img">
-                    <img src="../assets/img/logo.png" alt="">
+                    <img src="../assets/img/logo-1.png" alt="">
                 </div>
                 <h3>Contattaci</h3>
                 <div class="contacts">
@@ -91,7 +91,8 @@ footer {
                 text-align: center;
 
                 img {
-                    height: 40px;
+                    //height: 40px;
+                    width: 55%;
                     margin-bottom: 20px;
                 }
             }
