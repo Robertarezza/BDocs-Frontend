@@ -16,10 +16,17 @@ export default {
       // Calcola la media dei voti se i voti sono disponibili
       if (this.doctor.ratings && this.doctor.ratings.length > 0) {
         const total = this.doctor.ratings.reduce((sum, rating) => sum + rating.rating, 0);
-        
-        return total / this.doctor.ratings.length;
+
+        return Math.round(total / this.doctor.ratings.length);
       }
       return 0;
+    }
+  },
+  //metodo per lo scroll, al click del router link l'utente viene portato all'inizio della pagina
+  methods: {
+    backToTheTop() {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; 
     }
   }
 };
@@ -29,15 +36,10 @@ export default {
   <div class="card-client g-2">
     <!-- foto card -->
     <div class="user-picture">
-      <img
-        :src="
-          doctor.photo
-            ? `${store.imageUrl}/${doctor.photo}`
-            : `https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg`
-        "
-        class="card-img-top"
-        alt="Doctor Photo"
-      />
+      <img :src="doctor.photo
+          ? `${store.imageUrl}/${doctor.photo}`
+          : `https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg`
+        " class="card-img-top" alt="Doctor Photo" />
     </div>
     <!-- /foto card -->
 
@@ -56,12 +58,7 @@ export default {
 
     <!-- Stelline sotto l'email -->
     <div class="rating-stars">
-      <span
-        v-for="star in 5"
-        :key="star"
-        class="star"
-        :class="{ filled: star <= averageRating }"
-      >
+      <span v-for="star in 5" :key="star" class="star" :class="{ filled: star <= averageRating }">
         ★
       </span>
     </div>
@@ -69,13 +66,13 @@ export default {
 
     <!-- Card Supplemento -->
     <div class="card-supp">
-      <router-link :to="{ name: 'DoctorProfile', params: { id: doctor.id } }">
+      <router-link :to="{ name: 'DoctorProfile', params: { id: doctor.id } }" @click="backToTheTop()">
         <i class="fa-solid fa-location-dot"></i>
       </router-link>
-      <router-link :to="{ name: 'DoctorProfile', params: { id: doctor.id } }">
+      <router-link :to="{ name: 'DoctorProfile', params: { id: doctor.id } }" @click="backToTheTop()">
         <i class="fa-solid fa-phone"></i>
       </router-link>
-      <router-link :to="{ name: 'DoctorProfile', params: { id: doctor.id } }">
+      <router-link :to="{ name: 'DoctorProfile', params: { id: doctor.id } }" @click="backToTheTop()">
         <i class="fa-solid fa-address-card"></i>
       </router-link>
     </div>
@@ -95,11 +92,13 @@ export default {
   border: 4px solid rgba(94, 124, 226, 1);
   border-bottom: none;
   box-shadow: 0 6px 10px rgba(207, 222, 231, 1);
-  border-radius: 10px 10px 0 0; /* Arrotonda solo gli angoli superiori */
+  border-radius: 10px 10px 0 0;
+  /* Arrotonda solo gli angoli superiori */
   text-align: center;
   color: black;
   font-family: "Poppins", sans-serif;
-  position: relative; /* Necessario per posizionamento relativo al genitore */
+  position: relative;
+  /* Necessario per posizionamento relativo al genitore */
 }
 
 .card-client:hover {
@@ -140,7 +139,8 @@ export default {
 .rating-stars {
   display: flex;
   justify-content: center;
-  margin-top: 10px; /* Aggiunto margine per dare spazio */
+  margin-top: 10px;
+  /* Aggiunto margine per dare spazio */
 }
 
 .star {
@@ -157,16 +157,21 @@ export default {
   background-color: white;
   padding: 10px;
   position: absolute;
-  bottom: -20px; /* Sovrapponi la parte superiore di .card-client */
+  bottom: -20px;
+  /* Sovrapponi la parte superiore di .card-client */
   left: 0;
   right: 0;
   margin: auto;
   height: 7rem;
-  width: calc(100% - 40px); /* Larghezza meno il padding */
+  width: calc(100% - 40px);
+  /* Larghezza meno il padding */
   border: 2px solid rgba(94, 124, 226, 1);
-  border-bottom: none; /* Rimuovi il bordo inferiore di .card-supp */
-  border-radius: 10px 10px 0 0; /* Arrotonda solo gli angoli superiori */
-  text-align: left; /* Allinea il testo a sinistra */
+  border-bottom: none;
+  /* Rimuovi il bordo inferiore di .card-supp */
+  border-radius: 10px 10px 0 0;
+  /* Arrotonda solo gli angoli superiori */
+  text-align: left;
+  /* Allinea il testo a sinistra */
   display: flex;
   justify-content: space-around;
   align-items: center;

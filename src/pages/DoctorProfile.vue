@@ -18,104 +18,175 @@ export default {
     return {
       doctor: null,
       store,
+      // attivo il loader
+      isLoading: true,
     };
   },
-
+  computed: {
+    averageRating() {
+      // Calcola la media dei voti se i voti sono disponibili
+      if (this.doctor.ratings && this.doctor.ratings.length > 0) {
+        const total = this.doctor.ratings.reduce(
+          (sum, rating) => sum + rating.rating,
+          0
+        );
+        return Math.round(total / this.doctor.ratings.length);
+      }
+      return 0;
+    },
+  },
   created() {
     const id = this.$route.params.id;
     axios
-      .get(`${store.apiBaseURL}/api/doctors/${id}`)
-      .then((resp) => {
-        console.log(resp);
-        this.doctor = resp.data.results;
-        console.log(this.doctor);
-      })
-      .catch((error) => {
-        console.error("Error fetching doctors:", error);
-      });
-  },
+    .get(`${store.apiBaseURL}/api/doctors/${id}`)
+    .then((resp) => {
+      console.log(resp);
+      this.doctor = resp.data.results;
+      // tolgo il loader
+      this.isLoading = false; 
+      console.log(this.doctor);
+    })
+    .catch((error) => {
+      console.error("Error fetching doctors:", error);
+    });
+  }
 };
 </script>
 
 <template>
-  <div class="container-fluid cont-top">
-    <div class="row align-items-center ms_style">
-      <div class="card mb-3" style="max-width: 1000px">
-        <div class="row g-0">
-          <div class="col-md-4">
-            <img
-              :src="
-                doctor.photo
-                  ? `${store.imageUrl}/${doctor.photo}`
-                  : `https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg`
-              "
-              class="card-img-top"
-              alt="Doctor Photo"
-              style="max-width: 100%"
-            />
-          </div>
-          <div class="col-md-8 align-content-center">
-            <div class="card-body">
-              <h1>{{ doctor.user.name }} {{ doctor.user.surname }}</h1>
-              <span>Specializzazione </span>
-              <div class="d-inline">
+  <div class="d-flex justify-content-center" v-if="isLoading">
+    <div class="loader"></div>
+  </div>
+  <div v-if="!isLoading">
+    <div class="container-fluid cont-top">
+      <div class="row align-items-center ms_style">
+        <div class="card mb-3" style="max-width: 1000px">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img
+                :src="
+                  doctor.photo
+                    ? `${store.imageUrl}/${doctor.photo}`
+                    : `https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg`
+                "
+                class="card-img-top"
+                alt="Doctor Photo"
+                style="max-width: 100%"
+              />
+            </div>
+            <div class="col-md-8 align-content-center">
+              <!-- Stelline sopra la foto -->
+              <div class="rating-stars">
                 <span
-                  class="text-secondary"
-                  v-for="(specialization, index) in doctor.specializations"
-                  :key="specialization.id"
+                  v-for="star in 5"
+                  :key="star"
+                  class="star"
+                  :class="{ filled: star <= averageRating }"
                 >
-                  <template v-if="index > 0"> e </template>
-                  <strong>{{ specialization.title }}</strong>
+                  ★
                 </span>
-                <br />
-                <span> Tipo di prestazione: </span>
-                <span class="text-secondary"
-                  ><strong>{{ doctor.performance }}</strong></span
-                >
               </div>
-              <div class="mt-2">
-                <p class="m-0">
-                  <i class="fa-solid fa-location-dot"></i> {{ doctor.studio_address }}
-                </p>
-                <p class="m-0">
-                  <i class="fa-solid fa-address-card"></i> {{ doctor.user.email }}
-                </p>
-                <p class="m-0">
-                  <i class="fa-solid fa-phone"></i> {{ doctor.phone_number }}
-                </p>
+              <!-- /stelline sopra la foto -->
+              <div class="card-body">
+                <h1>{{ doctor.user.name }} {{ doctor.user.surname }}</h1>
+                <span>Specializzazione </span>
+                <div class="d-inline">
+                  <span
+                    class="text-secondary"
+                    v-for="(specialization, index) in doctor.specializations"
+                    :key="specialization.id"
+                  >
+                    <template v-if="index > 0"> e </template>
+                    <strong>{{ specialization.title }}</strong>
+                  </span>
+                  <br />
+                  <span> Tipo di prestazione: </span>
+                  <span class="text-secondary"
+                    ><strong>{{ doctor.performance }}</strong></span
+                  >
+                </div>
+                <div class="mt-2">
+                  <p class="m-0">
+                    <i class="fa-solid fa-location-dot"></i>
+                    {{ doctor.studio_address }}
+                  </p>
+                  <p class="m-0">
+                    <i class="fa-solid fa-address-card"></i>
+                    {{ doctor.user.email }}
+                  </p>
+                  <p class="m-0">
+                    <i class="fa-solid fa-phone"></i> {{ doctor.phone_number }}
+                  </p>
+                  <a
+                    :href="`${store.apiBaseURL}/storage/${doctor.CV}`"
+                    target="_blank"
+                    class="text-primary"
+                  >
+                    Guarda il CV
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <transition name="fade">
-    <div class="alert alert-success ms-alert-success" v-if="store.successMessage">
-      Il tuo messaggio è stato inviato con successo
+    <transition name="fade">
+      <div
+        class="alert alert-success ms-alert-success"
+        v-if="store.successMessage"
+      >
+        Il tuo messaggio è stato inviato con successo
+      </div>
+    </transition>
+    <div class="container cont-card">
+      <CardProfile :doctor="doctor" />
     </div>
-  </transition>
-  <div class="container cont-card">
-    <CardProfile :doctor="doctor" />
-  </div>
-  <div class="container">
-    <!-- componente ReviewButton -->
-    <ReviewButton /> 
-  </div>
-  <div class="d-none">
-    <Message :doctor="doctor.user.id" />
+  
+    <div class="d-none">
+      <Review :doctor="doctor.user.id" />
+    </div>
+    <div class="d-none">
+      <Message :doctor="doctor.user.id" />
+    </div>
+    <div class="d-none">
+      <Votes :doctor="doctor.user.id" />
+    </div>
   </div>
   <PreFooter />
 </template>
 
 <style scoped lang="scss">
 .cont-top {
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1)),
+  background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 1)
+    ),
     url(../assets/img/nursing4.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
+}
+/* Stelline sopra la foto */
+.rating-stars {
+  // position: absolute;
+  //top: -3px;
+  //left: 106px;
+  display: flex;
+  //z-index: 1;
+  margin-left: 15px;
+}
+
+.star {
+  font-size: 20px;
+  color: grey;
+  margin-right: 2px;
+}
+
+.star.filled {
+  color: gold;
 }
 
 img {
@@ -164,12 +235,27 @@ span {
   transition: opacity 0.5s ease-in-out;
   opacity: 1;
 }
-.fade-enter-active, .fade-leave-active {
+.fade-enter-active,
+.fade-leave-active {
   transition: opacity 0.5s ease-in-out;
 }
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
+
+// loader
+.loader {
+  width: 150px;
+  margin: 200px 0;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 8px solid lightblue;
+  border-right-color: rgb(8, 0, 255);
+  animation: l2 1s infinite linear;
+}
+@keyframes l2 {to{transform: rotate(1turn)}}
+
 /* Breakpoint 1024px */
 @media (max-width: 1024px) {
   .cont-top {

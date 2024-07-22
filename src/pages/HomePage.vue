@@ -46,15 +46,16 @@ export default {
         params.specialization_id = this.selectSpecialization;
       }
       if (this.selectRating !== "") {
-        params.rating_id = this.selectRating;
-      }
+        params.average_rating = this.selectRating; // Assicurati che il parametro sia corretto
+    }
       axios
         .get(`${this.store.apiBaseURL}/api/doctors`, {
           params,
         })
         .then((resp) => {
           this.doctors = resp.data.results;
-          console.log(this.doctors);
+          
+          console.log("Dottori filtrati:", this.doctors);
           this.$nextTick(() => {
             this.handleScroll();
           });
