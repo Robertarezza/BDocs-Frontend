@@ -32,18 +32,11 @@ export default {
           (sum, rating) => sum + rating.rating,
           0
         );
-        return total / this.doctor.ratings.length;
+        return Math.round(total / this.doctor.ratings.length);
       }
       return 0;
     },
   },
-  // mounted() {
-  //   // al caricamento della pagina chiamiamo la funzione onWindowLoad
-  //   window.addEventListener("load", this.onWindowLoad);
-  // },
-  // beforeDestroy() {
-  //   window.removeEventListener("load", this.onWindowLoad);
-  // },
   created() {
     const id = this.$route.params.id;
     axios
@@ -58,25 +51,7 @@ export default {
     .catch((error) => {
       console.error("Error fetching doctors:", error);
     });
-  },
-  // methods: {
-  //   // funzione che rimuove d-none dal contenuto della pagina e lo aggiunge al loader
-  //   onWindowLoad() {
-  //     const loader = document.getElementById("loader");
-  //     const content = document.getElementById("content");
-  //     console.log('LOADER' + loader);
-  //     console.log('CONTENT' + content);
-
-  //     // console.log(loader, content);
-  //     if (loader && content) {
-  //       console.log('fatto');
-  //       loader.classList.add("d-none");
-  //       content.classList.remove("d-none");
-  //     } else {
-  //       console.log("Elementi non trovati");
-  //     }
-  //   },
-  // },
+  }
 };
 </script>
 
