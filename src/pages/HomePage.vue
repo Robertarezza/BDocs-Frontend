@@ -145,7 +145,17 @@ export default {
 
       <div v-if="doctors" class="doctors-grid">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5">
-          <div class="col fade-in" v-for="doctor in doctors" :key="doctor.id">
+          <div v-if="doctors.length === 0" class="w-100">
+            <div class="alert alert-warning" role="alert">
+              Ci dispiace, ma non abbiamo trovato alcun dottore che corrisponda ai tuoi criteri di ricerca.
+              <ul>
+                <li>Prova a selezionare una specializzazione diversa.</li>
+                <li>Prova a selezionare una valutazione diversa.</li>
+                <li>Rimuovi alcuni filtri per vedere un maggior numero di risultati.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col fade-in" v-else v-for="doctor in doctors" :key="doctor.id">
             <DoctorCard :doctor="doctor" />
           </div>
         </div>
