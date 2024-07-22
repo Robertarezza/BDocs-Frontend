@@ -44,36 +44,30 @@ export default {
       .catch((error) => {
         console.error("Error fetching doctors:", error);
       });
-  },
+  }
 };
 </script>
 
 <template>
-  <div class="container-fluid cont-top" v-if="doctor">
+  <!-- loader -->
+  <div class="loader-container d-none">
+    <div class="loader"></div>
+  </div>
+  
+  <div class="container-fluid cont-top">
     <div class="row align-items-center ms_style">
       <div class="card mb-3" style="max-width: 1000px">
         <div class="row g-0">
           <div class="col-md-4">
-            <img
-              :src="
-                doctor.photo
-                  ? `${store.imageUrl}/${doctor.photo}`
-                  : `https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg`
-              "
-              class="card-img-top"
-              alt="Doctor Photo"
-              style="max-width: 100%"
-            />
+            <img :src="doctor.photo
+              ? `${store.imageUrl}/${doctor.photo}`
+              : `https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg`
+              " class="card-img-top" alt="Doctor Photo" style="max-width: 100%" />
           </div>
           <div class="col-md-8 align-content-center">
             <!-- Stelline sopra la foto -->
             <div class="rating-stars">
-              <span
-                v-for="star in 5"
-                :key="star"
-                class="star"
-                :class="{ filled: star <= averageRating }"
-              >
+              <span v-for="star in 5" :key="star" class="star" :class="{ filled: star <= averageRating }">
                 ★
               </span>
             </div>
@@ -82,19 +76,14 @@ export default {
               <h1>{{ doctor.user.name }} {{ doctor.user.surname }}</h1>
               <span>Specializzazione </span>
               <div class="d-inline">
-                <span
-                  class="text-secondary"
-                  v-for="(specialization, index) in doctor.specializations"
-                  :key="specialization.id"
-                >
+                <span class="text-secondary" v-for="(specialization, index) in doctor.specializations"
+                  :key="specialization.id">
                   <template v-if="index > 0"> e </template>
                   <strong>{{ specialization.title }}</strong>
                 </span>
                 <br />
                 <span> Tipo di prestazione: </span>
-                <span class="text-secondary"
-                  ><strong>{{ doctor.performance }}</strong></span
-                >
+                <span class="text-secondary"><strong>{{ doctor.performance }}</strong></span>
               </div>
               <div class="mt-2">
                 <p class="m-0">
@@ -106,11 +95,7 @@ export default {
                 <p class="m-0">
                   <i class="fa-solid fa-phone"></i> {{ doctor.phone_number }}
                 </p>
-                <a
-                  :href="`${store.apiBaseURL}/storage/${doctor.CV}`"
-                  target="_blank"
-                  class="text-primary"
-                >
+                <a :href="`${store.apiBaseURL}/storage/${doctor.CV}`" target="_blank" class="text-primary">
                   Guarda il CV
                 </a>
               </div>
@@ -120,9 +105,7 @@ export default {
       </div>
     </div>
   </div>
-  <div v-else>
-    <p>Caricamento...</p>
-  </div>
+
   <transition name="fade">
     <div class="alert alert-success ms-alert-success" v-if="store.successMessage">
       Il tuo messaggio è stato inviato con successo
@@ -153,9 +136,53 @@ export default {
   background-attachment: fixed;
   background-position: center;
 }
+
+.loader-container {
+  z-index: 9999;
+  padding: 30px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+//loader
+.loader {
+  border: 12px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 12px solid #3498db;
+  width: 70px;
+  height: 70px;
+
+  -webkit-animation: spin 2s linear infinite;
+  /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 /* Stelline sopra la foto */
 .rating-stars {
- // position: absolute;
+  // position: absolute;
   //top: -3px;
   //left: 106px;
   display: flex;
@@ -219,14 +246,17 @@ span {
   transition: opacity 0.5s ease-in-out;
   opacity: 1;
 }
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s ease-in-out;
 }
+
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
 }
+
 /* Breakpoint 1024px */
 @media (max-width: 1024px) {
   .cont-top {
