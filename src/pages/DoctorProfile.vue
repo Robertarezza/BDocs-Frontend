@@ -3,14 +3,17 @@ import axios from "axios";
 import { store } from "../store.js";
 import CardProfile from "../components/CardProfile.vue";
 import PreFooter from "../components/PreFooter.vue";
-import ReviewButton from "../components/ReviewButton.vue"; 
+
 import Message from "../components/Message.vue";
+
+import { format, parseISO } from 'date-fns';
+import { it } from 'date-fns/locale';
 
 export default {
   components: {
     CardProfile,
     PreFooter,
-    ReviewButton, 
+  
     Message,
   },
 
@@ -20,16 +23,14 @@ export default {
       store,
       // attivo il loader
       isLoading: true,
+      showReview: false
     };
   },
   computed: {
     averageRating() {
       // Calcola la media dei voti se i voti sono disponibili
       if (this.doctor.ratings && this.doctor.ratings.length > 0) {
-        const total = this.doctor.ratings.reduce(
-          (sum, rating) => sum + rating.rating,
-          0
-        );
+        const total = this.doctor.ratings.reduce((sum, rating) => sum + rating.rating, 0);
         return Math.round(total / this.doctor.ratings.length);
       }
       return 0;
@@ -38,17 +39,27 @@ export default {
   created() {
     const id = this.$route.params.id;
     axios
-    .get(`${store.apiBaseURL}/api/doctors/${id}`)
-    .then((resp) => {
-      console.log(resp);
-      this.doctor = resp.data.results;
-      // tolgo il loader
-      this.isLoading = false; 
-      console.log(this.doctor);
-    })
-    .catch((error) => {
-      console.error("Error fetching doctors:", error);
-    });
+      .get(`${store.apiBaseURL}/api/doctors/${id}`)
+      .then((resp) => {
+        console.log(resp);
+        this.doctor = resp.data.results;
+        // tolgo il loader
+        this.isLoading = false;
+        console.log(this.doctor);
+      })
+      .catch((error) => {
+        console.error("Error fetching doctors:", error);
+      });
+  },
+  methods: {
+    formatDate(dateString) {
+      // Converti la data da stringa MySQL in un oggetto Date
+      return format(new Date(dateString), 'dd MMMM yyyy, HH:mm', { locale: it });
+    },
+
+    toggleReview() {
+      this.showReview = !this.showReview  
+    }
   }
 };
 </script>
@@ -123,7 +134,8 @@ export default {
                     class="text-primary"
                   >
                     Guarda il CV
-                  </a>
+                  </a> 
+                  <button class="btn btn-primary mt-2 d-block" @click="toggleReview">Mostra Recensioni</button>
                 </div>
               </div>
             </div>
@@ -132,20 +144,38 @@ export default {
       </div>
     </div>
     <transition name="fade">
-      <div
-        class="alert alert-success ms-alert-success"
-        v-if="store.successMessage"
-      >
+      <div class="alert alert-success ms-alert-success" v-if="store.successMessage">
         Il tuo messaggio è stato inviato con successo
       </div>
+      
     </transition>
+
+    <!-- vista recensioni -->
+   
+
+    <div v-if="showReview">
+        <div class="card" style="width: 75%; margin: 10px auto;" v-for="(review, index) in doctor.reviews"
+        :key="review.id">
+          <div class="card-body">
+            <h5 class="card-title my_name">  {{ review.guest_name }} il {{ formatDate(review.updated_at) }}</h5>
+
+            <!-- modi per rendere la prima lettera Maiuscola -->
+            <!-- <h5 class="card-title">  {{ review.guest_name[0].toUpperCase() + review.guest_name.slice(1) }} il {{ formatDate(review.updated_at) }}</h5> -->
+           
+            <h6 class="card-subtitle mb-2 text-body-secondary">Mail: {{ review.guest_mail }} </h6>
+            <h6>Messaggio</h6>
+            <p class="card-text">
+              {{ review.review }}
+            </p>
+            
+          </div>
+        </div>
+      </div>
     <div class="container cont-card">
       <CardProfile :doctor="doctor" />
     </div>
-    <div class="container">
-    <ReviewButton /> 
-  </div>
-  
+   
+
     <div class="d-none">
       <Review :doctor="doctor.user.id" />
     </div>
@@ -160,12 +190,14 @@ export default {
 </template>
 
 <style scoped lang="scss">
+
+.my_name{
+  text-transform: capitalize;
+}
+
+
 .cont-top {
-  background: linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 1)
-    ),
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1)),
     url(../assets/img/nursing4.jpg);
   background-size: cover;
   background-repeat: no-repeat;
@@ -230,11 +262,11 @@ span {
   left: 50%;
   transform: translateX(-50%);
   // SE CI SONO PROBLEMI CON IL BACGROUNG DI ALLERT .alert-success, è questa opzione il problema
-  background-color: rgba(212, 237, 218, 0.9); 
+  background-color: rgba(212, 237, 218, 0.9);
   padding: 15px 30px;
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  z-index: 1000; 
+  z-index: 1000;
   transition: opacity 0.5s ease-in-out;
   opacity: 1;
 }
@@ -257,7 +289,11 @@ span {
   border-right-color: rgb(8, 0, 255);
   animation: l2 1s infinite linear;
 }
-@keyframes l2 {to{transform: rotate(1turn)}}
+@keyframes l2 {
+  to {
+    transform: rotate(1turn);
+  }
+}
 
 /* Breakpoint 1024px */
 @media (max-width: 1024px) {
