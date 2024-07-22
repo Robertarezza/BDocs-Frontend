@@ -80,7 +80,7 @@ export default {
                             <div class="mb-3">
                                 <label class="form-label text-secondary" for="rating_id">Inserisci il tuo voto*</label>
                                 <select id="rating_id" class="form-select" v-model="formData.rating_id">
-                                    <option value="">Tutti i voti</option>
+                                    <!-- <option value="">Tutti i voti</option> -->
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
