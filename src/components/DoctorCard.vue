@@ -26,20 +26,7 @@ export default {
 </script>
 
 <template>
-
-    <div class="card-client g-2">
-    <!-- Stelline sopra la foto -->
-    <div class="rating-stars">
-      <span
-        v-for="star in 5"
-        :key="star"
-        class="star"
-        :class="{ filled: star <= averageRating }"
-      >
-        ★
-      </span>
-    </div>
-    <!-- /stelline sopra la foto -->
+  <div class="card-client g-2">
     <!-- foto card -->
     <div class="user-picture">
       <img
@@ -61,10 +48,24 @@ export default {
       <strong> {{ specialization.title }} </strong>
     </span>
     <br />
-    <a href="" class="text-decoration-none"
-      ><i class="fa-regular fa-envelope"></i
-      ><span class="ms-2">{{ doctor.user.email }}</span></a>
+    <a href="" class="text-decoration-none">
+      <i class="fa-regular fa-envelope"></i>
+      <span class="ms-2">{{ doctor.user.email }}</span>
+    </a>
     <!-- /corpo card -->
+
+    <!-- Stelline sotto l'email -->
+    <div class="rating-stars">
+      <span
+        v-for="star in 5"
+        :key="star"
+        class="star"
+        :class="{ filled: star <= averageRating }"
+      >
+        ★
+      </span>
+    </div>
+    <!-- /stelline sotto l'email -->
 
     <!-- Card Supplemento -->
     <div class="card-supp">
@@ -77,8 +78,6 @@ export default {
       <router-link :to="{ name: 'DoctorProfile', params: { id: doctor.id } }">
         <i class="fa-solid fa-address-card"></i>
       </router-link>
-      <!-- <a href="" title=""></i></a>
-      <a href="" title=""></a> -->
     </div>
     <!-- /Card Supplemento -->
   </div>
@@ -101,29 +100,10 @@ export default {
   color: black;
   font-family: "Poppins", sans-serif;
   position: relative; /* Necessario per posizionamento relativo al genitore */
- 
 }
 
 .card-client:hover {
   transform: translateY(-10px);
-}
-/* Stelline sopra la foto */
-.rating-stars {
-  position: absolute;
-  top: -3px;
-  left: 106px;
-  display: flex;
-  z-index: 1;
-}
-
-.star {
-  font-size: 20px;
-  color: grey;
-  margin-right: 2px;
-}
-
-.star.filled {
-  color: gold;
 }
 
 .user-picture {
@@ -155,6 +135,22 @@ export default {
   display: block;
   font-weight: 200;
   font-size: 16px;
+}
+
+.rating-stars {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px; /* Aggiunto margine per dare spazio */
+}
+
+.star {
+  font-size: 20px;
+  color: grey;
+  margin-right: 2px;
+}
+
+.star.filled {
+  color: gold;
 }
 
 .card-supp {
@@ -194,10 +190,10 @@ export default {
     margin: 0 auto;
   }
 }
+
 @media (max-width: 576px) {
   .card-client {
     margin: 0 auto;
   }
 }
-
 </style>
