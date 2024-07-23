@@ -24,6 +24,9 @@ export default {
     methods: {
         closeModal() {
             this.showModal = false;
+            this.formData.guest_name = ""; 
+            this.formData.guest_mail = ""; 
+            this.formData.review = ""; 
         },
         // Chiamata API
         submitForm() {

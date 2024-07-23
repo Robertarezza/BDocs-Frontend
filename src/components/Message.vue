@@ -25,6 +25,10 @@ export default {
     methods: {
         closeModal() {
             this.showModal = false;
+            this.formData.guest_name = "";
+            this.formData.guest_surname = "";
+            this.formData.guest_mail = "";
+            this.formData.message = "";
         },
         submitForm() {
             console.log(this.formData);
