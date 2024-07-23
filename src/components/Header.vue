@@ -13,12 +13,12 @@ export default {
   <header class="bg-celtic-blue fixed-top">
     <nav class="container h-100">
       <ul class="d-flex justify-content-between align-items-center h-100 list-unstyled mb-0">
-        <li class="box-img">
+        <li class="box-img d-flex align-items-center">
           <router-link :to="{ name: 'home' }">
             <img src="../assets/img/logo-1.png" alt="logo B-Doctors" class="img-fluid" />
           </router-link>
         </li>
-        <li id="title">
+        <li id="title d-flex align-items-center">
           <a href="#footer" class="text-white text-decoration-none">Contattaci</a>
         </li>
       </ul>
