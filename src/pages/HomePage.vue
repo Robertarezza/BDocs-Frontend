@@ -46,15 +46,14 @@ export default {
         params.specialization_id = this.selectSpecialization;
       }
       if (this.selectRating !== "") {
-        params.average_rating = this.selectRating; // Assicurati che il parametro sia corretto
-    }
+        params.average_rating = this.selectRating;
+      }
       axios
         .get(`${this.store.apiBaseURL}/api/doctors`, {
           params,
         })
         .then((resp) => {
           this.doctors = resp.data.results;
-          
           console.log("Dottori filtrati:", this.doctors);
           this.$nextTick(() => {
             this.handleScroll();
@@ -77,19 +76,19 @@ export default {
       });
     },
     handleScroll() {
-    const elements = document.querySelectorAll(".fade-in");
-    const windowHeight = window.innerHeight;
+      const elements = document.querySelectorAll(".fade-in");
+      const windowHeight = window.innerHeight;
 
-    elements.forEach((el) => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top < windowHeight && rect.bottom > 200) {
-        el.classList.add("visible");
-      } else {
-        el.classList.remove("visible");
-      }
-    });
+      elements.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < windowHeight && rect.bottom > 200) {
+          el.classList.add("visible");
+        } else {
+          el.classList.remove("visible");
+        }
+      });
+    },
   },
-},
 };
 </script>
 
@@ -102,7 +101,6 @@ export default {
     <div class="m-5 d-flex align-items-center justify-content-evenly query fade-in">
       <h6 class="m-0 media-h6">Scegli i nostri dottori in base alle loro prestazioni</h6>
       <div class="d-flex justify-content-center custom-select">
-        <!-- <SearchBar /> -->
         <select
           id=""
           aria-label="seleziona specializzazione"
@@ -122,10 +120,9 @@ export default {
     <div class="m-5 d-flex align-items-center justify-content-evenly query fade-in">
       <h6 class="m-0 media-h6">Scegli i nostri dottori in base ai loro voti</h6>
       <div class="d-flex justify-content-center custom-select">
-        <!-- <SearchBar /> -->
         <select
           id=""
-          aria-label="seleziona specializzazione"
+          aria-label="seleziona rating"
           v-model="selectRating"
           @change="getDoctors"
         >
@@ -269,7 +266,7 @@ html {
   opacity: 1;
 }
 
-// Tentativo di fae in delle cards
+// Tentativo di fade in delle cards
 
 //Select custom
 select {
@@ -283,54 +280,36 @@ h6 {
   color: rgb(10, 54, 157);
 }
 
-// responsive media
-
-.media-p {
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  white-space: normal;
-}
-
-
-
-
-
+/* Media Queries per aggiustamenti extra */
 @media (min-width: 768px) {
   .col {
     padding: 1.5rem; /* Regola il padding per schermi grandi */
   }
 }
 
-/* Media Queries per aggiustamenti extra */
 @media (max-width: 576px) {
   .col {
     padding: 0.5rem; /* Regola il padding per schermi piccoli */
   }
   .media-h1 {
-    font-size: 1.7rem;
+    font-size: 1.7rem; /* Riduci la dimensione del font per schermi piccoli */
   }
   .media-p {
-    font-size: .9rem;
+    font-size: 0.9rem; /* Riduci la dimensione del font per schermi piccoli */
   }
   .media-h6 {
-    font-size: 0.9rem;
+    font-size: 0.9rem; /* Riduci la dimensione del font per schermi piccoli */
     text-align: center;
   }
-
 }
-
-
 
 @media screen and (max-width: 450px) {
-
+  .query {
+    flex-direction: column; /* Modifica la direzione del flex per schermi molto piccoli */
     
-.query {
-    flex-direction: column;
-    
-    .media-h6{
-        padding-bottom: 8px;
-        
+    .media-h6 {
+      padding-bottom: 8px; /* Aggiungi padding per separare gli elementi */
     }
-}
+  }
 }
 </style>
