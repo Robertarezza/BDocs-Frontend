@@ -51,7 +51,7 @@ export default {
     </div>
     <div class="container mt-4">
         <div class="row justify-content-center">
-            <div class="col-12 col-sm-6 mb-">
+            <div class="col-12 col-sm-6 mb-3">
                 <div class="card carddx text-center d-flex align-items-center justify-content-center fade-in w-100">
                     <div class="card-body">
                         <h3 class="title">Inizia il tuo percorso verso una salute migliore oggi!</h3>
