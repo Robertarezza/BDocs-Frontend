@@ -190,7 +190,7 @@ export default {
   list-style: disc;
 }
 
-@media (max-width: px) {
+@media (max-width: 780px) {
   .card-client {
     margin: 0 auto;
   }
