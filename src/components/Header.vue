@@ -2,82 +2,77 @@
 import { RouterLink } from 'vue-router';
 
 export default {
-    data() {
-        return {
-
-        }
-    },
+  data() {
+    return {
+    }
+  },
 }
 </script>
 
 <template>
-    <header>
-        <nav>
-            <ul>
-                <li class="box-img">
-                    <router-link :to="{ name: 'home' }">
-                        <img src="../assets/img/logo-1.png" alt="logo B-Doctors">
-                    </router-link>
-                </li>
-                <li id="title">
-                    <a href="#footer">Contattaci</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
+  <header class="bg-celtic-blue fixed-top">
+    <nav class="container h-100">
+      <ul class="d-flex justify-content-between align-items-center h-100 list-unstyled mb-0">
+        <li class="box-img">
+          <router-link :to="{ name: 'home' }">
+            <img src="../assets/img/logo-1.png" alt="logo B-Doctors" class="img-fluid" />
+          </router-link>
+        </li>
+        <li id="title">
+          <a href="#footer" class="text-white text-decoration-none">Contattaci</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
 </template>
-
-
-
 
 <style scoped lang="scss">
 @use "../style/partials/variables" as *;
 
 header {
+  height: 100px;
+  background-color: $celtic-blue;
+  z-index: 9999;
+}
+
+.box-img img {
+  max-width: 200px;
+}
+
+#title {
+  list-style-type: none;
+
+  a {
+    text-decoration: none;
+    color: white;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
     height: 100px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: $celtic-blue;
-    z-index: 9999;
+  }
 
-    .test{
-        list-style-type: none;
-    }
+  .box-img img {
+    max-width: 150px;
+  }
 
-    nav {
-        width: 100%;
-        padding: 20px;
-        height: 100%;
+  #title a {
+    font-size: 1rem; 
+  }
+}
 
-        ul {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+@media (max-width: 576px) {
+  header {
+    height: 100px; 
+  }
 
+  .box-img img {
+    max-width: 100px; 
+  }
 
-            .box-img {
-                display: flex;
-                justify-content: start;
-
-                img {
-                    //height: 60px;
-                    //display: block;
-                    max-width: 45%;
-                    //aspect-ratio: 1;
-                }
-            }
-
-            #title {
-                list-style-type: none;
-
-                a {
-                    text-decoration: none;
-                    color: white;
-                }
-            }
-        }
-    }
+  #title a {
+    font-size: 0.8rem; 
+  }
 }
 </style>
