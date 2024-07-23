@@ -68,7 +68,7 @@ header {
   }
 
   .box-img img {
-    max-width: 100px; 
+    max-width: 135px; 
   }
 
   #title a {
