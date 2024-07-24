@@ -5,7 +5,7 @@ import { store } from "../store.js";
 export default {
     data() {
         return {
-
+            store,
         }
     },
 }
@@ -22,6 +22,7 @@ export default {
                 </li>
                 <li id="title">
                     <a href="#footer">Contattaci</a>
+                    <a :href="store.apiBaseURL" class="ms-3">Sei un professionista?</a>
                 </li>
             </ul>
         </nav>
@@ -73,7 +74,25 @@ header {
                 a {
                     text-decoration: none;
                     color: white;
+                    position: relative;
+                    display: inline-block;
+
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        left: 0;
+                        bottom: -5px;
+                        width: 0;
+                        height: 3px;
+                        background-color: $columbia-blue;
+                        transition: width 0.5s ease-in-out;
+                    }
+    
+                    &:hover::after {
+                        width: 100%;
+                    }
                 }
+
             }
         }
     }
