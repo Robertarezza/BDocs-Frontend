@@ -58,15 +58,25 @@ export default {
           this.doctors = resp.data.results;
 
           // Filtra i dottori con sponsorizzazioni attive e non attive
-          this.activeDoctors = this.doctors.filter(doctor => 
-            doctor.active_sponsorships && doctor.active_sponsorships.length > 0
+          this.activeDoctors = this.doctors.filter(
+            (doctor) =>
+              doctor.active_sponsorships &&
+              doctor.active_sponsorships.length > 0
           );
-          this.nonActiveDoctors = this.doctors.filter(doctor => 
-            !doctor.active_sponsorships || doctor.active_sponsorships.length === 0
+          this.nonActiveDoctors = this.doctors.filter(
+            (doctor) =>
+              !doctor.active_sponsorships ||
+              doctor.active_sponsorships.length === 0
           );
 
-          console.log("Dottori con sponsorizzazioni attive:", this.activeDoctors);
-          console.log("Dottori senza sponsorizzazioni attive:", this.nonActiveDoctors);
+          console.log(
+            "Dottori con sponsorizzazioni attive:",
+            this.activeDoctors
+          );
+          console.log(
+            "Dottori senza sponsorizzazioni attive:",
+            this.nonActiveDoctors
+          );
           this.$nextTick(() => {
             this.handleScroll();
           });
@@ -110,8 +120,12 @@ export default {
     <HeroSection />
 
     <!-- SEARCH BAR SPECIALIZATION -->
-    <div class="m-5 d-flex align-items-center justify-content-evenly query fade-in">
-      <h6 class="m-0 media-h6">Scegli i nostri dottori in base alle loro prestazioni</h6>
+    <div
+      class="m-5 d-flex align-items-center justify-content-evenly query fade-in"
+    >
+      <h6 class="m-0 media-h6">
+        Scegli i nostri dottori in base alle loro prestazioni
+      </h6>
       <div class="d-flex justify-content-center custom-select">
         <select
           id=""
@@ -120,7 +134,11 @@ export default {
           @change="getDoctors"
         >
           <option value="">Tutte le specializzazioni</option>
-          <option :value="specialization.id" v-for="specialization in specializations" :key="specialization.id">
+          <option
+            :value="specialization.id"
+            v-for="specialization in specializations"
+            :key="specialization.id"
+          >
             {{ specialization.title }}
           </option>
         </select>
@@ -129,7 +147,9 @@ export default {
     <!-- /SEARCH BAR SPECIALIZATION-->
 
     <!-- SEARCH BAR RATING-->
-    <div class="m-5 d-flex align-items-center justify-content-evenly query fade-in">
+    <div
+      class="m-5 d-flex align-items-center justify-content-evenly query fade-in"
+    >
       <h6 class="m-0 media-h6">Scegli i nostri dottori in base ai loro voti</h6>
       <div class="d-flex justify-content-center custom-select">
         <select
@@ -150,56 +170,69 @@ export default {
     <div class="container mt-5 mb-5">
       <h1 class="text-center mb-3 typewriter-doc media-h1">I nostri Dottori</h1>
       <p class="text-center mb-5 typewriter-doc media-p">
-        Il nostro team di medici altamente qualificati è qui per prendersi cura di voi.
+        Il nostro team di medici altamente qualificati è qui per prendersi cura
+        di voi.
       </p>
-
 
       <div v-if="doctors" class="doctors-grid">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5">
-          <div v-if="activeDoctors.length === 0 && nonActiveDoctors.length === 0 " class="w-100">
+          <div
+            v-if="activeDoctors.length === 0 && nonActiveDoctors.length === 0"
+            class="w-100"
+          >
             <div class="alert alert-warning" role="alert">
-              Ci dispiace, ma non abbiamo trovato alcun dottore che corrisponda ai tuoi criteri di ricerca.
+              Ci dispiace, ma non abbiamo trovato alcun dottore che corrisponda
+              ai tuoi criteri di ricerca.
               <ul>
                 <li>Prova a selezionare una specializzazione diversa.</li>
                 <li>Prova a selezionare una valutazione diversa.</li>
-                <li>Rimuovi alcuni filtri per vedere un maggior numero di risultati.</li>
+                <li>
+                  Rimuovi alcuni filtri per vedere un maggior numero di
+                  risultati.
+                </li>
               </ul>
             </div>
           </div>
         </div>
-
-      <!-- Dottori con sponsorizzazioni attive -->
-      <div v-if="activeDoctors.length > 0">
-        <h5><i class="fa-solid fa-crown text-warning"></i> Sponsorizzati</h5>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5 m-0 bg-warning ms_sponsorized rounded">
-          <div class="col fade-in m-0" v-for="doctor in activeDoctors" :key="doctor.id">
-            <DoctorCard :doctor="doctor" />
-          </div>
-        </div>
-      </div>
       
-
-      <!-- Dottori senza sponsorizzazioni attive -->
-      <div v-if="nonActiveDoctors.length > 0">
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5">
-          <div class="col fade-in" v-for="doctor in nonActiveDoctors" :key="doctor.id">
-            <DoctorCard :doctor="doctor" />
+        <!-- Dottori con sponsorizzazioni attive -->
+        <div v-if="activeDoctors.length > 0">
+          <h5><i class="fa-solid fa-crown text-warning"></i> Sponsorizzati</h5>
+          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5 m-0 ms_sponsorized">
+            <div
+              class="col fade-in m-0"
+              v-for="doctor in activeDoctors"
+              :key="doctor.id"
+            >
+              <DoctorCard :doctor="doctor" />
+            </div>
           </div>
         </div>
-      </div>
 
-      <div v-else>
-        <div class="loader">
-          <span class="loader-text">caricamento</span>
-          <span class="load"></span>
+        <!-- Dottori senza sponsorizzazioni attive -->
+        <div v-if="nonActiveDoctors.length > 0">
+          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5">
+            <div
+              class="col fade-in"
+              v-for="doctor in nonActiveDoctors"
+              :key="doctor.id"
+            >
+              <DoctorCard :doctor="doctor" />
+            </div>
+          </div>
         </div>
-      </div>
+
+        <div v-else>
+          <div class="loader">
+            <span class="loader-text">caricamento</span>
+            <span class="load"></span>
+          </div>
+        </div>
       </div>
     </div>
     <PreFooter />
   </div>
 </template>
-
 
 <style scoped lang="scss">
 @use "../style/partials/variables" as *;
@@ -275,7 +308,14 @@ export default {
 }
 
 .ms_sponsorized {
-  background-image: linear-gradient(to left bottom, #FFF5CC, #FFD700, #FFC107, #FFB14E, #FFD700 );
+  background-image: linear-gradient(
+    to left bottom,
+    #fff5cc,
+    #ffd700,
+    #ffc107,
+    #ffb14e,
+    #ffd700
+  );
 }
 
 @keyframes spin {
@@ -324,46 +364,36 @@ h6 {
   white-space: normal;
 }
 
-
-
-
-
 @media (min-width: 768px) {
   .col {
-    padding: 1.5rem; 
+    padding: 1.5rem;
   }
 }
 
 /* Media Queries per aggiustamenti extra */
 @media (max-width: 576px) {
   .col {
-    padding: 0.5rem; 
+    padding: 0.5rem;
   }
   .media-h1 {
     font-size: 1.7rem;
   }
   .media-p {
-    font-size: .9rem;
+    font-size: 0.9rem;
   }
   .media-h6 {
     font-size: 0.9rem;
     text-align: center;
   }
-
 }
-
-
 
 @media screen and (max-width: 450px) {
-
-    
-.query {
+  .query {
     flex-direction: column;
-    
-    .media-h6{
-        padding-bottom: 8px;
-        
+
+    .media-h6 {
+      padding-bottom: 8px;
     }
-}
+  }
 }
 </style>
