@@ -1,9 +1,7 @@
 <script>
 export default {
     data() {
-        return {
-
-        }
+        return {}
     },
 }
 </script>
@@ -13,13 +11,13 @@ export default {
         <div class="footer-top">
             <div class="contact-us">
                 <div class="box-img">
-                    <img src="../assets/img/logo-1.png" alt="">
+                    <img src="../assets/img/logo-1.png" alt="Logo B-Doctors" class="img-fluid" />
                 </div>
                 <h3>Contattaci</h3>
                 <div class="contacts">
                     <div class="cellphone">
-                        <a href="">+(44) 3384893124</a>
-                        <a href="">+(44) 2482457890</a>
+                        <a href="tel:+443384893124">+(44) 3384893124</a>
+                        <a href="tel:+442482457890">+(44) 2482457890</a>
                     </div>
                     <ul class="social">
                         <li>
@@ -57,9 +55,7 @@ export default {
             </div> -->
         </div>
         <div class="footer-bottom">
-            <h4>
-                © 2024 B-Doctors. All Rights Reserved.
-            </h4>
+            <h4>© 2024 B-Doctors. All Rights Reserved.</h4>
         </div>
     </footer>
 </template>
@@ -77,6 +73,7 @@ footer {
         display: flex;
         justify-content: space-around;
         align-items: center;
+        flex-wrap: wrap;
 
         .contact-us {
             width: 30%;
@@ -91,7 +88,6 @@ footer {
                 text-align: center;
 
                 img {
-                    //height: 40px;
                     width: 55%;
                     margin-bottom: 20px;
                 }
@@ -200,13 +196,29 @@ footer {
     }
 
     @media screen and (max-width: 992px) {
-
         .footer-top {
-            height: 100%;
             flex-direction: column;
+            align-items: center;
+            text-align: center;
 
-            img {
-                height: 40px;
+            .contact-us {
+                width: 80%;
+            }
+
+            .box-img img {
+                width: 75%;
+            }
+        }
+    }
+
+    @media screen and (max-width: 576px) {
+        .footer-top {
+            .contact-us {
+                width: 100%;
+            }
+
+            .box-img img {
+                width: 100%;
             }
         }
     }
