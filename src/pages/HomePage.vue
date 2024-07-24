@@ -297,14 +297,14 @@ h6 {
 
 @media (min-width: 768px) {
   .col {
-    padding: 1.5rem; /* Regola il padding per schermi grandi */
+    padding: 1.5rem; 
   }
 }
 
 /* Media Queries per aggiustamenti extra */
 @media (max-width: 576px) {
   .col {
-    padding: 0.5rem; /* Regola il padding per schermi piccoli */
+    padding: 0.5rem; 
   }
   .media-h1 {
     font-size: 1.7rem;
