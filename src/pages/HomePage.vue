@@ -153,8 +153,22 @@ export default {
         Il nostro team di medici altamente qualificati è qui per prendersi cura di voi.
       </p>
 
+
+      <div v-if="doctors" class="doctors-grid">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5">
+          <div v-if="activeDoctors.length === 0 && nonActiveDoctors.length === 0 " class="w-100">
+            <div class="alert alert-warning" role="alert">
+              Ci dispiace, ma non abbiamo trovato alcun dottore che corrisponda ai tuoi criteri di ricerca.
+              <ul>
+                <li>Prova a selezionare una specializzazione diversa.</li>
+                <li>Prova a selezionare una valutazione diversa.</li>
+                <li>Rimuovi alcuni filtri per vedere un maggior numero di risultati.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
       <!-- Dottori con sponsorizzazioni attive -->
-  
       <div v-if="activeDoctors.length > 0">
         <h2 class="text-center mb-4">Dottori con Sponsorizzazioni Attive</h2>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5">
@@ -163,7 +177,8 @@ export default {
           </div>
         </div>
       </div>
-    
+      
+
       <!-- Dottori senza sponsorizzazioni attive -->
       <div v-if="nonActiveDoctors.length > 0">
         <h2 class="text-center mb-4">Dottori Senza Sponsorizzazioni Attive</h2>
@@ -179,6 +194,7 @@ export default {
           <span class="loader-text">caricamento</span>
           <span class="load"></span>
         </div>
+      </div>
       </div>
     </div>
     <PreFooter />
