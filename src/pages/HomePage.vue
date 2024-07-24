@@ -198,7 +198,7 @@ export default {
         <!-- Dottori con sponsorizzazioni attive -->
         <div v-if="activeDoctors.length > 0">
           <h5><i class="fa-solid fa-crown text-warning"></i> Sponsorizzati</h5>
-          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5 m-0 ms_sponsorized">
+          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5 m-0 ms_sponsorized rounded">
             <div
               class="col fade-in m-0"
               v-for="doctor in activeDoctors"
