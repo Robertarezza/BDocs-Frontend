@@ -1,83 +1,100 @@
 <script>
-import { RouterLink } from 'vue-router';
+import { RouterLink } from "vue-router";
+import { store } from "../store.js";
 
 export default {
-    data() {
-        return {
-
-        }
-    },
-}
+  data() {
+    return {
+      store,
+    };
+  },
+};
 </script>
 
 <template>
-    <header>
-        <nav>
-            <ul>
-                <li class="box-img">
-                    <router-link :to="{ name: 'home' }">
-                        <img src="../assets/img/logo-1.png" alt="logo B-Doctors">
-                    </router-link>
-                </li>
-                <li id="title">
-                    <a href="#footer">Contattaci</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
+  <header>
+    <nav>
+      <ul>
+        <li class="box-img">
+          <router-link :to="{ name: 'home' }">
+            <img src="../assets/img/logo-1.png" alt="logo B-Doctors" />
+          </router-link>
+        </li>
+        <li id="title">
+          <a href="#footer">Contattaci</a>
+          <a class="ms-3" :href="store.apiBaseURL"
+            >Vuoi diventare nostro membro?</a
+          >
+        </li>
+      </ul>
+    </nav>
+  </header>
 </template>
-
-
-
 
 <style scoped lang="scss">
 @use "../style/partials/variables" as *;
 
 header {
-    height: 100px;
-    position: fixed;
-    top: 0;
-    left: 0;
+  height: 100px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: $celtic-blue;
+  z-index: 9999;
+
+  .test {
+    list-style-type: none;
+  }
+
+  nav {
     width: 100%;
-    background-color: $celtic-blue;
-    z-index: 9999;
+    padding: 20px;
+    height: 100%;
 
-    .test{
-        list-style-type: none;
-    }
+    ul {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
-    nav {
-        width: 100%;
-        padding: 20px;
-        height: 100%;
+      .box-img {
+        display: flex;
+        justify-content: start;
 
-        ul {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-
-            .box-img {
-                display: flex;
-                justify-content: start;
-
-                img {
-                    //height: 60px;
-                    //display: block;
-                    max-width: 45%;
-                    //aspect-ratio: 1;
-                }
-            }
-
-            #title {
-                list-style-type: none;
-
-                a {
-                    text-decoration: none;
-                    color: white;
-                }
-            }
+        img {
+          //height: 60px;
+          //display: block;
+          max-width: 45%;
+          //aspect-ratio: 1;
         }
+      }
+
+      #title {
+        list-style-type: none;
+
+        a {
+          text-decoration: none;
+          color: white;
+          position: relative;
+          display: inline-block;
+        }
+
+        a::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          bottom: -5px;
+          width: 0;
+          height: 3px;
+          background-color: rgb(0, 255, 229);
+          transition: width 0.5s ease-in-out;
+        }
+
+        a:hover::after {
+          width: 100%;
+        }
+      }
     }
+  }
 }
 </style>
