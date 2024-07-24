@@ -22,6 +22,8 @@ export default {
       store,
       selectSpecialization: "",
       selectRating: "",
+      activeDoctors: [],
+      nonActiveDoctors: []
     };
   },
 
@@ -47,15 +49,24 @@ export default {
       }
       if (this.selectRating !== "") {
         params.average_rating = this.selectRating; // Assicurati che il parametro sia corretto
-    }
+      }
       axios
         .get(`${this.store.apiBaseURL}/api/doctors`, {
           params,
         })
         .then((resp) => {
           this.doctors = resp.data.results;
-          
-          console.log("Dottori filtrati:", this.doctors);
+
+          // Filtra i dottori con sponsorizzazioni attive e non attive
+          this.activeDoctors = this.doctors.filter(doctor => 
+            doctor.active_sponsorships && doctor.active_sponsorships.length > 0
+          );
+          this.nonActiveDoctors = this.doctors.filter(doctor => 
+            !doctor.active_sponsorships || doctor.active_sponsorships.length === 0
+          );
+
+          console.log("Dottori con sponsorizzazioni attive:", this.activeDoctors);
+          console.log("Dottori senza sponsorizzazioni attive:", this.nonActiveDoctors);
           this.$nextTick(() => {
             this.handleScroll();
           });
@@ -77,19 +88,19 @@ export default {
       });
     },
     handleScroll() {
-    const elements = document.querySelectorAll(".fade-in");
-    const windowHeight = window.innerHeight;
+      const elements = document.querySelectorAll(".fade-in");
+      const windowHeight = window.innerHeight;
 
-    elements.forEach((el) => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top < windowHeight && rect.bottom > 200) {
-        el.classList.add("visible");
-      } else {
-        el.classList.remove("visible");
-      }
-    });
+      elements.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < windowHeight && rect.bottom > 200) {
+          el.classList.add("visible");
+        } else {
+          el.classList.remove("visible");
+        }
+      });
+    },
   },
-},
 };
 </script>
 
@@ -102,7 +113,6 @@ export default {
     <div class="m-5 d-flex align-items-center justify-content-evenly query fade-in">
       <h6 class="m-0 media-h6">Scegli i nostri dottori in base alle loro prestazioni</h6>
       <div class="d-flex justify-content-center custom-select">
-        <!-- <SearchBar /> -->
         <select
           id=""
           aria-label="seleziona specializzazione"
@@ -110,7 +120,7 @@ export default {
           @change="getDoctors"
         >
           <option value="">Tutte le specializzazioni</option>
-          <option :value="specialization.id" v-for="specialization in specializations">
+          <option :value="specialization.id" v-for="specialization in specializations" :key="specialization.id">
             {{ specialization.title }}
           </option>
         </select>
@@ -122,15 +132,14 @@ export default {
     <div class="m-5 d-flex align-items-center justify-content-evenly query fade-in">
       <h6 class="m-0 media-h6">Scegli i nostri dottori in base ai loro voti</h6>
       <div class="d-flex justify-content-center custom-select">
-        <!-- <SearchBar /> -->
         <select
           id=""
-          aria-label="seleziona specializzazione"
+          aria-label="seleziona votazione"
           v-model="selectRating"
           @change="getDoctors"
         >
           <option value="">Tutti i voti</option>
-          <option :value="rating.id" v-for="rating in ratings">
+          <option :value="rating.id" v-for="rating in ratings" :key="rating.id">
             {{ rating.rating }}
           </option>
         </select>
@@ -144,23 +153,27 @@ export default {
         Il nostro team di medici altamente qualificati è qui per prendersi cura di voi.
       </p>
 
-      <div v-if="doctors" class="doctors-grid">
+      <!-- Dottori con sponsorizzazioni attive -->
+  
+      <div v-if="activeDoctors.length > 0">
+        <h2 class="text-center mb-4">Dottori con Sponsorizzazioni Attive</h2>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5">
-          <div v-if="doctors.length === 0" class="w-100">
-            <div class="alert alert-warning" role="alert">
-              Ci dispiace, ma non abbiamo trovato alcun dottore che corrisponda ai tuoi criteri di ricerca.
-              <ul>
-                <li>Prova a selezionare una specializzazione diversa.</li>
-                <li>Prova a selezionare una valutazione diversa.</li>
-                <li>Rimuovi alcuni filtri per vedere un maggior numero di risultati.</li>
-              </ul>
-            </div>
-          </div>
-          <div class="col fade-in" v-else v-for="doctor in doctors" :key="doctor.id">
+          <div class="col fade-in" v-for="doctor in activeDoctors" :key="doctor.id">
             <DoctorCard :doctor="doctor" />
           </div>
         </div>
       </div>
+    
+      <!-- Dottori senza sponsorizzazioni attive -->
+      <div v-if="nonActiveDoctors.length > 0">
+        <h2 class="text-center mb-4">Dottori Senza Sponsorizzazioni Attive</h2>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5">
+          <div class="col fade-in" v-for="doctor in nonActiveDoctors" :key="doctor.id">
+            <DoctorCard :doctor="doctor" />
+          </div>
+        </div>
+      </div>
+
       <div v-else>
         <div class="loader">
           <span class="loader-text">caricamento</span>
@@ -171,6 +184,7 @@ export default {
     <PreFooter />
   </div>
 </template>
+
 
 <style scoped lang="scss">
 @use "../style/partials/variables" as *;
