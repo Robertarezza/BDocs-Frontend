@@ -58,17 +58,21 @@ export default {
           this.doctors = resp.data.results;
 
           // Filtra i dottori con sponsorizzazioni attive e non attive
-          this.activeDoctors = this.doctors.filter(
-            (doctor) =>
-              doctor.active_sponsorships && doctor.active_sponsorships.length > 0
+          this.activeDoctors = this.doctors.filter(doctor => 
+            doctor.active_sponsorships && doctor.active_sponsorships.length > 0
           );
-          this.nonActiveDoctors = this.doctors.filter(
-            (doctor) =>
-              !doctor.active_sponsorships || doctor.active_sponsorships.length === 0
+          this.nonActiveDoctors = this.doctors.filter(doctor => 
+            !doctor.active_sponsorships || doctor.active_sponsorships.length === 0
           );
 
-          console.log("Dottori con sponsorizzazioni attive:", this.activeDoctors);
-          console.log("Dottori senza sponsorizzazioni attive:", this.nonActiveDoctors);
+          console.log(
+            "Dottori con sponsorizzazioni attive:",
+            this.activeDoctors
+          );
+          console.log(
+            "Dottori senza sponsorizzazioni attive:",
+            this.nonActiveDoctors
+          );
           this.$nextTick(() => {
             this.handleScroll();
           });
@@ -112,8 +116,12 @@ export default {
     <HeroSection />
 
     <!-- SEARCH BAR SPECIALIZATION -->
-    <div class="m-5 d-flex align-items-center justify-content-evenly query fade-in">
-      <h6 class="m-0 media-h6">Scegli i nostri dottori in base alle loro prestazioni</h6>
+    <div
+      class="m-5 d-flex align-items-center justify-content-evenly query fade-in"
+    >
+      <h6 class="m-0 media-h6">
+        Scegli i nostri dottori in base alle loro prestazioni
+      </h6>
       <div class="d-flex justify-content-center custom-select">
         <select
           id=""
@@ -135,7 +143,9 @@ export default {
     <!-- /SEARCH BAR SPECIALIZATION-->
 
     <!-- SEARCH BAR RATING-->
-    <div class="m-5 d-flex align-items-center justify-content-evenly query fade-in">
+    <div
+      class="m-5 d-flex align-items-center justify-content-evenly query fade-in"
+    >
       <h6 class="m-0 media-h6">Scegli i nostri dottori in base ai loro voti</h6>
       <div class="d-flex justify-content-center custom-select">
         <select
@@ -156,58 +166,55 @@ export default {
     <div class="container mt-5 mb-5">
       <h1 class="text-center mb-3 typewriter-doc media-h1">I nostri Dottori</h1>
       <p class="text-center mb-5 typewriter-doc media-p">
-        Il nostro team di medici altamente qualificati è qui per prendersi cura di voi.
+        Il nostro team di medici altamente qualificati è qui per prendersi cura
+        di voi.
       </p>
 
       <div v-if="doctors" class="doctors-grid">
-        <div >
-          <div
-            v-if="activeDoctors.length === 0 && nonActiveDoctors.length === 0"
-            class="w-100">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5">
+          <div v-if="activeDoctors.length === 0 && nonActiveDoctors.length === 0 " class="w-100">
             <div class="alert alert-warning" role="alert">
-              Ci dispiace, ma non abbiamo trovato alcun dottore che corrisponda ai tuoi
-              criteri di ricerca.
+              Ci dispiace, ma non abbiamo trovato alcun dottore che corrisponda ai tuoi criteri di ricerca.
               <ul>
                 <li>Prova a selezionare una specializzazione diversa.</li>
                 <li>Prova a selezionare una valutazione diversa.</li>
-                <li>Rimuovi alcuni filtri per vedere un maggior numero di risultati.</li>
+                <li>
+                  Rimuovi alcuni filtri per vedere un maggior numero di
+                  risultati.
+                </li>
               </ul>
             </div>
           </div>
-          <div v-else>
-            <div v-if="activeDoctors.length > 0" >
-              <h2 class="text-center mb-4">Dottori con Sponsorizzazioni Attive</h2>
-              <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5">
-                <div class="col fade-in" v-for="doctor in activeDoctors" :key="doctor.id">
-                  <DoctorCard :doctor="doctor" />
-                </div>
-              </div>
-            </div>
-
-            <!-- Dottori senza sponsorizzazioni attive -->
-            <div v-if="nonActiveDoctors.length > 0" >
-              <h2 class="text-center mb-4">Dottori Senza Sponsorizzazioni Attive</h2>
-              <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5">
-                <div
-                  class="col fade-in"
-                  v-for="doctor in nonActiveDoctors"
-                  :key="doctor.id">
-                  <DoctorCard :doctor="doctor" />
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
 
-        <!-- Dottori con sponsorizzazioni attive -->
+      <!-- Dottori con sponsorizzazioni attive -->
+      <div v-if="activeDoctors.length > 0">
+        <h2 class="text-center mb-4">Dottori con Sponsorizzazioni Attive</h2>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5">
+          <div class="col fade-in" v-for="doctor in activeDoctors" :key="doctor.id">
+            <DoctorCard :doctor="doctor" />
+          </div>
+        </div>
       </div>
-        <div v-else>
-          <div class="loader">
-            <span class="loader-text">caricamento</span>
-            <span class="load"></span>
+      
+
+      <!-- Dottori senza sponsorizzazioni attive -->
+      <div v-if="nonActiveDoctors.length > 0">
+        <h2 class="text-center mb-4">Dottori Senza Sponsorizzazioni Attive</h2>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5">
+          <div class="col fade-in" v-for="doctor in nonActiveDoctors" :key="doctor.id">
+            <DoctorCard :doctor="doctor" />
           </div>
         </div>
-     
+      </div>
+
+      <div v-else>
+        <div class="loader">
+          <span class="loader-text">caricamento</span>
+          <span class="load"></span>
+        </div>
+      </div>
+      </div>
     </div>
     <PreFooter />
   </div>
@@ -284,6 +291,17 @@ export default {
   width: 20px;
   height: 20px;
   animation: spin 1s linear infinite;
+}
+
+.ms_sponsorized {
+  background-image: linear-gradient(
+    to left bottom,
+    #fff5cc,
+    #ffd700,
+    #ffc107,
+    #ffb14e,
+    #ffd700
+  );
 }
 
 @keyframes spin {
