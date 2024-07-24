@@ -156,9 +156,9 @@ export default {
       <!-- Dottori con sponsorizzazioni attive -->
   
       <div v-if="activeDoctors.length > 0">
-        <h2 class="text-center mb-4">Dottori con Sponsorizzazioni Attive</h2>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5">
-          <div class="col fade-in" v-for="doctor in activeDoctors" :key="doctor.id">
+        <h5><i class="fa-solid fa-crown text-warning"></i> Sponsorizzati</h5>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5 m-0 bg-warning ms_sponsorized rounded">
+          <div class="col fade-in m-0" v-for="doctor in activeDoctors" :key="doctor.id">
             <DoctorCard :doctor="doctor" />
           </div>
         </div>
@@ -166,7 +166,6 @@ export default {
     
       <!-- Dottori senza sponsorizzazioni attive -->
       <div v-if="nonActiveDoctors.length > 0">
-        <h2 class="text-center mb-4">Dottori Senza Sponsorizzazioni Attive</h2>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5">
           <div class="col fade-in" v-for="doctor in nonActiveDoctors" :key="doctor.id">
             <DoctorCard :doctor="doctor" />
@@ -257,6 +256,10 @@ export default {
   width: 20px;
   height: 20px;
   animation: spin 1s linear infinite;
+}
+
+.ms_sponsorized {
+  background-image: linear-gradient(to left bottom, #FFF5CC, #FFD700, #FFC107, #FFB14E, #FFD700 );
 }
 
 @keyframes spin {
