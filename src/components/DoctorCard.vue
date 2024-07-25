@@ -20,7 +20,13 @@ export default {
         return Math.round(total / this.doctor.ratings.length);
       }
       return 0;
-    }
+    },
+    isSponsored() {
+      console.log('Doctor:', this.doctor.user.name, 'Sponsorships count:', this.doctor.sponsorships.length);
+      // Verifica che il numero di sponsorizzazioni sia maggiore di 0
+      return this.doctor.sponsorships && this.doctor.sponsorships.length > 0;
+    },
+   
   },
   //metodo per lo scroll, al click del router link l'utente viene portato all'inizio della pagina
   methods: {
@@ -33,9 +39,9 @@ export default {
 </script>
 
 <template>
-  <div class="card-client bg-white g-2 ">
+  <div :class="['card-client', { 'sponsored-border-card': isSponsored }, 'bg-white', 'g-2']">
     <!-- foto card -->
-    <div class="user-picture">
+    <div :class="['user-picture', { 'sponsored-border': isSponsored }]">
       <img :src="doctor.photo
           ? `${store.imageUrl}/${doctor.photo}`
           : `https://t3.ftcdn.net/jpg/02/48/42/64/360_F_248426448_NVKLywWqArG2ADUxDq6QprtIzsF82dMF.jpg`
@@ -50,8 +56,8 @@ export default {
       <strong> {{ specialization.title }} </strong>
     </span>
     <br />
-    <a href="" class="text-decoration-none">
-      <i class="fa-regular fa-envelope"></i>
+    <a  class="text-decoration-none" style="    display: flex; justify-content: center; align-items: center;">
+      <i class="fa-regular fa-envelope mt-1"></i>
       <span class="ms-2">{{ doctor.user.email }}</span>
     </a>
     <!-- /corpo card -->
@@ -65,7 +71,7 @@ export default {
     <!-- /stelline sotto l'email -->
 
     <!-- Card Supplemento -->
-    <div class="card-supp">
+    <div  :class="['card-supp', { 'sponsored-border-2': isSponsored }]">
       <router-link :to="{ name: 'DoctorProfile', params: { id: doctor.id } }" @click="backToTheTop()">
         <i class="fa-solid fa-location-dot"></i>
       </router-link>
@@ -100,6 +106,8 @@ export default {
   position: relative;
   /* Necessario per posizionamento relativo al genitore */
 }
+
+
 
 .card-client:hover {
   transform: translateY(-10px);
@@ -179,10 +187,12 @@ export default {
   .fa-solid {
     font-size: 2rem;
   }
+ 
 }
 
 .card-supp p {
   margin-bottom: 10px;
+  
 }
 
 .card-text ul {
@@ -201,4 +211,17 @@ export default {
     margin: 0 auto;
   }
 }
+
+.sponsored-border {
+  border: 3px solid orange; /* Cambia il colore o lo stile del bordo come desideri */
+}
+.sponsored-border-2 {
+  border: 3px solid orange;
+ border-bottom: none;
+}
+.sponsored-border-card {
+  border: 3px solid orange;
+  border-bottom: none;
+}
+
 </style>

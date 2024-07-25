@@ -187,7 +187,7 @@ export default {
           </div>
           <div v-else>
             <div v-if="activeDoctors.length > 0" >
-              <h2 class="text-center mb-4">Sponsorizzati</h2>
+              <!-- <h2 class="text-center mb-4">Sponsorizzati</h2> -->
               <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5  ms_sponsorized rounded">
                 <div class="col fade-in " v-for="doctor in activeDoctors" :key="doctor.id">
                   <DoctorCard :doctor="doctor" />
