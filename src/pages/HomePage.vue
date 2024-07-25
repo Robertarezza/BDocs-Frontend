@@ -186,9 +186,9 @@ export default {
             </div>
           </div>
           <div v-else>
-            <div v-if="activeDoctors.length > 0" >
+            <div v-if="activeDoctors.length > 0" class="active-doctors-section">
               <!-- <h2 class="text-center mb-4">Sponsorizzati</h2> -->
-              <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5  ms_sponsorized rounded">
+              <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5 ms_sponsorized rounded">
                 <div class="col fade-in " v-for="doctor in activeDoctors" :key="doctor.id">
                   <DoctorCard :doctor="doctor" />
                 </div>
@@ -196,7 +196,7 @@ export default {
             </div>
 
             <!-- Dottori senza sponsorizzazioni attive -->
-            <div v-if="nonActiveDoctors.length > 0" >
+            <div v-if="nonActiveDoctors.length > 0" class="non-active-doctors-section">
               <!-- <h2 class="text-center mb-4">Dottori Senza Sponsorizzazioni Attive</h2> -->
               <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5">
                 <div
@@ -360,6 +360,12 @@ h6 {
   }
 }
 
+@media (max-width: 768px) {
+  .active-doctors-section {
+    margin-bottom: 60px;
+  }
+}
+
 /* Media Queries per aggiustamenti extra */
 @media (max-width: 576px) {
   .col {
@@ -386,4 +392,6 @@ h6 {
     }
   }
 }
+
+
 </style>

@@ -12,7 +12,7 @@ export default {
 <template>
     <footer id="footer">
         <div class="footer-top">
-            <div class="contact-us">
+            <div class="contact-us text-center">
                 <div class="box-img">
                     <img src="../assets/img/logo-1.png" alt="Logo B-Doctors" class="img-fluid" />
                 </div>
