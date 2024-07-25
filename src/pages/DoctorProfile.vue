@@ -73,7 +73,7 @@ export default {
       <div class="row align-items-center ms_style">
         <div class="card mb-3" style="max-width: 1000px">
           <div class="row g-0">
-            <div class="col-md-4">
+            <div class="col-md-6 col-card-img">
               <img
                 :src="
                   doctor.photo
@@ -85,7 +85,7 @@ export default {
                 style="max-width: 100%"
               />
             </div>
-            <div class="col-md-8 align-content-center">
+            <div class="col-md-6 align-content-center card-testo">
               <!-- Stelline sopra la foto -->
               <div class="rating-stars">
                 <span
@@ -201,6 +201,26 @@ export default {
 .scroll-container {
   max-height: 400px; /* Imposta l'altezza massima desiderata */
   overflow-y: auto; /* Abilita lo scroll verticale */
+}
+
+/* Style della scrollbar per WebKit */
+.scroll-container::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track della scrollbar */
+.scroll-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle della scrollbar */
+.scroll-container::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle della scrollbar al passaggio del mouse */
+.scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 .my_name{
@@ -323,13 +343,30 @@ span {
   }
 
   .card-body {
-    text-align: center;
+    text-align: start;
+    font-size: 1.5rem;
+   
   }
 
   .card-img-top {
     width: 80%;
-    margin: 0 auto;
+    margin: 0;
+    padding: 0;
   }
+ 
+  .col-card-img{
+    display: flex;
+    align-items: start;
+    margin: 0;
+    padding: 0;
+    justify-content: flex-end;
+  }
+  button{
+   
+        width: 50%;
+        font-size:1.2rem;
+  }
+
 }
 
 /* Breakpoint 768px */
@@ -344,12 +381,27 @@ span {
   }
 
   .card-body {
-    text-align: center;
+    text-align: start;
+    padding-top: 0;
+    font-size: medium;
   }
 
   .card-img-top {
     width: 70%;
-    margin: 0 auto;
+    margin: 0;
+    padding: 0;
+  }
+  .col-card-img{
+    display: flex;
+    align-items: start;
+    margin: 0;
+    padding: 0;
+    justify-content: flex-end;
+  }
+  button{
+    margin-top: 1px !important;
+        width: 47%;
+        font-size: 0.8rem;
   }
 }
 
@@ -400,6 +452,13 @@ span {
   .card-img-top {
     width: 50%;
     margin: 0 auto;
+  }
+  .rating-stars {
+    justify-content: center;
+  }
+  button{
+    margin: auto !important;
+    margin-top: 8px !important;
   }
 }
 

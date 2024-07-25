@@ -22,7 +22,7 @@ export default {
                 </li>
                 <li id="title">
                     <a href="#footer">Contattaci</a>
-                    <a :href="store.apiBaseURL" class="ms-3">Sei un professionista?</a>
+                   
                 </li>
             </ul>
         </nav>
@@ -97,4 +97,5 @@ header {
         }
     }
 }
+
 </style>

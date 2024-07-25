@@ -1,7 +1,10 @@
 <script>
+import { store } from "../store.js";
 export default {
     data() {
-        return {}
+        return {
+            store,
+        }
     },
 }
 </script>
@@ -13,9 +16,12 @@ export default {
                 <div class="box-img">
                     <img src="../assets/img/logo-1.png" alt="Logo B-Doctors" class="img-fluid" />
                 </div>
-                <h3>Contattaci</h3>
+                <h3 :href="store.apiBaseURL" class="ms-3 " >Sei un professionista?</h3>
+                <h3 >Contattaci</h3>
+               <a href="store.apiBaseUR" style="text-decoration: none; color:white; font-size: 1.5rem;"> o clicca qui</a>
                 <div class="contacts">
                     <div class="cellphone">
+                    
                         <a href="tel:+443384893124">+(44) 3384893124</a>
                         <a href="tel:+442482457890">+(44) 2482457890</a>
                     </div>
