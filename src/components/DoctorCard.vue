@@ -33,7 +33,7 @@ export default {
 </script>
 
 <template>
-  <div class="card-client bg-white g-2">
+  <div class="card-client bg-white g-2 ">
     <!-- foto card -->
     <div class="user-picture">
       <img :src="doctor.photo

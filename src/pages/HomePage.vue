@@ -111,7 +111,7 @@ export default {
 </script>
 
 <template>
-  <div>
+
     <!-- HERO SECTION -->
     <HeroSection />
 
@@ -188,7 +188,7 @@ export default {
           <div v-else>
             <div v-if="activeDoctors.length > 0" >
               <h2 class="text-center mb-4">Sponsorizzati</h2>
-              <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5 ms_sponsorized rounded">
+              <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5  ms_sponsorized rounded">
                 <div class="col fade-in " v-for="doctor in activeDoctors" :key="doctor.id">
                   <DoctorCard :doctor="doctor" />
                 </div>
@@ -221,7 +221,7 @@ export default {
      
     </div>
     <PreFooter />
-  </div>
+
 </template>
 
 <style scoped lang="scss">
@@ -297,16 +297,16 @@ export default {
   animation: spin 1s linear infinite;
 }
 
-.ms_sponsorized {
-  background-image: linear-gradient(
-    to left bottom,
-    #fff5cc,
-    #ffd700,
-    #ffc107,
-    #ffb14e,
-    #ffd700
-  );
-}
+//.ms_sponsorized {
+  //background-image: linear-gradient(
+    //to left bottom,
+   // #fff5cc,
+   // #ffd700,
+   // #ffc107,
+   // #ffb14e,
+   // #ffd700
+ // );
+//}
 
 @keyframes spin {
   0% {
