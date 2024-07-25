@@ -197,6 +197,26 @@ export default {
 </template>
 
 <style scoped lang="scss">
+@use "../style/partials/variables" as *;
+
+// custom scrollbar
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: $columbia-blue;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $glaucous;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $egyptian-blue;
+}
 
 .scroll-container {
   max-height: 400px; /* Imposta l'altezza massima desiderata */
