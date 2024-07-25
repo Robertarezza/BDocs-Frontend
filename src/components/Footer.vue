@@ -12,13 +12,13 @@ export default {
 <template>
     <footer id="footer">
         <div class="footer-top">
-            <div class="contact-us">
+            <div class="contact-us text-center">
                 <div class="box-img">
                     <img src="../assets/img/logo-1.png" alt="Logo B-Doctors" class="img-fluid" />
                 </div>
                 <h3 :href="store.apiBaseURL" class="ms-3 " >Sei un professionista?</h3>
                 <h3 >Contattaci</h3>
-               <a href="store.apiBaseUR" style="text-decoration: none; color:white; font-size: 1.5rem;"> o clicca qui</a>
+               <a :href="store.apiBaseURL" style="text-decoration: none; color:white; font-size: 1.5rem;"> o clicca qui</a>
                 <div class="contacts">
                     <div class="cellphone">
                     

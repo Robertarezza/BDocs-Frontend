@@ -227,7 +227,6 @@ export default {
   text-transform: capitalize;
 }
 
-
 .cont-top {
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1)),
     url(../assets/img/nursing4.jpg);
@@ -236,13 +235,10 @@ export default {
   background-attachment: fixed;
   background-position: center;
 }
+
 /* Stelline sopra la foto */
 .rating-stars {
-  // position: absolute;
-  //top: -3px;
-  //left: 106px;
   display: flex;
-  //z-index: 1;
   margin-left: 15px;
 }
 
@@ -287,13 +283,12 @@ span {
   margin-bottom: 50px;
 }
 
-// Bottone messaggio, animazioni custom in entrata e ucita
+// Bottone messaggio, animazioni custom in entrata e uscita
 .ms-alert-success {
   position: fixed;
   top: 20%;
   left: 50%;
   transform: translateX(-50%);
-  // SE CI SONO PROBLEMI CON IL BACGROUNG DI ALLERT .alert-success, è questa opzione il problema
   background-color: rgba(212, 237, 218, 0.9);
   padding: 15px 30px;
   border-radius: 5px;
@@ -302,10 +297,12 @@ span {
   transition: opacity 0.5s ease-in-out;
   opacity: 1;
 }
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s ease-in-out;
 }
+
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
@@ -321,6 +318,7 @@ span {
   border-right-color: rgb(8, 0, 255);
   animation: l2 1s infinite linear;
 }
+
 @keyframes l2 {
   to {
     transform: rotate(1turn);
@@ -345,7 +343,6 @@ span {
   .card-body {
     text-align: start;
     font-size: 1.5rem;
-   
   }
 
   .card-img-top {
@@ -353,20 +350,19 @@ span {
     margin: 0;
     padding: 0;
   }
- 
-  .col-card-img{
+
+  .col-card-img {
     display: flex;
     align-items: start;
     margin: 0;
     padding: 0;
     justify-content: flex-end;
   }
-  button{
-   
-        width: 50%;
-        font-size:1.2rem;
-  }
 
+  button {
+    width: 50%;
+    font-size: 1.2rem;
+  }
 }
 
 /* Breakpoint 768px */
@@ -391,17 +387,19 @@ span {
     margin: 0;
     padding: 0;
   }
-  .col-card-img{
+
+  .col-card-img {
     display: flex;
     align-items: start;
     margin: 0;
     padding: 0;
     justify-content: flex-end;
   }
-  button{
+
+  button {
     margin-top: 1px !important;
-        width: 47%;
-        font-size: 0.8rem;
+    width: 47%;
+    font-size: 0.8rem;
   }
 }
 
@@ -418,11 +416,22 @@ span {
 
   .card-body {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
   }
 
   .card-img-top {
     width: 60%;
     margin: 0 auto;
+  }
+
+  .btn {
+    margin-top: auto;
+    align-self: center;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -453,13 +462,14 @@ span {
     width: 50%;
     margin: 0 auto;
   }
+
   .rating-stars {
     justify-content: center;
   }
-  button{
+
+  button {
     margin: auto !important;
     margin-top: 8px !important;
   }
 }
-
 </style>
