@@ -403,6 +403,7 @@ span {
   }
 }
 
+
 /* Breakpoint 576px */
 @media (max-width: 576px) {
   .ms_style .card {
