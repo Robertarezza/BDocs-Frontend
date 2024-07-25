@@ -20,7 +20,7 @@ export default {
                 </div>
                 <h3 class="ms-3 " >Sei un professionista?</h3>
                 <h3 >Contattaci</h3>
-               <a :href="`${store.apiBaseURL}/register`" target="_blank" style="text-decoration: none; color:white; font-size: 1.5rem;"> o clicca qui</a>
+               <a :href="`${store.apiBaseURL}/register`" target="_blank" style="text-decoration: none; color:white; font-size: 1.5rem;"> Unisciti a noi</a>
                 <div class="contacts">
                     <div class="cellphone">
                     
