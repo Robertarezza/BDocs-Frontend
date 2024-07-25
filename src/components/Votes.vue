@@ -22,6 +22,7 @@ export default {
     methods: {
         closeModal() {
             this.showModal = false;
+            this.submitted = false;
             this.clearFields(); // Pulisci i campi quando si chiude il modale
         },
         submitForm() {

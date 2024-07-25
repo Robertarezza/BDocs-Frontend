@@ -223,27 +223,7 @@ export default {
   overflow-y: auto; /* Abilita lo scroll verticale */
 }
 
-/* Style della scrollbar per WebKit */
-.scroll-container::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* Track della scrollbar */
-.scroll-container::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-/* Handle della scrollbar */
-.scroll-container::-webkit-scrollbar-thumb {
-  background: #888;
-}
-
-/* Handle della scrollbar al passaggio del mouse */
-.scroll-container::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-.my_name {
+.my_name{
   text-transform: capitalize;
 }
 
