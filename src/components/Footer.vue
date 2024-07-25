@@ -1,11 +1,13 @@
 <script>
 import { store } from "../store.js";
+import axios from "axios";
 export default {
     data() {
         return {
             store,
         }
     },
+    
 }
 </script>
 
@@ -16,9 +18,9 @@ export default {
                 <div class="box-img">
                     <img src="../assets/img/logo-1.png" alt="Logo B-Doctors" class="img-fluid" />
                 </div>
-                <h3 :href="store.apiBaseURL" class="ms-3 " >Sei un professionista?</h3>
+                <h3 class="ms-3 " >Sei un professionista?</h3>
                 <h3 >Contattaci</h3>
-               <a :href="store.apiBaseURL" style="text-decoration: none; color:white; font-size: 1.5rem;"> o clicca qui</a>
+               <a :href="`${store.apiBaseURL}/register`" target="_blank" style="text-decoration: none; color:white; font-size: 1.5rem;"> Unisciti a noi</a>
                 <div class="contacts">
                     <div class="cellphone">
                     

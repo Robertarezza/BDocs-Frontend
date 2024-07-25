@@ -8,6 +8,12 @@ export default {
             store,
         }
     },
+    methods: {
+    backToTheTop() {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; 
+    }
+  }
 }
 </script>
 
@@ -17,7 +23,7 @@ export default {
             <ul>
                 <li class="box-img">
                     <router-link :to="{ name: 'home' }">
-                        <img src="../assets/img/logo-1.png" alt="logo B-Doctors">
+                        <img src="../assets/img/logo-1.png" alt="logo B-Doctors" @click="backToTheTop()">
                     </router-link>
                 </li>
                 <li id="title">
