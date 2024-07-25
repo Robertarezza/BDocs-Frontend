@@ -117,6 +117,8 @@ export default {
         padding: 5px;
         align-items: center;
         background-attachment: local;
+        position: absolute;
+        top: 70px;
 
         .typewriter {
             font-size: .8rem;
