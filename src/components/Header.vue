@@ -3,36 +3,39 @@ import { RouterLink } from "vue-router";
 import { store } from "../store.js";
 
 export default {
-    data() {
-        return {
-            store,
-        }
-    },
-    methods: {
+  data() {
+    return {
+      store,
+    };
+  },
+  methods: {
     backToTheTop() {
       document.body.scrollTop = 0; // For Safari
-      document.documentElement.scrollTop = 0; 
-    }
-  }
-}
+      document.documentElement.scrollTop = 0;
+    },
+  },
+};
 </script>
 
 <template>
-    <header>
-        <nav>
-            <ul>
-                <li class="box-img">
-                    <router-link :to="{ name: 'home' }">
-                        <img src="../assets/img/logo-1.png" alt="logo B-Doctors" @click="backToTheTop()">
-                    </router-link>
-                </li>
-                <li id="title">
-                    <a href="#footer">Contattaci</a>
-                   
-                </li>
-            </ul>
-        </nav>
-    </header>
+  <header>
+    <nav>
+      <ul>
+        <li class="box-img">
+          <router-link :to="{ name: 'home' }">
+            <img
+              src="../assets/img/logo-1.png"
+              alt="logo B-Doctors"
+              @click="backToTheTop()"
+            />
+          </router-link>
+        </li>
+        <li id="title">
+          <a href="#footer">Contattaci</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
 </template>
 
 <style scoped lang="scss">
@@ -54,6 +57,7 @@ header {
     nav {
         width: 100%;
         padding: 20px;
+        padding-right: 27px;
         height: 100%;
 
         ul {
@@ -93,7 +97,7 @@ header {
                         background-color: $columbia-blue;
                         transition: width 0.5s ease-in-out;
                     }
-    
+
                     &:hover::after {
                         width: 100%;
                     }
@@ -102,6 +106,68 @@ header {
             }
         }
     }
+
+/* Breakpoint 1024px */
+@media (max-width: 1024px) {
+
+nav{
+
+height: 100%;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding-right: 27px;
+
+ul {
+    padding: 0%;
+    margin: 0;
+    padding-right: 21px;
+    width: 100%;
 }
 
+}
+
+}
+
+/* Breakpoint 768px */
+@media (max-width: 768px) {
+
+    nav{
+
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 20px;
+
+    ul {
+        padding: 0%;
+        margin: 0;
+        padding-right: 21px;
+        width: 100%;
+  }
+
+}
+
+}
+
+    /* Breakpoint 450px */
+@media (max-width: 450px) {
+ nav{
+
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 20px;
+
+    ul {
+        padding: 0%;
+        margin: 0;
+        padding-right: 10px;
+    }
+  }
+
+}
+}
 </style>
