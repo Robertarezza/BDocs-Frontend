@@ -234,6 +234,11 @@ export default {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
+
+}
+img{
+  width: 70%;
+  margin-left: 30%;
 }
 
 /* Stelline sopra la foto */
@@ -346,7 +351,7 @@ span {
   }
 
   .card-img-top {
-    width: 80%;
+    width: 70%;
     margin: 0;
     padding: 0;
   }
