@@ -117,7 +117,7 @@ export default {
 
     <!-- SEARCH BAR SPECIALIZATION -->
     <div
-      class="m-5 d-flex align-items-center justify-content-evenly query fade-in"
+      class="m-5 d-flex align-items-center justify-content-evenly query fade-in query-2"
     >
       <h6 class="m-0 media-h6">
         Scegli i nostri dottori in base alle loro prestazioni
@@ -386,10 +386,14 @@ h6 {
 @media screen and (max-width: 450px) {
   .query {
     flex-direction: column;
+    
 
     .media-h6 {
       padding-bottom: 8px;
     }
+  }
+  .query-2 {
+    margin-top: 400px !important;
   }
 }
 
