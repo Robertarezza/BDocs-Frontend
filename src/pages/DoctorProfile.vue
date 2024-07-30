@@ -27,6 +27,7 @@ export default {
     };
   },
   computed: {
+  
     averageRating() {
       // Calcola la media dei voti se i voti sono disponibili
       if (this.doctor.ratings && this.doctor.ratings.length > 0) {
@@ -35,6 +36,9 @@ export default {
       }
       return 0;
     },
+    orderedReviews() {
+      return [...this.doctor.reviews].sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+    }
   },
   created() {
     const id = this.$route.params.id;
@@ -158,7 +162,7 @@ export default {
       <div v-if="doctor.reviews.length > 0">
         <!-- Contenitore delle recensioni con classe condizionale -->
         <div :class="{'scroll-container': doctor.reviews.length > 3}" style="width: 50%; margin: 0 auto">
-          <div class="card" style="width: 70%; margin: 10px auto;" v-for="(review, index) in doctor.reviews" :key="review.id">
+          <div class="card" style="width: 70%; margin: 10px auto;" v-for="(review, index) in orderedReviews" :key="review.id">
             <div class="card-body">
               <div class="d-flex mb-4 border-bottom justify-content-between align-items-center">
                 <h5 class="card-title my_name"> <i class="fa-solid fa-circle-user"></i> {{ review.guest_name }}</h5>
